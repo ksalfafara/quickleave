@@ -22,9 +22,20 @@ Route::controllers([
 ]);
 */
 
+
+Route::get('/', function()
+{
+  return View::make('index');
+});
+	
 Route::get('login', function()
 {
-  return View::make('/auth/login');
+  return View::make('login');
+});
+
+Route::get('login2', function()
+{
+	return View::make('auth/login');
 });
 
 /*
@@ -34,8 +45,8 @@ Route::get('/', function()
 });
 */
 
-Route::get('/',function()
-{
+//Route::get('/',function()
+//{
 	/* //Check connection to DB
 	$name = DB::Connection()->getDatabaseName();
 	return 'Connected to '.$name;
@@ -140,7 +151,7 @@ Route::get('/',function()
 	return 'Delete successful!';
 	*/
 
-});
+//});
 
 
 

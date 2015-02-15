@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration {
 			$table->integer('vl_bal');
 			$table->boolean('isManager');
 			$table->timestamps();
-			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
+			$table->integer('teams_id')->unsigned();
+			$table->foreign('teams_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
 		});
 
 		Schema::create('leave_types', function(Blueprint $table)
@@ -50,8 +50,8 @@ class CreateUsersTable extends Migration {
 			$table->string('manager_remark');
 			$table->string('status');
 			$table->timestamps();
-			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
+			$table->integer('users_id')->unsigned();
+			$table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('leave_types_id')->unsigned();
 			$table->foreign('leave_types_id')->references('id')->on('leave_types')->onDelete('cascade')->onUpdate('cascade');
 		});
