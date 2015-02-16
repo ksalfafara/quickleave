@@ -17,7 +17,7 @@ class PasswordController extends Controller {
 	| explore this trait and override any methods you wish to tweak.
 	|
 	*/
-
+	
 	use ResetsPasswords;
 
 	/**
@@ -36,3 +36,7 @@ class PasswordController extends Controller {
 	}
 
 }
+
+	
+
+
