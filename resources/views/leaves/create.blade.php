@@ -16,11 +16,11 @@
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{!! URL::to('leaves') !!}">View All Leave Request</a></li>
-        <li><a href="{!! URL::to('leaves/create') !!}">Create a Nerd</a>
+        <li><a href="{!! URL::to('leaves/create') !!}">Create Leave</a>
     </ul>
 </nav>
 
-<h1>Create a Nerd</h1>
+<h1>Create Leave</h1>
 
 <!-- if there are creation errors, they will show here -->
 {!! HTML::ul($errors->all()) !!}
