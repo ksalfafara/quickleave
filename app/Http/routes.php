@@ -15,10 +15,21 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::resource('leaves', 'LeaveController');
+Route::resource('teams', 'TeamController');
 
+Route::get('teams2',function() {
+	return View::make('team');
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+/*
+Route::get('team/orig', function()
+{
+	return View::make('team');
+});
+*/
+

@@ -14,7 +14,22 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		// $this->call('UserTableSeeder');
+		$this->call('TeamTableSeeder');
 	}
 
+}
+
+class TeamTableSeeder extends Seeder {
+
+	public function run() {
+
+		for($i = 0; $i < 5; $i++) {
+
+			$team = new Team;
+			$team->name = 'Team '.$i;
+			$team->code = 'Code '.$i;
+			$team->save();
+
+		}
+	}
 }

@@ -20,15 +20,21 @@
 
 					<form class="form-horizontal" role="form" method="POST" action="/auth/register">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						
-						<div class="form-group">
-							<label class="col-md-4 control-label">Name</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
 
+						<div class="form-group">
+							<label class="col-md-4 control-label">Firstname</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="firstname" value="{{ old('firstname') }}">
 							</div>
 						</div>
-				
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Lastname</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="lastname" value="{{ old('lastname') }}">
+							</div>
+						</div>
+
 						<div class="form-group">
 							<label class="col-md-4 control-label">E-Mail Address</label>
 							<div class="col-md-6">
@@ -47,6 +53,20 @@
 							<label class="col-md-4 control-label">Confirm Password</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password_confirmation">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Team Name</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="team_name" value="{{ old('name') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Team Code</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="team_code">
 							</div>
 						</div>
 
