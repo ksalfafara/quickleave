@@ -9,6 +9,7 @@
 
 				<div class="panel-body">
 					Hi {{ Auth::user()->name }}.
+>>>>>>> master
 				</div>
 			</div>
 		</div>
