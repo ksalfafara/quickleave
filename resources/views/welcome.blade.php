@@ -11,8 +11,8 @@
 				color: #B0BEC5;
 				display: table;
 				font-weight: 100;
-				background-color:;
-				background: url('../img/evening.jpg') no-repeat center;
+				background-width: 100%;
+				background: url('../img/evening.jpg') no-repeat;
 			}
 
 			.container {
@@ -66,7 +66,6 @@
     			-moz-transition: all 0.3s linear;
     			transition: all 0.3s linear;
 			}
-
 		</style>
 	</head>
 	<body>
