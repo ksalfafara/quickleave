@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{!! URL::to('leaves') !!}">Nerd Alert</a>
+        <a class="navbar-brand" href="{!! URL::to('/') !!}">QUICKLEAVE</a>
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{!! URL::to('leaves') !!}">View All Leave Request</a></li>
