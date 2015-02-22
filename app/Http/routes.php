@@ -21,15 +21,9 @@ Route::get('teams2',function() {
 	return View::make('team');
 });
 
+Route::resource('leaves', 'LeaveController');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-/*
-Route::get('team/orig', function()
-{
-	return View::make('team');
-});
-*/
-

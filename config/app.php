@@ -195,7 +195,6 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'		=> 'Illuminate\Html\FormFacade',  //added for FormBuilder
 		'HTML'		=> 'Illuminate\Html\HtmlFacade',   //added for FormBuilder
-
 	],
 
 ];
