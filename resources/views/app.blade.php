@@ -36,6 +36,7 @@
 					@else
 					<li><a href="/">Home</a></li>
 					<li><a href="/leaves">Request a Leave</a></li>
+					<li><a href="/teams">Teams</a></li>
 					@endif
 				</ul>
 

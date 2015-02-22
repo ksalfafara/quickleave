@@ -38,17 +38,17 @@
 
     <div class="form-group">
         {!! Form::label('frm_dt', 'From Date') !!}
-        {!! Form::text('frm_dt', Input::old('frm_dt'), array('class' => 'form-control', 'id' => 'frm_dt')) !!}
+        {!! Form::text('frm_dt', Input::old('frm_dt'), array('class' => 'form-control', 'id' => 'frm_dt', 'placeholder' => 'Pick a date')) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('to_dt', 'To Date') !!}
-        {!! Form::text('to_dt', Input::old('to_dt'), array('class' => 'form-control','id' => 'to_dt')) !!}
+        {!! Form::text('to_dt', Input::old('to_dt'), array('class' => 'form-control','id' => 'to_dt', 'placeholder' => 'Pick a date')) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('note', 'Reason/Note') !!}
-        {!! Form::textarea('note', Input::old('note'), array('class' => 'form-control')) !!}
+        {!! Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'placeholder' => '(Optional) Additional note')) !!}
     </div>
 
     

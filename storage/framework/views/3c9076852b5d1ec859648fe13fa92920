@@ -66,7 +66,6 @@
     			-moz-transition: all 0.3s linear;
     			transition: all 0.3s linear;
 			}
-
 		</style>
 	</head>
 	<body>
