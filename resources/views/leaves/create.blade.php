@@ -4,7 +4,14 @@
 <head>
     <title>Create Leave Request</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    
+    <!--<link rel="stylesheet" type="text/css" href="/css/jquery-ui/jquery-ui.min.css">-->
+    <link rel="stylesheet" type="text/css" href="/dpskin/css/datepicker.css">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.min.js"></script>
+
+
+ 
 
 </head>
 <body>
@@ -16,7 +23,7 @@
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{!! URL::to('leaves') !!}">View All Leave Request</a></li>
-        <li><a href="{!! URL::to('leaves/create') !!}">Create Leave</a>
+        <li><a href="{!! URL::to('leaves/create') !!}">Request a Leave</a>
     </ul>
 </nav>
 
@@ -36,9 +43,11 @@
         {!! Form::label('type', 'Vacation Leave') !!}-->
     </div>
 
-    <div class="form-group">
+    <div class="form-group datepicker ll-skin-melon">
         {!! Form::label('frm_dt', 'From Date') !!}
-        {!! Form::text('frm_dt', Input::old('frm_dt'), array('class' => 'form-control', 'id' => 'frm_dt', 'placeholder' => 'Pick a date')) !!}
+        {!! Form::text('frm_dt', Input::old('frm_dt'), array('class' => 'form-control', 'id' => 'frm_dt', 'placeholder' => 'Pick a date', 'data-datepicker' => 'datepicker'
+        )) !!} 
+
     </div>
 
     <div class="form-group">
@@ -60,13 +69,19 @@
 </div>
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	<script>
-	  $(function() {
-	    $( "#frm_dt" ).datepicker();
-	    $( "#to_dt" ).datepicker();
-	  });
-	</script>
+  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+  <script>
+  $(function() {
+        $( "#frm_dt" ).datepicker({ 
+            dateFormat: 'yy-mm-dd',
+            showOtherMonths: true,  
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], 
+        });
+        $( "#to_dt" ).datepicker({ 
+            dateFormat: 'yy-mm-dd' 
+        });
+  });
+  </script> 
 
 </body>
 </html>
