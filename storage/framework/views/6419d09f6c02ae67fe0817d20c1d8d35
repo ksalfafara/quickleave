@@ -4,7 +4,14 @@
 <head>
     <title>Create Leave Request</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    
+    <!--<link rel="stylesheet" type="text/css" href="/css/jquery-ui/jquery-ui.min.css">-->
+    <link rel="stylesheet" type="text/css" href="/dpskin/css/datepicker.css">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.min.js"></script>
+
+
+ 
 
 </head>
 <body>
@@ -12,15 +19,15 @@
 
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo URL::to('leaves'); ?>">Nerd Alert</a>
+        <a class="navbar-brand" href="<?php echo URL::to('/'); ?>">QUICKLEAVE</a>
     </div>
     <ul class="nav navbar-nav">
         <li><a href="<?php echo URL::to('leaves'); ?>">View All Leave Request</a></li>
-        <li><a href="<?php echo URL::to('leaves/create'); ?>">Create a Nerd</a>
+        <li><a href="<?php echo URL::to('leaves/create'); ?>">Request a Leave</a>
     </ul>
 </nav>
 
-<h1>Create a Nerd</h1>
+<h1>Create Leave</h1>
 
 <!-- if there are creation errors, they will show here -->
 <?php echo HTML::ul($errors->all()); ?>
@@ -43,24 +50,25 @@
         <?php echo Form::label('type', 'Vacation Leave'); ?>-->
     </div>
 
-    <div class="form-group">
+    <div class="form-group datepicker ll-skin-melon">
         <?php echo Form::label('frm_dt', 'From Date'); ?>
 
-        <?php echo Form::text('frm_dt', Input::old('frm_dt'), array('class' => 'form-control', 'id' => 'frm_dt')); ?>
+        <?php echo Form::text('frm_dt', Input::old('frm_dt'), array('class' => 'form-control', 'id' => 'frm_dt', 'placeholder' => 'Pick a date', 'data-datepicker' => 'datepicker'
+        )); ?> 
 
     </div>
 
     <div class="form-group">
         <?php echo Form::label('to_dt', 'To Date'); ?>
 
-        <?php echo Form::text('to_dt', Input::old('to_dt'), array('class' => 'form-control','id' => 'to_dt')); ?>
+        <?php echo Form::text('to_dt', Input::old('to_dt'), array('class' => 'form-control','id' => 'to_dt', 'placeholder' => 'Pick a date')); ?>
 
     </div>
 
     <div class="form-group">
         <?php echo Form::label('note', 'Reason/Note'); ?>
 
-        <?php echo Form::textarea('note', Input::old('note'), array('class' => 'form-control')); ?>
+        <?php echo Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'placeholder' => '(Optional) Additional note')); ?>
 
     </div>
 
@@ -75,13 +83,19 @@
 </div>
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	<script>
-	  $(function() {
-	    $( "#frm_dt" ).datepicker();
-	    $( "#to_dt" ).datepicker();
-	  });
-	</script>
+  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+  <script>
+  $(function() {
+        $( "#frm_dt" ).datepicker({ 
+            dateFormat: 'yy-mm-dd',
+            showOtherMonths: true,  
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], 
+        });
+        $( "#to_dt" ).datepicker({ 
+            dateFormat: 'yy-mm-dd' 
+        });
+  });
+  </script> 
 
 </body>
 </html>

@@ -13,11 +13,17 @@
 
 Route::get('/', 'WelcomeController@index');
 
+Route::get('app', function()
+{
+	return view::make('app');
+});
+
 Route::get('home', 'HomeController@index');
 
 Route::resource('teams', 'TeamController');
 
 Route::resource('leaves', 'LeaveController');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

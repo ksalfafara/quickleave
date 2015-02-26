@@ -4,6 +4,7 @@
 
 		<style>
 			body {
+				max-width: 100%;
 				margin: 0;
 				padding: 0;
 				width: 100%;
@@ -12,7 +13,13 @@
 				display: table;
 				font-weight: 100;
 				background-width: 100%;
-				background: url('../img/evening.jpg') no-repeat;
+				background: url('../img/home2.jpg') no-repeat center center fixed; 
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				overflow-x: hidden;
+
 			}
 
 			.container {
@@ -21,60 +28,90 @@
 				vertical-align: middle;
 			}
 
+			.header {
+				position: absolute;
+				width: 100%;
+				height: 30px;
+				background: none;
+				padding: 20px;
+			}
+
+			#left {
+				float: left;
+				color: #757575;
+				font-family: calibri;
+				font-style: bold;
+				text-decoration: none;
+				font-size: 1.8vw;
+			}
+
+
+
+			#right {
+				float: right;
+			    text-align: center;
+			    display: inline-block;
+			    padding: 0 50px 0 0;
+			}
+
+			#right a {
+			    color: #eee;
+				font-family: calibri;
+				font-style: bold;
+				text-decoration: none;
+				border: 1px solid #eee;
+				font-size: 1.2vw;
+				margin: 0px 15px 0 0 ;
+				padding: 5px;
+			}
+
+			#right a:hover {
+				color: #aaa;
+			}
+
+
+
 			.content {
 				text-align: center;
 				display: inline-block;
 			}
 
 			.title {
-				font-size: 126px;
-				font-family: calibri;
-				font-weight: bold;
-				margin-bottom: 20px;
-				color: #fff;
-				text-shadow: 2px 2px #000;
+				font-size: 7.5vw;
+				font-family: cambria;
+				font-weight: light;
+				margin-bottom: 10px;
+				color: #444;
+				text-shadow: 1px 1px #eee;
+				border: 2px solid #777;
+				padding: 8px;
 			}
 
 			.quote {
-				font-size: 24px;
-				font-family: calibri;
-				font-style: light;
-				text-transform: uppercase;
-				color: #fff;
-				text-shadow: 2px 2px #111;
-			}
-
-			.btn {
-				text-align: center;
-				display: inline-block;
-				width: 60px;
-				background: #111;
-				margin: 30px 10px 0 0;
-				padding: 10px;
-			}
-
-			.btn a {
-				color: #fff;
-				font-family: calibri;
-				font-style: normal;
-				text-decoration: none;
-			}
-
-			.btn a:hover {
-				color: #999;
-				-webkit-transition: all 0.3s linear;
-    			-moz-transition: all 0.3s linear;
-    			transition: all 0.3s linear;
+				font-size: 2.3vw;
+				font-family: cambria;
+				font-style: italic;
+				text-transform: normal;
+				color: #555;
 			}
 		</style>
 	</head>
 	<body>
+
+
+		<div class="header">
+			<div id="left">
+				ASIA PACIFIC COLLEGE
+			</div>
+			<div id="right">
+				<a href='/auth/login'>LOG IN</a><a href='/auth/register'>REGISTER</a>
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="content">
 				<div class="title">QUICKLEAVE</div>
-				<div class="quote">Leave now. Anytime. Anywhere.</div>
-				<div class="btn"><a href='/auth/login'>LOG IN</a></div>
-				<div class="btn"><a href='/auth/register'>REGISTER</a></div>
+				<div class="quote">File a leave. Anytime. Anywhere.</div>
 			</div>
 		</div>
 	</body>
