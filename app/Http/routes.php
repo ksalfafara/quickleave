@@ -15,7 +15,7 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('app', function()
 {
-	return view::make('app');
+	return view('app');
 });
 
 Route::get('home', 'HomeController@index');
@@ -25,6 +25,11 @@ Route::resource('teams', 'TeamController');
 Route::resource('leaves', 'LeaveController');
 
 Route::resource('balances','BalanceController');
+
+Route::get('adminlte',function()
+{
+	return view('AdminLTE-master/index2');
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
