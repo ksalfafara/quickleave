@@ -1,0 +1,10 @@
+[2015-02-17 12:03:16] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Controller' not found' in C:\Users\Kervi\laravel_projects\quickleave5\app\Http\Controllers\WelcomeController.php:3
+Stack trace:
+#0 C:\Users\Kervi\laravel_projects\quickleave5\storage\framework\compiled.php(1721): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError(Array)
+#1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#2 {main}  
+[2015-02-17 12:03:29] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Http\Controller' not found' in C:\Users\Kervi\laravel_projects\quickleave5\app\Http\Controllers\WelcomeController.php:3
+Stack trace:
+#0 C:\Users\Kervi\laravel_projects\quickleave5\storage\framework\compiled.php(1721): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError(Array)
+#1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#2 {main}  

@@ -1,0 +1,53 @@
+<!-- app/views/teams/edit.blade.php -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Look! I'm CRUDding</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+<nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="<?php echo URL::to('teams'); ?>">Team Alert</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="<?php echo URL::to('teams'); ?>">View All Teams</a></li>
+        <li><a href="<?php echo URL::to('teams/create'); ?>">Create a Team</a>
+    </ul>
+</nav>
+
+<h1>Edit <?php echo $team->name; ?></h1>
+
+<!-- if there are creation errors, they will show here -->
+<?php echo HTML::ul($errors->all()); ?>
+
+
+<?php echo Form::model($team, array('route' => array('teams.update', $team->id), 'method' => 'PUT')); ?>
+
+
+    <div class="form-group">
+        <?php echo Form::label('name', 'Team Name'); ?>
+
+        <?php echo Form::text('name', null, array('class' => 'form-control')); ?>
+
+    </div>
+
+    <div class="form-group">
+        <?php echo Form::label('code', 'Team Code'); ?>
+
+        <?php echo Form::text('code', null, array('class' => 'form-control')); ?>
+
+    </div>
+
+    <?php echo Form::submit('Edit the Team!', array('class' => 'btn btn-primary')); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+</body>
+</html>
