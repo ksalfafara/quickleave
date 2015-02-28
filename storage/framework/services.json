@@ -58,6 +58,7 @@
         "command.event.make": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.down": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.environment": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
+        "command.fresh": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.handler.command": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.handler.event": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.key.generate": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

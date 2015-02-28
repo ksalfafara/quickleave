@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2015-02-28 11:29:48] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'CreateUsersFk' not found' in C:\Users\Kervi\laravel_projects\quickleave\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php:301
 Stack trace:
 #0 C:\Users\Kervi\laravel_projects\quickleave\storage\framework\compiled.php(1736): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError(Array)
@@ -1483,3 +1484,5 @@ Stack trace:
 #0 D:\tempo\quickleave\storage\framework\compiled.php(1736): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError(Array)
 #1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
 #2 {main}  
+=======
+>>>>>>> fa7d10ab4070d23b26a4f47b9d40debf3b8e6a2b

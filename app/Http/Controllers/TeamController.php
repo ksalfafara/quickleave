@@ -9,15 +9,11 @@ use View, Input, Session, Redirect, Validator;
 
 class TeamController extends Controller {
 
-	/*public function __construct()
+	public function __construct()
 	{
-		$this->middleware('auth');
-	}*/
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+		$this->middleware('guest'); //change later to auth
+	}
+	
 	public function index()
 	{
 		// get all teams
@@ -48,12 +44,11 @@ class TeamController extends Controller {
 	{
 		$rules = array(
             'name' => 'required|unique:teams',
-            'code' => 'required|',
+            'code' => 'required',
         );
 
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
             return Redirect::to('teams/create')
                 ->withErrors($validator);

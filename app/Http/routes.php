@@ -11,20 +11,29 @@
 |
 */
 
+//landing page
 Route::get('/', 'WelcomeController@index');
 
-Route::get('app', function()
-{
-	return view::make('app');
-});
+//admin dashboard
+Route::resource('admin', 'AdminController@index');
 
 Route::get('home', 'HomeController@index');
 
 Route::resource('teams', 'TeamController');
 
+Route::get('teamview', function()
+{
+	return View::make('teams.team');
+});
+
 Route::resource('leaves', 'LeaveController');
 
 Route::resource('balances','BalanceController');
+
+Route::get('adminlte',function()
+{
+	return view('AdminLTE-master/index2');
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
