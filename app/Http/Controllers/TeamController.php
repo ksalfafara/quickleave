@@ -5,12 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Team;
-use View;
-use Input;
-use Session;
-use Redirect;
-use Validator;
-
+use View, Input, Session, Redirect, Validator;
 
 class TeamController extends Controller {
 
