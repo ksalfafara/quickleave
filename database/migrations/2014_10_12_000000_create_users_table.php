@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->string('lastname');
 			$table->string('username')->unique();
 			$table->string('email')->unique();
-			$table->string('password', 60);
+			$table->string('password', 255);
 			$table->integer('sl_bal');
 			$table->integer('vl_bal');
 			$table->boolean('is_manager');

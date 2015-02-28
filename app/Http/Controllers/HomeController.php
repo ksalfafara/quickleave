@@ -1,5 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Registrar;
+use Illuminate\Http\Request;
+use Auth, View, Input, Session, Redirect, Validator;
+
 class HomeController extends Controller {
 
 	/*
@@ -19,7 +25,6 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 
-	
 	public function __construct()
 	{
 		$this->middleware('guest');
@@ -32,6 +37,49 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		return View::make('home');
 	}
+
+	public function showLogin() {
+		return View::make('auth.login');
+	}
+
+	public function doLogin() {
+    	//$userdata = array(
+        $username  = Input::get('username');
+        $password  = Input::get('password');
+        //);
+
+        $rules = array(
+			'username'	=>	'required',
+			'password'	=>	'required'
+		);
+		
+		// run the validation rules on the inputs from the form
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::to('login')
+        	->withErrors($validator) // send back all errors to the login form
+        	->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+
+		}
+		else {
+        	// attempt to do the login
+    		if (Auth::attempt(['username' => $username, 'password' => $password])) {
+    			return Redirect::to('/home');		// validation successful! Redirect them to the secure section or whatever
+        	}
+
+        	else {         
+        		return Redirect::to('login');		// validation not successful, send back to form
+			}
+		}
+	}	
+
+	public function doLogout()
+{
+    Auth::logout(); // log the user out of our application
+    return Redirect::to('/'); // redirect the user to the login screen
+}
+
 }
