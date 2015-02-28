@@ -5,10 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Leave;
-use View;
-use Input;
-use Session;
-use Redirect;
+use View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class LeaveController extends Controller {
 
@@ -17,95 +14,105 @@ class LeaveController extends Controller {
 		$this->middleware('guest'); //change later to auth
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-		// get all the requests
         $leaves = Leave::all();
-
-        // load the view and pass the leaves
-        return View::make('leaves.index')
-            ->with('leaves', $leaves);
+        return View::make('leaves.index')->with('leaves', $leaves);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		//
 		return View::make('leaves.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-            // store
-            $leave = new Leave();
-            $leave->type 	= Input::get('type');
-            $leave->from_dt = Input::get('frm_dt');
-            $leave->to_dt 	= Input::get('to_dt');
-            $leave->note 	= Input::get('note');
-            $leave->save();
+       	$rules = array(
+            'type' => 'required',
+            'from_dt' => 'required',
+            'to_dt' => 'required'
+        );
 
-            // redirect
-            Session::flash('message', 'Your request has been submitted.!');
-            return Redirect::to('leaves');
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('leaves/create')
+                ->withErrors($validator);
+        } else {
+        $leave = new Leave();
+        $leave->type = Input::get('type');
+        $leave->note = Input::get('note');
+
+        $from_dt = Input::get('from_dt');
+        $leave->from_dt = $from_dt;
+        $from_dt_datetime = new Datetime($from_dt);
+
+        $to_dt = Input::get('to_dt');
+        $leave->to_dt = $to_dt;
+        $to_dt_datetime = new Datetime($to_dt);
+
+        $duration = $from_dt_datetime->diff($to_dt_datetime);
+        $leave->duration = $duration->format('%R%a');
        
+        $leave->save();
+
+        Session::flash('message', 'Your leave request has been submitted.');
+        return Redirect::to('leaves');
+    	}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		//
+		$leave = Leave::find($id);
+		return View::make('leaves.edit')->with('leave',$leave);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-		//
+		$rules = array(
+            'type' => 'required',
+            'from_dt' => 'required',
+            'to_dt' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('leaves/' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+        $leave = Leave::find($id);
+        $leave->type = Input::get('type');
+        $leave->note = Input::get('note');
+
+        $from_dt = Input::get('from_dt');
+        $leave->from_dt = $from_dt;
+        $from_dt_datetime = new Datetime($from_dt);
+
+        $to_dt = Input::get('to_dt');
+        $leave->to_dt = $to_dt;
+        $to_dt_datetime = new Datetime($to_dt);
+
+        $duration = $from_dt_datetime->diff($to_dt_datetime);
+        $leave->duration = $duration->format('%R%a');
+       
+        $leave->save();
+
+        Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
+        return Redirect::to('leaves');
+    	}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		// delete
+		$leave = Leave::find($id);
+		$leave->delete();
+
+		// redirect
+		Session::flash('message','Successfully deleted Leave Request '.$leave->id.'!');
+		return Redirect::to('leaves');
 	}
 
 }
+	

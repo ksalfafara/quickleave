@@ -13,6 +13,7 @@
 
 //landing page
 Route::get('/', 'WelcomeController@index');
+
 //admin dashboard
 Route::resource('admin', 'AdminController@index');
 
@@ -28,6 +29,11 @@ Route::get('teamview', function()
 Route::resource('leaves', 'LeaveController');
 
 Route::resource('balances','BalanceController');
+
+Route::get('adminlte',function()
+{
+	return view('AdminLTE-master/index2');
+});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
