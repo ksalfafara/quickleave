@@ -36,6 +36,7 @@
             <td>Note</td>
             <td>Remarks</td>
             <td>Status</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
@@ -49,18 +50,16 @@
             <td><?php echo $value->note; ?></td>
             <td><?php echo $value->remark; ?></td>
             <td><?php echo $value->status; ?></td>
-
-            <!-- we will also add show, edit, and delete buttons -->
             <td>
-
-                <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                <!-- we will add this later since its a little more complicated than the other two buttons -->
-
-                <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="<?php echo URL::to('leaves/' . $value->id); ?>">Show this Request</a>
-
-                <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
                 <a class="btn btn-small btn-info" href="<?php echo URL::to('leaves/' . $value->id . '/edit'); ?>">Edit this Request</a>
+
+                <?php echo Form::open(array('url' => 'leaves/' . $value->id, 'class' => 'btn')); ?>
+
+                    <?php echo Form::hidden('_method', 'DELETE'); ?>
+
+                    <?php echo Form::submit('Delete this Request', array('class' => 'btn btn-warning')); ?>
+
+                <?php echo Form::close(); ?>
 
             </td>
         </tr>

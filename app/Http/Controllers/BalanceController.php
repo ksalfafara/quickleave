@@ -9,6 +9,11 @@ use View, Input, Session, Redirect, Validator;
 
 class BalanceController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('guest'); //change later to auth
+	}
+	
 	public function index()
 	{
 		$balances = User::all();
