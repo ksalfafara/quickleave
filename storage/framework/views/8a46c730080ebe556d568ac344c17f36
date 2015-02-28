@@ -29,23 +29,16 @@
 
 
     <div class="form-group">
-        <?php echo Form::label('teams_id', 'Team ID'); ?>
-
-        <?php echo Form::text('teams_id', Input::old('teams_id'), array('class' => 'form-control')); ?>
-
-    </div>
-
-    <div class="form-group">
         <?php echo Form::label('sl_bal', 'SL Balance'); ?>
 
-        <?php echo Form::text('sl_bal', Input::old('sl_bal'), array('class' => 'form-control')); ?>
+        <?php echo Form::input('number','sl_bal', Input::old('sl_bal'), array('class' => 'form-control')); ?>
 
     </div>
 
     <div class="form-group">
         <?php echo Form::label('vl_bal', 'VL Balance'); ?>
 
-        <?php echo Form::text('vl_bal', Input::old('vl_bal'), array('class' => 'form-control')); ?>
+        <?php echo Form::input('number','vl_bal', Input::old('vl_bal'), array('class' => 'form-control')); ?>
 
     </div>
 

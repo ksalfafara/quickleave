@@ -15,7 +15,6 @@
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{!! URL::to('balances') !!}">View All balances</a></li>
-        <li><a href="{!! URL::to('balances/create') !!}">Create a Balance</a>
     </ul>
 </nav>
 
@@ -29,7 +28,7 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Team Name</td>
+            <td>Team ID</td>
             <td>Employee Name</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
@@ -44,22 +43,9 @@
             <td>{!! $value->sl_bal !!}</td>
             <td>{!! $value->vl_bal !!}</td>
 
-            <!-- we will also add show, edit, and delete buttons -->
+            <!--edit and delete buttons -->
             <td>
-
-                <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                <!-- we will add this later since its a little more complicated than the other two buttons -->
-                {!! Form::open(array('url' => 'balances/' . $value->id, 'class' => 'pull-right')) !!}
-                    {!! Form::hidden('_method', 'DELETE') !!}
-                    {!! Form::submit('Delete this Balance', array('class' => 'btn btn-warning')) !!}
-                {!! Form::close() !!}
-
-                <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('balances/' . $value->id) }}">Show this Balance</a>
-
-                <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $value->id . '/edit') }}">Edit this Balance</a>
-
+                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $value->id . '/edit') }}">Edit balances</a>
             </td>
         </tr>
     @endforeach

@@ -42,21 +42,18 @@
             <td>{!! $value->name !!}</td>
             <td>{!! $value->code !!}</td>
 
-            <!-- we will also add show, edit, and delete buttons -->
+            <!-- show, edit, and delete buttons -->
             <td>
+                 <!-- show the team (uses the show method found at GET /teams/{id} -->
+                <a class="btn btn-small btn-success" href="{{ URL::to('teams/' . $value->id) }}">Show this Team</a>
 
-                <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                <!-- we will add this later since its a little more complicated than the other two buttons -->
-                {!! Form::open(array('url' => 'teams/' . $value->id, 'class' => 'pull-right')) !!}
+                <!-- edit this team (uses the edit method found at GET /teams/{id}/edit -->
+                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $value->id . '/edit') }}">Edit this Team</a>
+
+                {!! Form::open(array('url' => 'teams/' . $value->id, 'class' => 'btn')) !!}
                     {!! Form::hidden('_method', 'DELETE') !!}
                     {!! Form::submit('Delete this Team', array('class' => 'btn btn-warning')) !!}
                 {!! Form::close() !!}
-
-                <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('teams/' . $value->id) }}">Show this Team</a>
-
-                <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $value->id . '/edit') }}">Edit this Team</a>
 
             </td>
         </tr>
