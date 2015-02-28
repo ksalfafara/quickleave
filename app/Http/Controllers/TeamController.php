@@ -95,7 +95,7 @@ class TeamController extends Controller {
 		// get the teams
 		$team = Team::find($id);
 
-		// show the edit form and pass the nerd
+		// show the edit form and pass the team
 		return View::make('teams.edit')->with('team',$team);
 	}
 

@@ -9,80 +9,44 @@ use View, Input, Session, Redirect, Validator;
 
 class BalanceController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		$balances = User::all();
 		return View::make('balances.index')->with('balances',$balances); 
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		// load the create form (app/views/balances/create.blade.php)
-		return View::make('balances.create');
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
 	{
-		//
+		$balance = User::find($id);
+		return View::make('balances.show')->with('balance',$balance);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
 	{
-		//
+		$balance = User::find($id);
+		return View::make('balances.edit')->with('balance',$balance);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
 	{
-		//
-	}
+        $rules = array(
+            'sl_bal' => 'required|',
+            'vl_bal' => 'required|',
+        );
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+        $validator = Validator::make(Input::all(), $rules);
 
+        if ($validator->fails()) {
+            return Redirect::to('balances/' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+        $balance = User::find($id);
+        $balance->sl_bal = Input::get('sl_bal');
+        $balance->vl_bal = Input::get('vl_bal');
+        $balance->save();
+
+        Session::flash('message', 'Successfully updated balance(s) for '.$balance->firstname.'!');
+        return Redirect::to('balances');
+    	}
+	}
 }
