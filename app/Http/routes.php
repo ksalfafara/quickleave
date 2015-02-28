@@ -13,9 +13,11 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('app', function()
+//Route::get('dashboard', 'MasterController@index');
+
+Route::get('admin', function()
 {
-	return view::make('app');
+	return View::make('admin');
 });
 
 Route::get('home', 'HomeController@index');
