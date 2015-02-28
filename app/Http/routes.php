@@ -11,18 +11,19 @@
 |
 */
 
+//landing page
 Route::get('/', 'WelcomeController@index');
-
-//Route::get('dashboard', 'MasterController@index');
-
-Route::get('admin', function()
-{
-	return View::make('admin');
-});
+//admin dashboard
+Route::resource('admin', 'AdminController@index');
 
 Route::get('home', 'HomeController@index');
 
 Route::resource('teams', 'TeamController');
+
+Route::get('team', function()
+{
+	return View::make('teams.team');
+});
 
 Route::resource('leaves', 'LeaveController');
 

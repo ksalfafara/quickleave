@@ -106,13 +106,13 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="index.html">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <a href="#">
+                                <i class="fa fa-home"></i> <span>Board</span>
                             </a>
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
+                                <i class="fa fa-users"></i>
                                 <span>Teams</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -122,8 +122,8 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
+                            <a href="/balances">
+                                <i class="fa fa-pencil-square"></i>
                                 <span>Leave Balances</span>
                             </a>
                         </li>
@@ -149,8 +149,7 @@
 
                 <!-- Main content -->
                 <section class="content">
-
-
+                    @yield('content')
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
