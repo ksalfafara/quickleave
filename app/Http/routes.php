@@ -11,16 +11,20 @@
 |
 */
 
+//landing page
 Route::get('/', 'WelcomeController@index');
 
-Route::get('app', function()
-{
-	return view('app');
-});
+//admin dashboard
+Route::resource('admin', 'AdminController@index');
 
 Route::get('home', 'HomeController@index');
 
 Route::resource('teams', 'TeamController');
+
+Route::get('team', function()
+{
+	return View::make('teams.team');
+});
 
 Route::resource('leaves', 'LeaveController');
 
