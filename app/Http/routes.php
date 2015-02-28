@@ -20,7 +20,7 @@ Route::get('home', 'HomeController@index');
 
 Route::resource('teams', 'TeamController');
 
-Route::get('team', function()
+Route::get('teamview', function()
 {
 	return View::make('teams.team');
 });

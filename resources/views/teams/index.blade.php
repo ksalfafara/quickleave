@@ -1,28 +1,15 @@
-<!-- app/views/teams/index.blade.php -->
+@extends('layouts.master')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QUICKLEAVE - Teams</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
+@section('title')
+    Admin - Teams
+@stop
 
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="{!! URL::to('/') !!}">Quickleave</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="{!! URL::to('teams') !!}">View All Teams</a></li>
-        <li><a href="{!! URL::to('teams/create') !!}">Create a Team</a>
-    </ul>
-</nav>
+@section('pagetitle')
+    View all Teams
+@stop
 
-<h1>All the Teams</h1>
-
-<!-- will be used to show any messages -->
-@if (Session::has('message'))
+@section('content')
+    @if (Session::has('message'))
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
 @endif
 
@@ -60,7 +47,4 @@
     @endforeach
     </tbody>
 </table>
-
-</div>
-</body>
-</html>
+@stop

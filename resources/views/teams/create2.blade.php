@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin Board
+    Admin - Create Team
 @stop
 
 @section('pagetitle')
-    Dashboard
+    Create a Team
 @stop
 
 @section('content')
