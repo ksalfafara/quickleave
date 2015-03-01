@@ -1,17 +1,18 @@
-@extends('app')
+<!doctype html>
+<html>
+<head>
+<title>HOME</title>
+</head>
+<body>
 
-@section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
+{!! Form::open(array('url' => 'home')) !!}
+<h1>HOME</h1>
 
-				<div class="panel-body">
-					Hi {{ Auth::user()->name }}.
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endsection
+<!-- if there are login errors, show them here -->
+<p>HELLO, user!
+</p>
+	<!-- LOGOUT BUTTON -->
+	<a href="{{ URL::to('logout') }}">Logout</a>
+{!! Form::close() !!}
+
+

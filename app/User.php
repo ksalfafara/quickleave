@@ -28,7 +28,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
+	 * 
 	 */
+	 public function getAuthPassword() {
+    	return $this->password;
+	}
+
+	public function getAuthIdentifier() {
+   	return $this->username;
+	}
+
+	 
 
 	public function teams() {
 		return $this->belongsTo('Team');
