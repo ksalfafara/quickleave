@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-    View user's balances
+    View users' Leave Balances
 @stop
 
 @section('content')
@@ -30,7 +30,7 @@
     <tbody>
     @foreach($balances as $key => $value)
         <tr>
-            <td>{!! $value->DB::table('users')->whereId($balances->teams_id)->get(); !!}</td>
+            <td>{!! $value->teams_id !!}</td>
             <td>{!! $value->firstname !!}</td>
             <td>{!! $value->sl_bal !!}</td>
             <td>{!! $value->vl_bal !!}</td>

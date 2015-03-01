@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('boxname'); ?>
-    View user's balances
+    View users' Leave Balances
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -28,7 +28,7 @@
     <tbody>
     <?php foreach($balances as $key => $value): ?>
         <tr>
-            <td><?php echo $value->DB::table('users')->whereId($balances->teams_id)->get();; ?></td>
+            <td><?php echo $value->teams_id; ?></td>
             <td><?php echo $value->firstname; ?></td>
             <td><?php echo $value->sl_bal; ?></td>
             <td><?php echo $value->vl_bal; ?></td>
