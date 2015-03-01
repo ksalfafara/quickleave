@@ -20,7 +20,7 @@ Route::get('home', 'HomeController@index');
 Route::resource('admin', 'AdminController@index');
 
 //user dashboard
-Route::resource('userdash', 'UserDashController');
+Route::resource('userdash', 'UserDashController@index');
 
 Route::resource('teams', 'TeamController');
 
@@ -38,7 +38,6 @@ Route::get('login', 'HomeController@showLogin');
 Route::post('login', 'HomeController@doLogin');
 Route::get('logout', 'HomeController@doLogout');
 
-Route::resource('users', 'UserController');
-//Route::post('register', 'Auth\AuthController@doRegister');
+Route::get('register', 'Auth\AuthController@showRegister');
 
 //Route::get('register', '')

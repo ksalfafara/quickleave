@@ -5,7 +5,11 @@
 @stop
 
 @section('pagetitle')
-    Your PENDING request/s
+    View Request
+@stop
+
+@section('boxname')
+    Your pending request/s
 @stop
 
 @section('content')

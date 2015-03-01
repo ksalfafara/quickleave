@@ -29,7 +29,7 @@ class LeaveController extends Controller {
     public function show($id)
     {
         $leaves = Leave::all();
-        return View::make('leaves.show')->with('leaves', $leaves);
+        return View::make('leaves.allrequest')->with('leaves', $leaves);
     }
 
 	public function store()
@@ -63,7 +63,7 @@ class LeaveController extends Controller {
        
         $leave->save();
 
-        Session::flash('message', 'Your leave request has been submitted.');
+        Session::flash('message', 'Your leave request has been submitted. Kindly wait for the approval.');
         return Redirect::to('leaves');
     	}
 	}
