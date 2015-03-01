@@ -1,11 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin Board
+    Admin - Teams
 @stop
 
 @section('pagetitle')
-    Dashboard
+    View all Teams
+@stop
+
+@section('boxname')
+    View teams
 @stop
 
 @section('content')
@@ -26,5 +30,4 @@
         {!! Form::submit('Create the Team!', array('class' => 'btn btn-primary')) !!}
 
     {!! Form::close() !!}
-
 @stop

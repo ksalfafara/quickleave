@@ -20,7 +20,7 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Team ID</td>
+            <td>Team Name</td>
             <td>Employee Name</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
@@ -30,7 +30,7 @@
     <tbody>
     @foreach($balances as $key => $value)
         <tr>
-            <td>{!! $value->teams_id !!}</td>
+            <td>{!! $value->DB::table('users')->whereId($balances->teams_id)->get(); !!}</td>
             <td>{!! $value->firstname !!}</td>
             <td>{!! $value->sl_bal !!}</td>
             <td>{!! $value->vl_bal !!}</td>
