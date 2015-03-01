@@ -36,8 +36,13 @@
 </p>
 
 <p>
+    {!! Form::label('password', 'Confirm Password') !!}
+    {!! Form::password('conf_password') !!}
+</p>
+
+<p>
     {!! Form::label('team_name', 'Team Name') !!}
-    {!! Form::text('team_name', Input::old('team_name'))!!}
+    {!! Form::select('name', $teamList) !!}
 </p>
 
 <p>
@@ -45,5 +50,5 @@
     {!! Form::text('team_code', Input::old('team_code'))!!}
 </p>
 
-<p>{!! Form::submit('Submit!') !!}</p>
+<p>{!! Form::submit('SUBMIT') !!}</p>
 {!! Form::close() !!}

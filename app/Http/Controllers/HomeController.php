@@ -51,8 +51,8 @@ class HomeController extends Controller {
         //);
 
         $rules = array(
-			'username'	=>	'required',
-			'password'	=>	'required'
+			'username'	=>	'required|alpha_dash',
+			'password'	=>	'required|min:6'
 		);
 		
 		// run the validation rules on the inputs from the form

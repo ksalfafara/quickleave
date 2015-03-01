@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Look at me Login</title>
+<title>LOGIN</title>
 </head>
 <body>
 
@@ -24,5 +24,10 @@
     {!! Form::password('password') !!}
 </p>
 
-<p>{!! Form::submit('Submit!') !!}</p>
+<p>
+    {!! Form::label('remember', 'Remember Me') !!}
+    {!! Form::checkbox('remember') !!}
+</p>
+
+<p>{!! Form::submit('SUBMIT') !!}</p>
 {!! Form::close() !!}

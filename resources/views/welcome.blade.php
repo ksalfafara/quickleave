@@ -104,7 +104,7 @@
 				ASIA PACIFIC COLLEGE
 			</div>
 			<div id="right">
-				<a href='/auth/login'>LOG IN</a><a href='/auth/register'>REGISTER</a>
+				<a href='/auth/login'>LOG IN</a><a href='/users/create'>REGISTER</a>
 			</div>
 		</div>
 

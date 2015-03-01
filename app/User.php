@@ -37,8 +37,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getAuthIdentifier() {
    	return $this->username;
 	}
-
-	 
+ 
 
 	public function teams() {
 		return $this->belongsTo('Team');
