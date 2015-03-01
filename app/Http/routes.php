@@ -38,6 +38,7 @@ Route::get('login', 'HomeController@showLogin');
 Route::post('login', 'HomeController@doLogin');
 Route::get('logout', 'HomeController@doLogout');
 
-Route::get('register', 'Auth\AuthController@showRegister');
+Route::resource('users', 'UserController');
+//Route::post('register', 'Auth\AuthController@doRegister');
 
 //Route::get('register', '')

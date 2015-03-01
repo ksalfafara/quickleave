@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-    View user's balances
+    View users' Leave Balances
 @stop
 
 @section('content')
@@ -20,7 +20,7 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Team ID</td>
+            <td>Team Name</td>
             <td>Employee Name</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
