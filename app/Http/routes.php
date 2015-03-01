@@ -39,3 +39,12 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+//Route::get('login', array('uses' => 'HomeController@showLogin'));
+Route::get('login', 'HomeController@showLogin');
+Route::post('login', 'HomeController@doLogin');
+Route::get('logout', 'HomeController@doLogout');
+
+Route::get('register', 'Auth\AuthController@showRegister');
+
+//Route::get('register', '')

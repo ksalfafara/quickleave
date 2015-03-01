@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('QuickLeaveSeeder');
+//		$this->call('UserTableSeeder');
 		$this->command->info('Done seeding.');
 	}
 }
@@ -44,9 +45,9 @@ class QuickLeaveSeeder extends Seeder {
 			User::create(array(
 				'firstname' => 'Firstname '.$i,
 				'lastname' => 'Lastname '.$i,
-				'username' => 'Username '.$i,
+				'username' => 'Username'.$i,
 				'email' => 'Email'.$i.'@gmail.com',
-				'password' => 'Password '.$i,
+				'password' => Hash::make('Password'.$i),
 				'sl_bal' => 10,
 				'vl_bal' => 15,
 				'is_manager' => 'Manager/Employee'.$i,
@@ -57,9 +58,7 @@ class QuickLeaveSeeder extends Seeder {
 }
 
 
-
-
-/** class UserTableSeeder extends Seeder { --- do not remove yet, might still be needed
+ class UserTableSeeder extends Seeder { 
 
 	public function run() {
 		// clearing db -lee
@@ -80,17 +79,18 @@ class QuickLeaveSeeder extends Seeder {
 			'lastname'	=> 'Lawrence',
 			'username'	=> 'jlaw',
 			'email'		=> 'jlaw@yahoo.com',
-			'password'	=> '123456',
+			'password'	=>  Hash::make('lovely'),
 			'teams_id'	=> $team->id
 			));
 
 		//seed leaves table 
-		Leave::create(array(
+/**		Leave::create(array(
 			'type'		=> 'SL',
 			'from_dt'	=>	'2014-02-28',
 			'to_dt'		=>	'2014-02-29',
 			'note'		=>	'vertigo'
 	));
+**/
 		}
 	}
-**/
+

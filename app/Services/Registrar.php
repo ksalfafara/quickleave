@@ -17,6 +17,7 @@ class Registrar implements RegistrarContract {
 		return Validator::make($data, [
 			'firstname' => 'required|max:255',
 			'lastname' => 'required|max:255',
+			'username' => 'required|max:255',
 			'email' => 'required|email|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
 			'team_name' => 'required',
@@ -33,9 +34,13 @@ class Registrar implements RegistrarContract {
 	public function create(array $data)
 	{
 		return User::create([
-			'name' => $data['name'],
-			'email' => $data['email'],
-			'password' => bcrypt($data['password']),
+			'firstname' => $data['firstname'],
+			'lastname'	=> $data['lastname'],
+			'username'	=> $data['username'],
+			'email' 	=> $data['email'],
+			'password'	=> bcrypt($data['password']),
+		//	'team_name'	=> 
+			
 		]);
 	}
 
