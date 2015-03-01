@@ -1,13 +1,13 @@
 @extends('layouts.usermaster')
 
 @section('title')
-    User - Create Request
+    User - Pending request(s)
 @stop
 
 @section('pagetitle')
-    Create a leave request
+    Your PENDING request/s
 @stop
 
 @section('content')
-svdskv
+skak
 @stop

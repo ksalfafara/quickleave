@@ -1,14 +1,27 @@
-@extends('layouts.usermaster')
+<!-- app/views/leaves/edit.blade.php -->
 
-@section('title')
-    User - Request a leave
-@stop
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Look! I'm CRUDding</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
-@section('pagetitle')
-    File a request for leave
-@stop
+    <!--<link rel="stylesheet" type="text/css" href="/css/jquery-ui/jquery-ui.min.css">-->
+    <link rel="stylesheet" type="text/css" href="/dpskin/css/datepicker.css">
+    <script src="external/jquery/jquery.js"></script>
+    <script src="jquery-ui.min.js"></script> 
+</head>
+<body>
+<div class="container">
 
-@section('content')
+<nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <li><a href="{!! URL::to('leaves') !!}">View All Leaves</a></li>
+    </ul>
+</nav>
+
+<h1>Create leave</h1>
+
     {!! HTML::ul($errors->all()) !!}
 
 {!! Form::open(array('url' => 'leaves')) !!}
@@ -44,10 +57,9 @@
 {!! Form::close() !!}
 
 </div>
-@stop
 
+</div>
 
-@section('script')
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
   <script>
@@ -62,4 +74,6 @@
         });
   });
   </script> 
-@stop
+
+</body>
+</html>

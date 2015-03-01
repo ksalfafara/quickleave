@@ -34,4 +34,5 @@ class UserDashController extends Controller {
 	{
 		return view('userdash');
 	}
+
 }

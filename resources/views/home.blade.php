@@ -15,4 +15,7 @@
 	<a href="{{ URL::to('logout') }}">Logout</a>
 {!! Form::close() !!}
 
+</body>
+</html>
+
 

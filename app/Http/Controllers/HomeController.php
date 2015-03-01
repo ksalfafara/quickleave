@@ -67,7 +67,7 @@ class HomeController extends Controller {
 		else {
         	// attempt to do the login
     		if (Auth::attempt(['username' => $username, 'password' => $password])) {
-    			return Redirect::to('/home');		// validation successful! Redirect them to the secure section or whatever
+    			return Redirect::to('/userdash');		// validation successful! Redirect them to the secure section or whatever
         	}
 
         	else {         

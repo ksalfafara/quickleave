@@ -14,11 +14,13 @@
 //landing page
 Route::get('/', 'WelcomeController@index');
 
+Route::get('home', 'HomeController@index');
+
 //admin dashboard
 Route::resource('admin', 'AdminController@index');
 
 //user dashboard
-Route::resource('userdash', 'UserDashController@index');
+Route::resource('userdash', 'UserDashController');
 
 Route::resource('teams', 'TeamController');
 

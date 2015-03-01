@@ -45,7 +45,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="theme/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Alexander Pierce</span>
+                  <span class="hidden-xs">User</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -74,7 +74,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/auth/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -119,19 +119,19 @@
             </li>
 
             <li>
-              <a href="/admin">
+              <a href="/leaves/create">
                 <i class="fa fa-pencil-square"></i> <span>Request a Leave</span>
               </a>
             </li>
 
             <li>
-              <a href="/admin">
+              <a href="/leaves">
                 <i class="fa fa-file-text-o"></i> <span>Pending request</span>
               </a>
             </li>
 
             <li>
-              <a href="/admin">
+              <a href="/leaves">
                 <i class="fa fa-bars"></i> <span>Requests</span>
               </a>
             </li>
@@ -198,5 +198,8 @@
     <script src="theme/dist/js/app.min.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="theme/dist/js/demo.js" type="text/javascript"></script>
+
+    @yield('script')
+
   </body>
 </html>

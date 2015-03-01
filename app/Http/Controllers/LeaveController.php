@@ -20,10 +20,17 @@ class LeaveController extends Controller {
         return View::make('leaves.index')->with('leaves', $leaves);
 	}
 
+
 	public function create()
 	{
 		return View::make('leaves.create');
 	}
+
+    public function show($id)
+    {
+        $leaves = Leave::all();
+        return View::make('leaves.show')->with('leaves', $leaves);
+    }
 
 	public function store()
 	{

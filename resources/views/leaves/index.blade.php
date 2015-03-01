@@ -1,27 +1,15 @@
+@extends('layouts.usermaster')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QUICKLEAVE</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
+@section('title')
+    User - Pending request(s)
+@stop
 
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="{!! URL::to('/') !!}">QUICKLEAVE</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="{!! URL::to('leaves') !!}">View All Requests</a></li>
-        <li><a href="{!! URL::to('leaves/create') !!}">Request a Leave</a>
-    </ul>
-</nav>
+@section('pagetitle')
+    Your PENDING request/s
+@stop
 
-<h1>Requests</h1>
-
-<!-- will be used to show any messages -->
-@if (Session::has('message'))
+@section('content')
+    @if (Session::has('message'))
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
 @endif
 
@@ -41,6 +29,7 @@
     </thead>
     <tbody>
     @foreach($leaves as $key => $value)
+    @if(($value->status) === 'Pending')
         <tr>
             <td>{!! $value->id !!}</td>
             <td>{!! $value->type !!}</td>
@@ -59,10 +48,8 @@
                 {!! Form::close() !!}
             </td>
         </tr>
+    @endif
     @endforeach
     </tbody>
 </table>
-
-</div>
-</body>
-</html>
+@stop
