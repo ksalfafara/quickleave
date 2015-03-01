@@ -17,23 +17,14 @@ Route::get('/', 'WelcomeController@index');
 //admin dashboard
 Route::resource('admin', 'AdminController@index');
 
-Route::get('home', 'HomeController@index');
+//user dashboard
+Route::resource('userdash', 'UserDashController@index');
 
 Route::resource('teams', 'TeamController');
-
-Route::get('teamview', function()
-{
-	return View::make('teams.team');
-});
 
 Route::resource('leaves', 'LeaveController');
 
 Route::resource('balances','BalanceController');
-
-Route::get('adminlte',function()
-{
-	return view('AdminLTE-master/index2');
-});
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

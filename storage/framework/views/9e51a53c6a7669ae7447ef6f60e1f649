@@ -1,35 +1,23 @@
-<!-- app/views/teams/index.blade.php -->
+<?php $__env->startSection('title'); ?>
+    Admin - Teams
+<?php $__env->stopSection(); ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QUICKLEAVE - Teams</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
+<?php $__env->startSection('pagetitle'); ?>
+    View all Teams
+<?php $__env->stopSection(); ?>
 
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo URL::to('/'); ?>">Quickleave</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="<?php echo URL::to('teams'); ?>">View All Teams</a></li>
-        <li><a href="<?php echo URL::to('teams/create'); ?>">Create a Team</a>
-    </ul>
-</nav>
+<?php $__env->startSection('boxname'); ?>
+    <a href="<?php echo URL::to('teams/create'); ?>">Create a team</a>
+<?php $__env->stopSection(); ?>
 
-<h1>All the Teams</h1>
-
-<!-- will be used to show any messages -->
-<?php if(Session::has('message')): ?>
+<?php $__env->startSection('content'); ?>
+    <?php if(Session::has('message')): ?>
     <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
 <?php endif; ?>
 
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>ID</td>
             <td>Team Name</td>
             <td>Team Code</td>
             <td>Actions</td>
@@ -38,7 +26,6 @@
     <tbody>
     <?php foreach($teams as $key => $value): ?>
         <tr>
-            <td><?php echo $value->id; ?></td>
             <td><?php echo $value->name; ?></td>
             <td><?php echo $value->code; ?></td>
 
@@ -64,7 +51,6 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php $__env->stopSection(); ?>
 
-</div>
-</body>
-</html>
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

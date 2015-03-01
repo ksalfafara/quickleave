@@ -8,6 +8,10 @@
     View all Teams
 @stop
 
+@section('boxname')
+    <a href="{!! URL::to('teams/create') !!}">Create a team</a>
+@stop
+
 @section('content')
     @if (Session::has('message'))
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
@@ -16,7 +20,6 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>ID</td>
             <td>Team Name</td>
             <td>Team Code</td>
             <td>Actions</td>
@@ -25,7 +28,6 @@
     <tbody>
     @foreach($teams as $key => $value)
         <tr>
-            <td>{!! $value->id !!}</td>
             <td>{!! $value->name !!}</td>
             <td>{!! $value->code !!}</td>
 
