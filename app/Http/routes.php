@@ -22,11 +22,13 @@ Route::resource('admin', 'AdminController@index');
 //user dashboard
 Route::resource('userdash', 'UserDashController@index');
 
-Route::resource('teams', 'TeamController');
+Route::resource('teams', 'TeamController'); //, ['except' => ['editRole']]);
 
 Route::resource('leaves', 'LeaveController');
 
 Route::resource('balances','BalanceController');
+
+Route::resource('roles','RoleController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -42,9 +44,3 @@ Route::get('register', 'Auth\AuthController@showRegister');
 
 //Route::get('register', '')
 
-/*
-Route::get('/teams/{teamname}', function($teamname) {
-	$team = Team::where('name', $teamname)->firstorFail();
-	return View::make('teams.showMembers')->with('$team', $team);
-});
-*/
