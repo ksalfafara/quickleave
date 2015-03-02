@@ -1,13 +1,13 @@
 <?php $__env->startSection('title'); ?>
-    Admin - Create Teams
+    Admin - Create a Team
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('pagetitle'); ?>
-    Create Teams
+    Create a Team
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('boxname'); ?>
-    Create Teams
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>

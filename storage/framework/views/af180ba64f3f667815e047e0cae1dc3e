@@ -1,96 +1,13 @@
+<?php $__env->startSection('title'); ?>
+    User - Create Request
+<?php $__env->stopSection(); ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create Leave Request</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    
-    <!--<link rel="stylesheet" type="text/css" href="/css/jquery-ui/jquery-ui.min.css">-->
-    <link rel="stylesheet" type="text/css" href="/dpskin/css/datepicker.css">
-    <script src="external/jquery/jquery.js"></script>
-    <script src="jquery-ui.min.js"></script> 
+<?php $__env->startSection('pagetitle'); ?>
+    Create a leave request
+<?php $__env->stopSection(); ?>
 
-</head>
-<body>
-<div class="container">
+<?php $__env->startSection('content'); ?>
+svdskv
+<?php $__env->stopSection(); ?>
 
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo URL::to('/'); ?>">QUICKLEAVE</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="<?php echo URL::to('leaves'); ?>">View All Leave Request</a></li>
-        <li><a href="<?php echo URL::to('leaves/create'); ?>">Request a Leave</a>
-    </ul>
-</nav>
-
-<h1>Create a Leave</h1>
-
-<!-- if there are creation errors, they will show here -->
-<?php echo HTML::ul($errors->all()); ?>
-
-
-<?php echo Form::open(array('url' => 'leaves')); ?>
-
-
-	<div class="form-group">
-        <?php echo Form::label('type', 'Leave Type'); ?>
-
-        <?php echo Form::select('type', array('' => 'Select leave type', 'SL' => 'Sick Leave', 'VL' => 'Vacation Leave'), Input::old('type'), array('class' => 'form-control')); ?>
-
-       <!-- <?php echo Form::radio('type', 'SL', (Input::old('type') == 'SL')); ?>
-
-        <?php echo Form::label('type', 'Sick Leave'); ?>
-
-        <?php echo Form::radio('type', 'VL', (Input::old('type') == 'VL')); ?>
-
-        <?php echo Form::label('type', 'Vacation Leave'); ?>-->
-    </div>
-
-    <div class="form-group">
-        <?php echo Form::label('from_dt', 'From Date'); ?>
-
-        <?php echo Form::text('from_dt', Input::old('from_dt'), array('class' => 'form-control', 'id' => 'from_dt',
-        'placeholder' => 'Pick a date')); ?> 
-    </div>
-
-    <div class="form-group">
-        <?php echo Form::label('to_dt', 'To Date'); ?>
-
-        <?php echo Form::text('to_dt', Input::old('to_dt'), array('class' => 'form-control','id' => 'to_dt', 
-        'placeholder' => 'Pick a date')); ?>
-
-    </div>
-
-    <div class="form-group">
-        <?php echo Form::label('note', 'Reason/Note'); ?>
-
-        <?php echo Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'placeholder' => '(Optional) Additional note')); ?>
-
-    </div>
-
-    <?php echo Form::submit('Submit request', array('class' => 'btn btn-primary')); ?>
-
-
-<?php echo Form::close(); ?>
-
-
-</div>
-
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-  <script>
-  $(function() {
-        $( "#from_dt" ).datepicker({ 
-            dateFormat: 'yy-mm-dd',
-            showOtherMonths: true,  
-            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], 
-        });
-        $( "#to_dt" ).datepicker({ 
-            dateFormat: 'yy-mm-dd' 
-        });
-  });
-  </script> 
-
-</body>
-</html>
+<?php echo $__env->make('layouts.usermaster', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

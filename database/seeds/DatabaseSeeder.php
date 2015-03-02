@@ -51,7 +51,7 @@ class QuickLeaveSeeder extends Seeder {
 				'sl_bal' => 10,
 				'vl_bal' => 15,
 				'is_manager' => 'Manager/Employee'.$i,
-				'teams_id' => $team->id
+				'team_id' => $team->id
 				));
 		}
 	}
@@ -80,7 +80,7 @@ class QuickLeaveSeeder extends Seeder {
 			'username'	=> 'jlaw',
 			'email'		=> 'jlaw@yahoo.com',
 			'password'	=>  Hash::make('lovely'),
-			'teams_id'	=> $team->id
+			'team_id'	=> $team->id
 			));
 
 		//seed leaves table 

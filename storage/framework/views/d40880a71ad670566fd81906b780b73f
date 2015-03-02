@@ -1,27 +1,17 @@
+<?php $__env->startSection('title'); ?>
+    User - Pending request(s)
+<?php $__env->stopSection(); ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>QUICKLEAVE</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
+<?php $__env->startSection('pagetitle'); ?>
+    View Request
+<?php $__env->stopSection(); ?>
 
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo URL::to('/'); ?>">QUICKLEAVE</a>
-    </div>
-    <ul class="nav navbar-nav">
-        <li><a href="<?php echo URL::to('leaves'); ?>">View All Requests</a></li>
-        <li><a href="<?php echo URL::to('leaves/create'); ?>">Request a Leave</a>
-    </ul>
-</nav>
+<?php $__env->startSection('boxname'); ?>
+    Your pending request/s
+<?php $__env->stopSection(); ?>
 
-<h1>Requests</h1>
-
-<!-- will be used to show any messages -->
-<?php if(Session::has('message')): ?>
+<?php $__env->startSection('content'); ?>
+    <?php if(Session::has('message')): ?>
     <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
 <?php endif; ?>
 
@@ -41,6 +31,7 @@
     </thead>
     <tbody>
     <?php foreach($leaves as $key => $value): ?>
+    <?php if(($value->status) === 'Pending'): ?>
         <tr>
             <td><?php echo $value->id; ?></td>
             <td><?php echo $value->type; ?></td>
@@ -63,10 +54,10 @@
 
             </td>
         </tr>
+    <?php endif; ?>
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php $__env->stopSection(); ?>
 
-</div>
-</body>
-</html>
+<?php echo $__env->make('layouts.usermaster', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

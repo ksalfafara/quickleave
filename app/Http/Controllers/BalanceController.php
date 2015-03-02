@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Team;
 use View, Input, Session, Redirect, Validator;
 
 class BalanceController extends Controller {
@@ -20,12 +21,6 @@ class BalanceController extends Controller {
 		return View::make('balances.index')->with('balances',$balances); 
 	}
 
-	public function show($id)
-	{
-		$balance = User::find($id);
-		return View::make('balances.show')->with('balance',$balance);
-	}
-
 	public function edit($id)
 	{
 		$balance = User::find($id);
@@ -35,8 +30,8 @@ class BalanceController extends Controller {
 	public function update($id)
 	{
         $rules = array(
-            'sl_bal' => 'required|',
-            'vl_bal' => 'required|',
+            'sl_bal' => 'required',
+            'vl_bal' => 'required',
         );
 
         $validator = Validator::make(Input::all(), $rules);

@@ -22,11 +22,13 @@ Route::resource('admin', 'AdminController@index');
 //user dashboard
 Route::resource('userdash', 'UserDashController@index');
 
-Route::resource('teams', 'TeamController');
+Route::resource('teams', 'TeamController'); //, ['except' => ['editRole']]);
 
 Route::resource('leaves', 'LeaveController');
 
 Route::resource('balances','BalanceController');
+
+Route::resource('roles','RoleController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -39,3 +41,8 @@ Route::post('login', 'HomeController@doLogin');
 Route::get('logout', 'HomeController@doLogout');
 
 Route::get('register', 'Auth\AuthController@showRegister');
+
+
+//Route::get('register', '')
+
+

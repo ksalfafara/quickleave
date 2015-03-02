@@ -9,13 +9,13 @@
 @stop
 
 @section('boxname')
-    <a href="{!! URL::to('teams/create') !!}">Create a team</a>
+
 @stop
 
 @section('content')
     @if (Session::has('message'))
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
-@endif
+    @endif
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -26,20 +26,20 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($teams as $key => $value)
+    @foreach($teams as $team)
         <tr>
-            <td>{!! $value->name !!}</td>
-            <td>{!! $value->code !!}</td>
+            <td>{!! $team->name !!}</td>
+            <td>{!! $team->code !!}</td>
 
             <!-- show, edit, and delete buttons -->
             <td>
-                 <!-- show the team (uses the show method found at GET /teams/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('teams/' . $value->id) }}">Show this Team</a>
+                 <!-- show the team members (uses the show method found at GET /teams/{id} -->
+                <a class="btn btn-small btn-success" href="{{ URL::to('roles/' . $team->id) }}">Show Members</a>
 
                 <!-- edit this team (uses the edit method found at GET /teams/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $value->id . '/edit') }}">Edit this Team</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $team->id . '/edit') }}">Edit this Team</a>
 
-                {!! Form::open(array('url' => 'teams/' . $value->id, 'class' => 'btn')) !!}
+                {!! Form::open(array('url' => 'teams/' . $team->id, 'class' => 'btn')) !!}
                     {!! Form::hidden('_method', 'DELETE') !!}
                     {!! Form::submit('Delete this Team', array('class' => 'btn btn-warning')) !!}
                 {!! Form::close() !!}

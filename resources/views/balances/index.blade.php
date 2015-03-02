@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-    View users' Leave Balances
+
 @stop
 
 @section('content')
@@ -28,16 +28,16 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($balances as $key => $value)
+    @foreach($balances as $balance)
         <tr>
-            <td>{!! $value->teams_id !!}</td>
-            <td>{!! $value->firstname !!}</td>
-            <td>{!! $value->sl_bal !!}</td>
-            <td>{!! $value->vl_bal !!}</td>
+            <td>{!! $balance->team->name !!}</td>
+            <td>{!! $balance->firstname !!}</td>
+            <td>{!! $balance->sl_bal !!}</td>
+            <td>{!! $balance->vl_bal !!}</td>
 
             <!--edit and delete buttons -->
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $value->id . '/edit') }}">Edit balances</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $balance->id . '/edit') }}">Edit balances</a>
             </td>
         </tr>
     @endforeach

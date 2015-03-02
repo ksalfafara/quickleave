@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\User;
 use View, Input, Session, Redirect, Validator;
 
 class TeamController extends Controller {
@@ -47,13 +48,15 @@ class TeamController extends Controller {
         return Redirect::to('teams');
     	}
 	}
-
+	
+	/*
 	public function show($id)
 	{
 		$team = Team::find($id);
 		return View::make('teams.show')->with('team',$team);
-	}	
-
+	}
+	*/
+	
 	public function edit($id)
 	{
 		$team = Team::find($id);
@@ -91,4 +94,32 @@ class TeamController extends Controller {
 		Session::flash('message','Successfully deleted '.$team->name.'!');
 		return Redirect::to('teams');
 	}
+/*
+	public function editRole($id)
+	{
+		$member = User::find($id);
+		return View::make('teams.editRole')->with('member', $member);
+	}
+
+	public function updateRole($id)
+	{
+		    $rules = array(
+            'is_manager' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('teams/role' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+        $member = User::find($id);
+        $member->is_manager = Input::get('is_manager');
+        $member->save();
+
+        Session::flash('message', 'Successfully updated '.$member->name.' role!');
+        return Redirect::to('teams/' . $id);
+    	}
+	}
+*/
 }

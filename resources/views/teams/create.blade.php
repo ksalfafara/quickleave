@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin - Create Teams
+    Admin - Create a Team
 @stop
 
 @section('pagetitle')
-    Create Teams
+    Create a Team
 @stop
 
 @section('boxname')
-    Create Teams
+
 @stop
 
 @section('content')
