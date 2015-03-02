@@ -45,7 +45,7 @@
             <td>{!! $value->status !!}</td>
             <td>
                 <a class="btn btn-small btn-info" href="{!! URL::to('leaves/' . $value->id . '/edit') !!}">Edit this Request</a>
-
+            
                 {!! Form::open(array('url' => 'leaves/' . $value->id, 'class' => 'btn')) !!}
                     {!! Form::hidden('_method', 'DELETE') !!}
                     {!! Form::submit('Delete this Request', array('class' => 'btn btn-warning')) !!}
