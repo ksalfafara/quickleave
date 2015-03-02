@@ -39,5 +39,3 @@ Route::post('login', 'HomeController@doLogin');
 Route::get('logout', 'HomeController@doLogout');
 
 Route::get('register', 'Auth\AuthController@showRegister');
-
-//Route::get('register', '')

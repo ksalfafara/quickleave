@@ -1,11 +1,11 @@
 @extends('layouts.usermaster')
 
 @section('title')
-    User - All requests
+    User - All Request(s)
 @stop
 
 @section('pagetitle')
-    Approved & Rejected Requests
+    Displaying all of your Approved/Rejected requests
 @stop
 
 @section('content')

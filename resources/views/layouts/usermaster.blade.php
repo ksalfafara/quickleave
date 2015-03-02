@@ -24,6 +24,41 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <link href='/fullcalendar/fullcalendar.css' rel='stylesheet' type="text/css" />
+    <link href='/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' type="text/css"/>
+    <script src='/fullcalendar/lib/moment.min.js'></script>
+    <script src='/fullcalendar/lib/jquery.min.js'></script>
+    <script src='/fullcalendar/fullcalendar.min.js'></script>
+    <script>
+
+      $(document).ready(function() {
+      
+        $('#calendar').fullCalendar({
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+          defaultDate: '2015-02-12',
+          editable: true,
+          eventLimit: true, // allow "more" link when too many events
+          events: {
+            url: '/fullcal/events.php',
+            error: function() {
+              $('#script-warning').show();
+            }
+          },
+          loading: function(bool) {
+            $('#loading').toggle(bool);
+          }
+        });
+        
+      });
+
+    </script>
+
+    @yield('customcss')
+
   </head>
   <body class="skin-green">
     <!-- Site wrapper -->
@@ -133,7 +168,7 @@
             </li>
 
             <li>
-              <a href="/leaves">
+              <a href="/leaves/allrequest">
                 <i class="fa fa-bars"></i> <span>Requests</span>
               </a>
             </li>

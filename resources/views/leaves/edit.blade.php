@@ -1,28 +1,19 @@
-<!-- app/views/leaves/edit.blade.php -->
+@extends('layouts.usermaster')
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Look! I'm CRUDding</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+@section('title')
+    User - Edit a leave
+@stop
 
-    <!--<link rel="stylesheet" type="text/css" href="/css/jquery-ui/jquery-ui.min.css">-->
-    <link rel="stylesheet" type="text/css" href="/dpskin/css/datepicker.css">
-    <script src="external/jquery/jquery.js"></script>
-    <script src="jquery-ui.min.js"></script> 
-</head>
-<body>
-<div class="container">
+@section('pagetitle')
+    Edit a request
+@stop
 
-<nav class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-        <li><a href="{!! URL::to('leaves') !!}">View All Leaves</a></li>
-    </ul>
-</nav>
+@section('boxname')
+    Edit leave #{!! $leave->id !!}
+@stop
 
-<h1>Edit Leave {!! $leave->id !!}</h1>
-
-<!-- if there are creation errors, they will show here -->
+@section('content')
+ <!-- if there are creation errors, they will show here -->
 {!! HTML::ul($errors->all()) !!}
 
 {!! Form::model($leave, array('route' => array('leaves.update', $leave->id), 'method' => 'PUT')) !!}
@@ -46,30 +37,15 @@
 
     <div class="form-group">
         {!! Form::label('note', 'Reason/Note') !!}
-        {!! Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'placeholder' => 
+        {!! Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'size' => '30x3', 'placeholder' => 
         '(Optional) Additional note')) !!}
     </div>
 
-    {!! Form::submit('Edit this request', array('class' => 'btn btn-primary')) !!}
+    {!! Form::submit('Submit changes', array('class' => 'btn btn-primary')) !!}
 
 {!! Form::close() !!}
 
 </div>
+@stop
 
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-  <script>
-  $(function() {
-        $( "#from_dt" ).datepicker({ 
-            dateFormat: 'yy-mm-dd',
-            showOtherMonths: true,  
-            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], 
-        });
-        $( "#to_dt" ).datepicker({ 
-            dateFormat: 'yy-mm-dd' 
-        });
-  });
-  </script> 
-
-</body>
-</html>
+    
