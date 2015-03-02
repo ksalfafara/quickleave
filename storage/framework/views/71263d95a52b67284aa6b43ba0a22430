@@ -1,14 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Sample</title>
-</head>
-<body>
-	<?php foreach($teams as $team): ?>
+<?php $__env->startSection('title'); ?>
+    Admin - Team Members
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('pagetitle'); ?>
+    View <?php echo $team->name; ?>'s Members
+<?php $__env->stopSection(); ?>
+	
+<?php $__env->startSection('boxname'); ?>
+	<?php echo $team->name; ?>'s Members
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <?php if(Session::has('message')): ?>
+    <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
+<?php endif; ?>
+
+<table class="table table-striped table-bordered">
+    <thead>
         <tr>
-            <td><?php echo $team->name; ?></td>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Username</td>
+            <td>Role</td>
         </tr>
+    </thead>
+    <tbody>
+    <?php foreach($team->user as $member): ?>
+        <tr>
+            <td><?php echo $member->firstname; ?></td>
+            <td><?php echo $member->lastname; ?></td>
+            <td><?php echo $member->username; ?></td>
+            <td><?php echo $member->is_manager; ?></td>
+            <td>
+            	<a class="btn btn-small btn-success" href="<?php echo e(URL::to('teams/' . $member->id)); ?>">Edit this Member</a>
+            </td>
+		</tr>
     <?php endforeach; ?>
-</body>
-</html>
+    </tbody>
+</table>	
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

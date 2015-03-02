@@ -34,7 +34,7 @@
             <!-- show, edit, and delete buttons -->
             <td>
                  <!-- show the team members (uses the show method found at GET /teams/{id} -->
-                <a class="btn btn-small btn-success" href="teams/{teamname}">Show Members</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('teams/' . $team->id) }}">Show Members</a>
 
                 <!-- edit this team (uses the edit method found at GET /teams/{id}/edit -->
                 <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $team->id . '/edit') }}">Edit this Team</a>

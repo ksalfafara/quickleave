@@ -48,15 +48,13 @@ class TeamController extends Controller {
         return Redirect::to('teams');
     	}
 	}
-	
-	/*
+		
 	public function show($id)
 	{
-		$teams = Team::find($id);
-		return View::make('teams.show')->with('teams',$teams);
+		$team = Team::find($id);
+		return View::make('teams.show')->with('team',$team);
 	}
-	*/
-
+	
 	public function edit($id)
 	{
 		$team = Team::find($id);
