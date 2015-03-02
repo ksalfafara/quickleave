@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Team;
+use App\User;
 use View, Input, Session, Redirect, Validator;
 
 class TeamController extends Controller {
@@ -47,12 +48,14 @@ class TeamController extends Controller {
         return Redirect::to('teams');
     	}
 	}
-
+	
+	/*
 	public function show($id)
 	{
-		$team = Team::find($id);
-		return View::make('teams.show')->with('team',$team);
-	}	
+		$teams = Team::find($id);
+		return View::make('teams.show')->with('teams',$teams);
+	}
+	*/
 
 	public function edit($id)
 	{

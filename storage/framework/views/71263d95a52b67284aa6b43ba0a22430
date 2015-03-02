@@ -1,18 +1,14 @@
-<?php $__env->startSection('title'); ?>
-    Admin Board
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('pagetitle'); ?>
-    Dashboard
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('content'); ?>
-    <div class="jumbotron text-center">
-        <h2><?php echo $team->name; ?></h2>
-        <p>
-            <strong>Code:</strong> <?php echo $team->code; ?><br>
-        </p>
-    </div>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample</title>
+</head>
+<body>
+	<?php foreach($teams as $team): ?>
+        <tr>
+            <td><?php echo $team->name; ?></td>
+        </tr>
+    <?php endforeach; ?>
+</body>
+</html>

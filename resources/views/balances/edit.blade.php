@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin - Leave Balances
+    Admin - Edit Balances
 @stop
 
 @section('pagetitle')
-    View all Leave Balances
+    Edit Balances
 @stop
 
 @section('boxname')

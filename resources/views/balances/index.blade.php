@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-    View users' Leave Balances
+
 @stop
 
 @section('content')

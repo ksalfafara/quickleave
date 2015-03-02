@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('boxname'); ?>
-    View users' Leave Balances
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
