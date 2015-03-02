@@ -14,8 +14,8 @@ class CreateUsersFk extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-			$table->integer('teams_id')->unsigned();
-			$table->foreign('teams_id')->references('id')->on('teams')
+			$table->integer('team_id')->unsigned();
+			$table->foreign('team_id')->references('id')->on('teams')
 				->onUpdate('cascade')
 				->onDelete('cascade');
 		});
@@ -30,8 +30,8 @@ class CreateUsersFk extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-			$table->dropForeign('users_teams_id_foreign');
-			$table->dropColumn('teams_id');
+			$table->dropForeign('users_team_id_foreign');
+			$table->dropColumn('team_id');
 		});
 	}
 

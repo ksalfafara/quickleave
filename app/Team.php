@@ -8,7 +8,7 @@ class Team extends Model {
 	protected $fillable = ['name','code'];
 
 	public function user() {
-		return $this->hasMany('User');
+		return $this->hasMany('App\User');
 	}
 
 }
