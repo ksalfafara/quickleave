@@ -1,15 +1,15 @@
-@extends('layouts.usermaster')
+@extends('layouts.managermaster')
 
 @section('title')
-    User - All Request(s)
+    Manager - Pending request(s)
 @stop
 
 @section('pagetitle')
-    Your submitted requests
+    View Request
 @stop
 
 @section('boxname')
-    Displaying all of your Approved/Rejected requests
+    Your pending request/s
 @stop
 
 @section('content')
@@ -28,11 +28,12 @@
             <td>Note</td>
             <td>Remarks</td>
             <td>Status</td>
+            <td>Actions</td>
         </tr>
     </thead>
     <tbody>
     @foreach($leaves as $key => $value)
-    @if(($value->status) <> 'Pending')
+    @if(($value->status) === 'Pending')
         <tr>
             <td>{!! $value->id !!}</td>
             <td>{!! $value->type !!}</td>
@@ -42,6 +43,14 @@
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
             <td>{!! $value->status !!}</td>
+            <td>
+                <a class="btn btn-small btn-info" href="{!! URL::to('managerleaves/' . $value->id . '/edit') !!}">Edit this Request</a>
+
+                {!! Form::open(array('url' => 'leaves/' . $value->id, 'class' => 'btn')) !!}
+                    {!! Form::hidden('_method', 'DELETE') !!}
+                    {!! Form::submit('Delete this Request', array('class' => 'btn btn-warning')) !!}
+                {!! Form::close() !!}
+            </td>
         </tr>
     @endif
     @endforeach

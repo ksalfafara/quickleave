@@ -1,7 +1,7 @@
-@extends('layouts.usermaster')
+@extends('layouts.managermaster')
 
 @section('title')
-    User Dashboard
+    Manager Dashboard
 @stop
 
 @section('pagetitle')

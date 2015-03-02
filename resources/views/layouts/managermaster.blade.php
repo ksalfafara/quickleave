@@ -15,7 +15,7 @@
     <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="/theme/dist/css/skins/skin-green.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/dist/css/skins/skin-blue.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,7 +25,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="skin-green">
+  <body class="skin-blue">
     <!-- Site wrapper -->
     <div class="wrapper">
       
@@ -46,16 +46,16 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="img/buttercup.png" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Elaine Lee</span>
+                  <img src="img/bubbles.png" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Izza Javellana</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="theme/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Elaine Lee
-                      <small>Programmer</small>
+                      Izza Javellana
+                      <small>Lead Designer & Programmer</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -83,10 +83,10 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="img/buttercup.png" class="img-circle" alt="User Image" />
+              <img src="img/bubbles.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Elaine Lee</p>
+              <p>Izza Javellana</p>
             </div>
           </div>
           <!-- search form -->
@@ -103,26 +103,39 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="/user">
-                <i class="fa fa-home"></i> <span>User Board</span>
+              <a href="/manager">
+                <i class="fa fa-home"></i> <span>Your Board</span>
               </a>
             </li>
 
             <li>
-              <a href="/leaves/create">
+              <a href="/managerleaves/create">
                 <i class="fa fa-pencil-square"></i> <span>Request a Leave</span>
               </a>
             </li>
 
             <li>
-              <a href="/leaves">
-                <i class="fa fa-file-text-o"></i> <span>Pending request</span>
+              <a href="/managerleaves">
+                <i class="fa fa-file-text-o"></i> <span>Pending Request</span>
               </a>
             </li>
 
             <li>
-              <a href="/leaves/allrequest">
+              <a href="/managerleaves/allrequest">
                 <i class="fa fa-bars"></i> <span>Requests</span>
+              </a>
+            </li>
+
+            <li class="header">YOUR TEAM'S REQUEST</li>
+            <li>
+            <li>
+              <a href="/pending">
+                <i class="fa fa-check-square-o"></i> <span>For Your Approval</span>
+              </a>
+            </li>
+            <li>
+              <a href="/history">
+                <i class="fa fa-check-square-o"></i> <span>Approved/Rejected Requests</span>
               </a>
             </li>
 
@@ -153,7 +166,7 @@
         <section class="content">
 
           <!-- Default box -->
-          <div class="box box-success">
+          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">@yield('boxname')</h3>
               <div class="box-tools pull-right">

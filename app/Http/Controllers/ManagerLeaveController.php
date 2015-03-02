@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Leave;
 use View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
-class LeaveController extends Controller {
+class ManagerLeaveController extends Controller {
 
 	public function __construct()
 	{
@@ -17,26 +17,33 @@ class LeaveController extends Controller {
 	public function index()
 	{
         $leaves = Leave::all();
-        return View::make('leaves.index')->with('leaves', $leaves);
+        return View::make('managerleaves.index')->with('leaves', $leaves);
 	}
 
 
 	public function create()
 	{
-		return View::make('leaves.create');
+		return View::make('managerleaves.create');
 	}
 
     public function show()
     {
         $leaves = Leave::all();
-        return View::make('leaves.allrequest')->with('leaves', $leaves);
+        return View::make('managerleaves.allrequest')->with('leaves', $leaves);
     }
 
     public function showPending()
     {
         $leaves = Leave::all();
-        return View::make('leaves.pending')->with('leaves', $leaves);
+        return View::make('managerleaves.pending')->with('leaves', $leaves);
     }
+
+    public function showHistory()
+    {
+        $leaves = Leave::all();
+        return View::make('managerleaves.teamrequest')->with('leaves', $leaves);
+    }
+
 
 	public function store()
 	{
@@ -49,7 +56,7 @@ class LeaveController extends Controller {
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('leaves/create')
+            return Redirect::to('managerleaves/create')
                 ->withErrors($validator);
         } else {
         $leave = new Leave();
@@ -70,14 +77,14 @@ class LeaveController extends Controller {
         $leave->save();
 
         Session::flash('message', 'Your leave request has been submitted. Kindly wait for the approval.');
-        return Redirect::to('leaves');
+        return Redirect::to('managerleaves');
     	}
 	}
 
 	public function edit($id)
 	{
 		$leave = Leave::find($id);
-		return View::make('leaves.edit')->with('leave',$leave);
+		return View::make('managerleaves.edit')->with('leave',$leave);
 	}
 
 	public function update($id)
@@ -91,7 +98,7 @@ class LeaveController extends Controller {
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('leaves/' . $id . '/edit')
+            return Redirect::to('managerleaves/' . $id . '/edit')
                 ->withErrors($validator);
         } else {
         $leave = Leave::find($id);
@@ -112,7 +119,7 @@ class LeaveController extends Controller {
         $leave->save();
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
-        return Redirect::to('leaves');
+        return Redirect::to('managerleaves');
     	}
 	}
 
@@ -124,7 +131,7 @@ class LeaveController extends Controller {
 
 		// redirect
 		Session::flash('message','Successfully deleted Leave Request '.$leave->id.'!');
-		return Redirect::to('leaves');
+		return Redirect::to('managerleaves');
 	}
 
 }

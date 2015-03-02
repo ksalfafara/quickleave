@@ -1,15 +1,15 @@
-@extends('layouts.usermaster')
+@extends('layouts.managermaster')
 
 @section('title')
-    User - All Request(s)
+    Manager - All Request(s) from team
 @stop
 
 @section('pagetitle')
-    Your submitted requests
+    All submitted requests by your members
 @stop
 
 @section('boxname')
-    Displaying all of your Approved/Rejected requests
+    Displaying all of approved/rejected requests of your members
 @stop
 
 @section('content')

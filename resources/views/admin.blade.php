@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin Board
+    Admin Dashboard
 @stop
 
 @section('pagetitle')

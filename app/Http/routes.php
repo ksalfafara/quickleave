@@ -20,7 +20,16 @@ Route::get('home', 'HomeController@index');
 Route::resource('admin', 'AdminController@index');
 
 //user dashboard
-Route::resource('userdash', 'UserDashController@index');
+Route::resource('user', 'UserDashController@index');
+
+//manager dashboard
+Route::get('manager', 'ManagerDashController@index');
+
+//manager's leaves
+Route::resource('managerleaves', 'ManagerLeaveController');
+Route::get('managerleaves/allrequest', 'ManagerLeaveController@show');
+Route::get('pending', 'ManagerLeaveController@showPending');
+Route::get('history', 'ManagerLeaveController@showHistory');
 
 Route::resource('teams', 'TeamController'); //, ['except' => ['editRole']]);
 
