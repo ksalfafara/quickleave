@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Leave;
+use App\Leave as Leave;
 use View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class ManagerLeaveController extends Controller {
@@ -87,6 +87,7 @@ class ManagerLeaveController extends Controller {
 		return View::make('managerleaves.edit')->with('leave',$leave);
 	}
 
+
 	public function update($id)
 	{
 		$rules = array(
@@ -133,6 +134,17 @@ class ManagerLeaveController extends Controller {
 		Session::flash('message','Successfully deleted Leave Request '.$leave->id.'!');
 		return Redirect::to('managerleaves');
 	}
+
+    /**public function approve($id)
+    {
+        $inputs = Input::all();
+        $leave = Leave::find($id);
+        $leave['status'] = 'Approve';
+        $approve = Leave::find($id)->update($leave);
+
+        return redirect('/pending');
+
+    }**/
 
 }
 	

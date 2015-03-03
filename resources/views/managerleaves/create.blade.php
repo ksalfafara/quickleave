@@ -27,13 +27,6 @@
                       </div>
         </div>
 
-        <!--
-        {!! Form::label('type', 'Leave Type:') !!} &nbsp; &nbsp;
-        {!! Form::radio('type', 'SL', (Input::old('type') == 'SL')) !!} &nbsp;
-        {!! Form::label('type', 'Sick Leave') !!} &nbsp; &nbsp;
-        {!! Form::radio('type', 'VL', (Input::old('type') == 'VL')) !!}&nbsp;
-        {!! Form::label('type', 'Vacation Leave') !!}
-        -->
     </div>
 
 

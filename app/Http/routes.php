@@ -28,8 +28,11 @@ Route::get('manager', 'ManagerDashController@index');
 //manager's leaves
 Route::resource('managerleaves', 'ManagerLeaveController');
 Route::get('managerleaves/allrequest', 'ManagerLeaveController@show');
-Route::get('pending', 'ManagerLeaveController@showPending');
-Route::get('history', 'ManagerLeaveController@showHistory');
+
+
+//Pending
+Route::resource('pending', 'PendingEditController');
+Route::get('history', 'PendingEditController@showHistory');
 
 Route::resource('teams', 'TeamController'); //, ['except' => ['editRole']]);
 

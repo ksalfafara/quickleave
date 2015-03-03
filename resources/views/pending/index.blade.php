@@ -44,7 +44,7 @@
             <td>{!! $value->remark !!}</td>
             <td>{!! $value->status !!}</td>
             <td>
-                <a class="btn btn-small btn-info" href="{!! URL::to('pendingedit' . $value->id . '/edit') !!}">Edit this Request</a>
+                <a class="btn btn-small btn-info" href="{!! URL::to('pending/' . $value->id . '/edit') !!}">Edit this Request</a>
 
                 {!! Form::open(array('url' => 'pending' . $value->id, 'class' => 'btn')) !!}
                     {!! Form::hidden('_method', 'DELETE') !!}
