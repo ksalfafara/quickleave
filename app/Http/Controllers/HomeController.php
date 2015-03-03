@@ -39,7 +39,7 @@ class HomeController extends Controller {
 	{
 		return View::make('home');
 	}
-
+/*
 	public function showLogin() {
 		return View::make('auth.login');
 	}
@@ -81,5 +81,5 @@ class HomeController extends Controller {
     Auth::logout(); // log the user out of our application
     return Redirect::to('/'); // redirect the user to the login screen
 }
-
+*/
 }

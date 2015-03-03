@@ -68,7 +68,7 @@
                         <a class="page-scroll" href="auth/login">Log In</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="users/create">Register</a>
+                        <a class="page-scroll" href="auth/register">Register</a>
                     </li>
                 </ul>
             </div>

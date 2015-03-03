@@ -28,21 +28,28 @@
         <a href="auth/login"><b>QUICKLEAVE</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start using the application</p>
+        <p class="login-box-msg">Sign in</p>
+        
+        @if (count($errors) > 0)
+            <div>
+              <strong>Whoops!</strong> There were some problems with your input.<br><br>
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+        @endif
 
-        {!! Form::open(array('url' => 'login')) !!}
-        <!-- if there are login errors, show them here -->
-		<p>
-		    {!! $errors->first('Username') !!}
-		    {!! $errors->first('password') !!}
-		</p>
+          <form role="form" method="POST" action="/auth/login">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
           <div class="form-group has-feedback">
-          	<span class="glyphicon glyphicon-user form-control-feedback"></span>
-    		{!! Form::text('username', Input::old('username'), array('class' => 'form-control', 'placeholder' => 'Username', 'required' => 'required')) !!}
-            
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <input type="text" class="form-control" name="username" placeholder='Username'>
           </div>
           <div class="form-group has-feedback">
-            {!! Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password', 'required' => 'required')) !!}
+            <input type="password" class="form-control" name="password" placeholder='Password'>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
@@ -54,19 +61,15 @@
               </div>                        
             </div><!-- /.col -->
             <div class="col-xs-4">
-              {!! Form::submit('LOG IN', array('class' => 'btn btn-primary')) !!}
+              <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
+                  Login
+                </button>
             </div><!-- /.col -->
           </div>
         </form>
 
-        <div class="social-auth-links text-center">
-          <p>- OR -</p>
-          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
-          <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
-        </div><!-- /.social-auth-links -->
-
-        <a href="#">I forgot my password</a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="/password/email">Forgot Your Password?</a><br>
+        <a href="/auth/register" class="text-center">Sign Up</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
+use App\Team;
+use View;
 
 trait AuthenticatesAndRegistersUsers {
 
@@ -27,7 +29,8 @@ trait AuthenticatesAndRegistersUsers {
 	 */
 	public function getRegister()
 	{
-		return view('auth.register');
+		$teams_list = Team::lists('name','id');
+		return View::make('auth.register', array('teams_list' => $teams_list));
 	}
 
 	/**
@@ -47,6 +50,12 @@ trait AuthenticatesAndRegistersUsers {
 			);
 		}
 
+		$user = $request->all();
+		$user['sl_bal'] = '10';
+		$user['vl_bal'] = '15';
+		$user['is_manager'] = '0';
+		$this->auth->login($this->registrar->create($user));
+		
 		$this->auth->login($this->registrar->create($request->all()));
 
 		return redirect($this->redirectPath());
@@ -71,10 +80,10 @@ trait AuthenticatesAndRegistersUsers {
 	public function postLogin(Request $request)
 	{
 		$this->validate($request, [
-			'email' => 'required|email', 'password' => 'required',
+			'username' => 'required', 'password' => 'required',
 		]);
 
-		$credentials = $request->only('email', 'password');
+		$credentials = $request->only('username', 'password');
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
@@ -82,9 +91,9 @@ trait AuthenticatesAndRegistersUsers {
 		}
 
 		return redirect($this->loginPath())
-					->withInput($request->only('email', 'remember'))
+					->withInput($request->only('username', 'remember'))
 					->withErrors([
-						'email' => $this->getFailedLoginMesssage(),
+						'username' => $this->getFailedLoginMesssage(),
 					]);
 	}
 
@@ -122,7 +131,7 @@ trait AuthenticatesAndRegistersUsers {
 			return $this->redirectPath;
 		}
 
-		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/user';
 	}
 
 	/**

@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration {
 			$table->string('username')->unique();
 			$table->string('email')->unique();
 			$table->string('password', 255);
-			$table->integer('sl_bal');
-			$table->integer('vl_bal');
-			$table->boolean('is_manager');
+			$table->integer('sl_bal')->default(10);
+			$table->integer('vl_bal')->default(15);
+			$table->boolean('is_manager')->default(0);
 			$table->rememberToken();
 			$table->timestamps();
 		});
