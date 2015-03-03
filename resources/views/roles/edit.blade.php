@@ -12,7 +12,7 @@
 	Edit {!! $member->firstname !!}'s Role
 @stop
 
-@section('content')
+@section('content') 
 
     {!! HTML::ul($errors->all()) !!}
 
@@ -23,7 +23,7 @@
             {!! Form::select('is_manager', array('' => 'Select a role', '1' => 'Manager', '0' => 'Member'), Input::old('is_manager'), array('class' => 'form-control')) !!}
         </div>
 
-        {!! Form::submit('Edit the Role!', array('class' => 'btn btn-primary')) !!}
+        {!! Form::submit('Edit the role', array('class' => 'btn btn-primary')) !!}
 
     {!! Form::close() !!}
 

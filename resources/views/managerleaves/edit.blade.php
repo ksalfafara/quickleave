@@ -14,6 +14,8 @@
 
 @section('content')
  <!-- if there are creation errors, they will show here -->
+
+
 {!! HTML::ul($errors->all()) !!}
 
 {!! Form::model($leave, array('route' => array('managerleaves.update', $leave->id), 'method' => 'PUT')) !!}
