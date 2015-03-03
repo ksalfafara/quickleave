@@ -83,6 +83,8 @@ class QuickLeaveSeeder extends Seeder {
 			'team_id'	=> $team->id
 			));
 
+		
+
 		//seed leaves table 
 /**		Leave::create(array(
 			'type'		=> 'SL',
