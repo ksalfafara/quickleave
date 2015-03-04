@@ -81,7 +81,7 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">File your leave. Anytime. Anywhere</div>
+                <div class="intro-lead-in">File your leave. Anytime. Anywhere.</div>
                 <div class="intro-heading">QUICKLEAVE</div>
                 <a href="#features" class="page-scroll btn btn-xl">Tell Me More</a>
             </div>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Registration Page</title>
+    <title>Quickleave | Registration Page</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -23,7 +23,7 @@
   <body class="register-page">
     <div class="register-box">
       <div class="register-logo">
-        <a href="../../index2.html"><b>Quick</b>Leave</a>
+        <a href="/"><b>Quick</b>Leave</a>
       </div>
 
       <div class="register-box-body">

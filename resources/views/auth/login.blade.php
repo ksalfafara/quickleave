@@ -25,19 +25,20 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="auth/login"><b>QUICKLEAVE</b></a>
+        <a href="/"><b>QUICKLEAVE</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in</p>
+        <p class="login-box-msg"><b>SIGN IN</b></p>
         
         @if (count($errors) > 0)
             <div>
-              <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <i><strong>Whoops!</strong> There were some problems with your input.<br><br>
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{ $error }}</li>
                 @endforeach
               </ul>
+            </i>
             </div>
         @endif
 
