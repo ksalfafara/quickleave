@@ -17,6 +17,17 @@
          folder instead of downloading all of them to reduce the load. -->
     <link href="/theme/dist/css/skins/skin-green.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+    <!-- Morris chart -->
+    <link href="/theme/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <!-- Date Picker -->
+    <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="/theme/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +57,7 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="img/buttercup.png" class="user-image" alt="User Image"/>
+                  <img src="../img/buttercup.png" class="user-image" alt="User Image"/>
                   <span class="hidden-xs">Elaine Lee</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -83,7 +94,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="img/buttercup.png" class="img-circle" alt="User Image" />
+              <img src="../img/buttercup.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
               <p>Elaine Lee</p>
@@ -190,6 +201,22 @@
     <script src="/theme/dist/js/app.min.js" type="text/javascript"></script>
     <!-- Datepicker botostrap -->
     <script src="/theme/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="/theme/plugins/morris/morris.min.js" type="text/javascript"></script>
+    <!-- Sparkline -->
+    <script src="/theme/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- jvectormap -->
+    <script src="/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+    <script src="/theme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="/theme/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
+    <!-- daterangepicker -->
+    <script src="/theme/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- datepicker -->
+    <script src="/theme/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="/theme/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     
     <script>
         $('#from_dt').datepicker(

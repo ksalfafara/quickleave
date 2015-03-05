@@ -21,6 +21,31 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+    body {
+    background-image: url(/img/header-bg.jpg);
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    }
+    </style>
+
+<style type="text/css">
+    body {
+    background-image: url(/img/header-bg.jpg);
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    }
+    </style>
+
   </head>
   <body class="login-page">
     <div class="login-box">
@@ -28,7 +53,7 @@
         <a href="auth/login"><b>QUICKLEAVE</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign in</p>
+        <p class="login-box-msg"><b>Sign in</b></p>
         
         @if (count($errors) > 0)
             <div>
@@ -61,14 +86,14 @@
               </div>                        
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
+              <button type="submit" class="btn btn-primary btn-block btn-flat" style="margin-right: 15px;">
                   Login
                 </button>
             </div><!-- /.col -->
           </div>
         </form>
 
-        <a href="/password/email">Forgot Your Password?</a><br>
+        <!--<a href="/password/email">Forgot Your Password?</a><br>-->
         <a href="/auth/register" class="text-center">Sign Up</a>
 
       </div><!-- /.login-box-body -->

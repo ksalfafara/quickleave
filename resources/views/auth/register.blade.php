@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Registration Page</title>
+    <title>Quickleave | Registration Page</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="/theme/plugins/iCheck/square/blue.css" rel="stylesheet" type="text/css" />
     
@@ -19,15 +19,28 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+
+    <style type="text/css">
+    body {
+    background-image: url(/img/header-bg.jpg);
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    }
+    </style>
+
   </head>
   <body class="register-page">
     <div class="register-box">
       <div class="register-logo">
-        <a href="../../index2.html"><b>Quick</b>Leave</a>
+        <a href="../../index2.html"><b>QUICKLEAVE</b></a>
       </div>
 
       <div class="register-box-body">
-        <p class="login-box-msg">Register</p>
+        <p class="login-box-msg"><b>Register</b></p>
         @if (count($errors) > 0)
           <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -52,7 +65,7 @@
             <input type="password" class="form-control" name="password_confirmation"  placeholder="Retype password"/>
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
-          <p class="login-box-msg">Details</p>
+          <p class="login-box-msg"><b>Details</b></p>
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="firstname" placeholder="Firstname"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -66,7 +79,7 @@
             <input type="email" class="form-control" name="email" placeholder="Email"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
-          <p class="login-box-msg">Your Team</p>
+          <p class="login-box-msg"><b>Your Team</b></p>
           <div class="form-group has-feedback">
             {!! Form::select('team_id', $teams_list, null, array('class' => "form-control")) !!}
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
