@@ -36,7 +36,7 @@
   <body class="register-page">
     <div class="register-box">
       <div class="register-logo">
-        <a href="../../index2.html"><b>QUICKLEAVE</b></a>
+        <a href="/"><b>Quick</b>Leave</a>
       </div>
 
       <div class="register-box-body">
