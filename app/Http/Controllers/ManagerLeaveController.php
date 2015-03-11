@@ -73,6 +73,8 @@ class ManagerLeaveController extends Controller {
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
         $leave->duration = $duration->format('%R%a');
+
+        //$leave->leave_id = 
        
         $leave->save();
 

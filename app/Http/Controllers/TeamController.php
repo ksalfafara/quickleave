@@ -29,8 +29,8 @@ class TeamController extends Controller {
 	public function store()
 	{
 		$rules = array(
-            'name' => 'required|unique:teams',
-            'code' => 'required',
+            'team_name' => 'required|unique:teams',
+            'team_code' => 'required',
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -40,11 +40,11 @@ class TeamController extends Controller {
                 ->withErrors($validator);
         } else {
         $team = new Team;
-        $team->name = Input::get('name');
-        $team->code = Input::get('code');
+        $team->team_name = Input::get('team_name');
+        $team->team_code = Input::get('team_code');
         $team->save();
 
-        Session::flash('message', 'Successfully created '.$team->name.'!');
+        Session::flash('message', 'Successfully created '.$team->team_name.'!');
         return Redirect::to('teams');
     	}
 	}
@@ -66,8 +66,8 @@ class TeamController extends Controller {
 	public function update($id)
 	{
         $rules = array(
-            'name' => 'required|',
-            'code' => 'required|',
+            'team_name' => 'required|',
+            'team_code' => 'required|',
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -77,11 +77,11 @@ class TeamController extends Controller {
                 ->withErrors($validator);
         } else {
         $team = Team::find($id);
-        $team->name = Input::get('name');
-        $team->code = Input::get('code');
+        $team->team_name = Input::get('team_name');
+        $team->team_code = Input::get('team_code');
         $team->save();
 
-        Session::flash('message', 'Successfully updated '.$team->name.'!');
+        Session::flash('message', 'Successfully updated '.$team->team_name.'!');
         return Redirect::to('teams');
     	}
 	}
@@ -91,7 +91,7 @@ class TeamController extends Controller {
 		$team = Team::find($id);
 		$team->delete();
 
-		Session::flash('message','Successfully deleted '.$team->name.'!');
+		Session::flash('message','Successfully deleted '.$team->team_name.'!');
 		return Redirect::to('teams');
 	}
 /*
@@ -117,7 +117,7 @@ class TeamController extends Controller {
         $member->is_manager = Input::get('is_manager');
         $member->save();
 
-        Session::flash('message', 'Successfully updated '.$member->name.' role!');
+        Session::flash('message', 'Successfully updated '.$member->team_name.' role!');
         return Redirect::to('teams/' . $id);
     	}
 	}

@@ -28,8 +28,8 @@
     <tbody>
     @foreach($teams as $team)
         <tr>
-            <td>{!! $team->name !!}</td>
-            <td>{!! $team->code !!}</td>
+            <td>{!! $team->team_name !!}</td>
+            <td>{!! $team->team_code !!}</td>
 
             <!-- show, edit, and delete buttons -->
             <td>

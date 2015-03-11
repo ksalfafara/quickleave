@@ -28,7 +28,7 @@
     <tbody>
     <?php foreach($balances as $balance): ?>
         <tr>
-            <td><?php echo $balance->team->name; ?></td>
+            <td><?php echo $balance->team->team_name; ?></td>
             <td><?php echo $balance->firstname; ?></td>
             <td><?php echo $balance->sl_bal; ?></td>
             <td><?php echo $balance->vl_bal; ?></td>

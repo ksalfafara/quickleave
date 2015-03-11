@@ -30,7 +30,7 @@
     <tbody>
     @foreach($balances as $balance)
         <tr>
-            <td>{!! $balance->team->name !!}</td>
+            <td>{!! $balance->team->team_name !!}</td>
             <td>{!! $balance->firstname !!}</td>
             <td>{!! $balance->sl_bal !!}</td>
             <td>{!! $balance->vl_bal !!}</td>
