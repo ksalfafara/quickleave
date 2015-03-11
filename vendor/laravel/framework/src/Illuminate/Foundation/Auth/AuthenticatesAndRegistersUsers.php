@@ -3,8 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
-use App\Team;
-use View;
 
 trait AuthenticatesAndRegistersUsers {
 
@@ -29,8 +27,7 @@ trait AuthenticatesAndRegistersUsers {
 	 */
 	public function getRegister()
 	{
-		$teams_list = Team::lists('name','id');
-		return View::make('auth.register', array('teams_list' => $teams_list));
+		return view('auth.register');
 	}
 
 	/**
@@ -50,12 +47,12 @@ trait AuthenticatesAndRegistersUsers {
 			);
 		}
 
-		$user = $request->all();
-		$user['sl_bal'] = '10';
-		$user['vl_bal'] = '15';
-		$user['is_manager'] = '0';
-		$this->auth->login($this->registrar->create($user));
-		
+		/*$team = Team::where('id', $request->team_id)->get();
+		if ($request->team_id == $team->id)
+		{
+			return 'The team name does not match the team code.';
+		}*/
+
 		$this->auth->login($this->registrar->create($request->all()));
 
 		return redirect($this->redirectPath());
@@ -87,13 +84,13 @@ trait AuthenticatesAndRegistersUsers {
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
-			return redirect()->intended($this->redirectPath());
+			return redirect('user');
 		}
 
 		return redirect($this->loginPath())
 					->withInput($request->only('username', 'remember'))
 					->withErrors([
-						'username' => $this->getFailedLoginMesssage(),
+						'username' => $this->getFailedLoginMessage(),
 					]);
 	}
 
@@ -102,7 +99,7 @@ trait AuthenticatesAndRegistersUsers {
 	 *
 	 * @return string
 	 */
-	protected function getFailedLoginMesssage()
+	protected function getFailedLoginMessage()
 	{
 		return 'These credentials do not match our records.';
 	}
@@ -131,7 +128,7 @@ trait AuthenticatesAndRegistersUsers {
 			return $this->redirectPath;
 		}
 
-		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/user';
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : 'user';
 	}
 
 	/**

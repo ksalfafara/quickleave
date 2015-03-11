@@ -11,7 +11,7 @@ class LeaveController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('guest'); //change later to auth
+		$this->middleware('auth'); //change later to auth
 	}
 
 	public function index()

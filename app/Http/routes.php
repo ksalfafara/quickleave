@@ -18,7 +18,7 @@ Route::get('/', 'WelcomeController@index');
 Route::resource('admin', 'AdminController@index');
 
 //user dashboard
-Route::resource('user', 'UserDashController@index');
+Route::get('user', 'UserDashController@index');
 
 //manager dashboard
 Route::get('manager', 'ManagerDashController@index');

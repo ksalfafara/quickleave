@@ -68,11 +68,6 @@
           </div>
           <p class="login-box-msg">Your Team</p>
           <div class="form-group has-feedback">
-            <?php echo Form::select('team_id', $teams_list, null, array('class' => "form-control")); ?>
-
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
             <input type="text" class="form-control" name="code" placeholder="Team Code"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>

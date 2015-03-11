@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersFk extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
 	public function up()
 	{
 		Schema::table('users', function($table)
@@ -21,11 +16,6 @@ class CreateUsersFk extends Migration {
 		});
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
 		Schema::table('users', function($table)

@@ -5,30 +5,21 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTeamsTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
 	public function up()
 	{
 		Schema::create('teams', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name')->unique();
-			$table->string('code', 60)->unique();
+			$table->string('team_name')->unique();
+			$table->string('team_code', 60)->unique();
 			$table->timestamps();
 		});
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
 		Schema::drop('teams');
 	}
 
 }
+	

@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 
 class PendingEditController extends Controller {
 
-	public function index()
+	public function __construct()
+	{
+		$this->middleware('auth'); //change later to auth
+	}
+		public function index()
 	{
 		$leaves = Leave::all();
         return View::make('pending.index')->with('leaves', $leaves);

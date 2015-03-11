@@ -12,17 +12,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $table = 'users';
 
-	protected $fillable = ['firstname', 'lastname', 'email', 'username', 'password'];
+	protected $fillable = ['username', 'password', 'firstname', 'lastname', 'email', 'sl_bal', 'vl_bal', 'is_manager', 'team_id'];
 
 	protected $hidden = ['password', 'remember_token'];
-
-	public function getAuthPassword() {
-    	return $this->password;
-	}
-
-	public function getAuthIdentifier() {
-   	return $this->username;
-	}
 
 	public function team() {
 		return $this->belongsTo('App\Team');

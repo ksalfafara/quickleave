@@ -9,7 +9,11 @@ use App\User;
 
 class UserController extends Controller {
 
-	public function index()
+	public function __construct()
+	{
+		$this->middleware('auth'); //change later to auth
+	}
+		public function index()
 	{
 		//return View::make('users')->withUsers(User::all());
 		$users = User::all();
