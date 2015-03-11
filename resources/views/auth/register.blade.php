@@ -81,7 +81,7 @@
           </div>
           <p class="login-box-msg"><b>Your Team</b></p>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="code" placeholder="Team Code"/>
+            <input type="text" class="form-control" name="team_code" placeholder="Team Code"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">

@@ -1,13 +1,88 @@
 <?php $__env->startSection('title'); ?>
-    User - Create Request
+    User - Request a leave
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('pagetitle'); ?>
-    Create a leave request
+    File a request for leave
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('boxname'); ?>
+	Fill out the form
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-svdskv
+    <?php echo HTML::ul($errors->all()); ?>
+
+
+
+<?php echo Form::open(array('url' => 'leaves')); ?>
+
+
+    <div class="form-group">
+        <?php echo Form::label('type', 'LEAVE TYPE'); ?>
+
+        <div class="input-group">
+        <?php echo Form::select('type', array('' => 'Select leave type ', 'SL' => 'Sick Leave', 'VL' => 'Vacation Leave'), Input::old('type'), array('class' => 'form-control', 'required' => 'required')); ?>
+
+        <div class="input-group-addon">
+                        <i class="fa fa-chevron-down"></i>
+                      </div>
+        </div>
+
+        <!--
+        <?php echo Form::label('type', 'Leave Type:'); ?> &nbsp; &nbsp;
+        <?php echo Form::radio('type', 'SL', (Input::old('type') == 'SL')); ?> &nbsp;
+        <?php echo Form::label('type', 'Sick Leave'); ?> &nbsp; &nbsp;
+        <?php echo Form::radio('type', 'VL', (Input::old('type') == 'VL')); ?>&nbsp;
+        <?php echo Form::label('type', 'Vacation Leave'); ?>
+
+        -->
+    </div>
+
+
+    <div class="form-group">
+        <?php echo Form::label('from_dt', 'FROM DATE'); ?>
+
+            <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+            <?php echo Form::text('from_dt', Input::old('from_dt'), array('class' => 'form-control', 'id' => 'from_dt',
+            'placeholder' => 'Pick a date','required' => 'required' )); ?> 
+            </div>
+          
+    </div>
+ 
+    <div class="form-group">
+        <?php echo Form::label('to_dt', 'TO DATE'); ?>
+
+            <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+            <?php echo Form::text('to_dt', Input::old('to_dt'), array('class' => 'form-control','id' => 'to_dt', 
+            'placeholder' => 'Pick a date', 'required' => 'required')); ?>
+
+            </div>
+    </div>
+
+
+    <div class="form-group">
+        <?php echo Form::label('note', 'Reason/Note'); ?>
+
+        <?php echo Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'size'=> '30x3','placeholder' => '(Optional) Additional note')); ?>
+
+    </div>
+
+    <?php echo Form::submit('Submit request', array('class' => 'btn btn-primary')); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
 <?php $__env->stopSection(); ?>
+
+    
 
 <?php echo $__env->make('layouts.usermaster', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
