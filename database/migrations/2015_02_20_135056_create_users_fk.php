@@ -9,7 +9,7 @@ class CreateUsersFk extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-			$table->integer('team_id')->unsigned();
+			$table->integer('team_id')->unsigned()->nullable();
 			$table->foreign('team_id')->references('id')->on('teams')
 				->onUpdate('cascade')
 				->onDelete('cascade');

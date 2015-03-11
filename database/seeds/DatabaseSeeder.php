@@ -58,5 +58,23 @@ class QuickLeaveSeeder extends Seeder {
 				'team_id' => $team->id
 				));
 		}
+
+		$team = Team::create(array(
+			'name'	=> 'Team2',
+			'code'	=>	'code2'
+			));
+
+		User::create(array(
+			'firstname'	=> 'Elaine',
+			'lastname'	=> 'Lee',
+			'username'	=> 'elaine',
+			'email'		=> 'elainelee@yahoo.com',
+			'password'	=>  Hash::make('elaine'),
+			'sl_bal' => 10,
+			'vl_bal' => 15,
+			'is_manager' => '0',
+			'team_id'	=> $team->id
+			));
+
 	}
 }
