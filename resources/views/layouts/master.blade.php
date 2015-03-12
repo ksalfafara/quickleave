@@ -14,8 +14,7 @@
     <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="/theme/dist/css/skins/skin-red.css" rel="stylesheet" type="text/css" />
-     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
     <!-- Morris chart -->
     <link href="/theme/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
@@ -28,6 +27,19 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
+    @if((Auth::user()->role) === 'admin')
+    <link href="/theme/dist/css/skins/skin-red.css" rel="stylesheet" type="text/css" />
+    @endif
+
+    @if((Auth::user()->role) === 'manager')
+    <link href="/theme/dist/css/skins/skin-blue.css" rel="stylesheet" type="text/css" />
+    @endif
+
+    @if((Auth::user()->role) === 'member')
+    <link href="/theme/dist/css/skins/skin-green.css" rel="stylesheet" type="text/css" />
+    @endif
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,7 +47,20 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
+
+  @if((Auth::user()->role) === 'admin')
   <body class="skin-red">
+  @endif
+
+  @if((Auth::user()->role) === 'manager')
+  <body class="skin-blue">
+  @endif
+
+  @if((Auth::user()->role) === 'member')
+  <body class="skin-green">
+  @endif
+
+
     <!-- Site wrapper -->
     <div class="wrapper">
       
@@ -57,15 +82,15 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="img/blossom.png" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Kervi Alfafara</span>
+                  <span class="hidden-xs">{!! Auth::user()->username !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="img/blossom.png" class="img-circle" alt="User Image" />
                     <p>
-                      Kervi Alfafara
-                      <small>Team Lead & Programmer</small>
+                      {!! Auth::user()->username !!}
+                      <small>{!! Auth::user()->role !!}</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -74,7 +99,7 @@
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="auth/logout" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="/auth/logout" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -96,7 +121,7 @@
               <img src="img/blossom.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Kervi Alfafara</p>
+              <p>{!! Auth::user()->username !!}</p>
             </div>
           </div>
           <!-- search form -->
@@ -108,8 +133,8 @@
               </span>
             </div>
           </form>
-          <!-- /.search form -->
-          <!-- sidebar menu: : style can be found in sidebar.less -->
+
+          @if((Auth::user()->role) === 'admin') <!--admin-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
@@ -136,6 +161,58 @@
             </li>          
             
           </ul>
+          @endif <!--admin-->
+
+
+
+          @if((Auth::user()->role) === 'member' || 'manager') <!--member-->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a href="/user">
+                <i class="fa fa-home"></i> <span>User Board</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/leaves/create">
+                <i class="fa fa-pencil-square"></i> <span>Request a Leave</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/leaves">
+                <i class="fa fa-file-text-o"></i> <span>Pending request</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/leaves/allrequest">
+                <i class="fa fa-bars"></i> <span>Requests</span>
+              </a>
+            </li>
+
+            @if((Auth::user()->role) === 'manager') <!--manager-->
+
+            <li class="header">YOUR TEAM'S REQUEST</li>
+            <li>
+            <li>
+              <a href="/pending">
+                <i class="fa fa-check-square-o"></i> <span>For Your Approval</span>
+              </a>
+            </li>
+            <li>
+              <a href="/teamrequest">
+                <i class="fa fa-check-square-o"></i> <span>Approved/Rejected Requests</span>
+              </a>
+            </li>
+          @endif
+
+
+          </ul>
+          @endif
+
+
         </section>
         <!-- /.sidebar -->
       </aside>
@@ -210,6 +287,24 @@
     <!-- iCheck -->
     <script src="/theme/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     
+    <script>
+        $('#from_dt').datepicker(
+            {
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                todayHighlight: true,
+                daysOfWeekDisabled: "0",
+                autoclose: true,
+            });
+        $('#to_dt').datepicker(
+            {
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                todayHighlight: true,
+                daysOfWeekDisabled: "0",
+                autoclose: true,
+            });
+    </script> 
 
   </body>
 </html>

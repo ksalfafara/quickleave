@@ -19,8 +19,8 @@
     {!! Form::model($member, array('route' => array('roles.update', $member->id), 'method' => 'PUT')) !!}
 
         <div class="form-group">
-            {!! Form::label('is_manager', 'Role') !!}
-            {!! Form::select('is_manager', array('' => 'Select a role', '1' => 'Manager', '0' => 'Member'), Input::old('is_manager'), array('class' => 'form-control')) !!}
+            {!! Form::label('role', 'Role') !!}
+            {!! Form::select('role', array('' => 'Select a role', 'admin' => 'Administrator', 'manager' => 'Manager', 'member' => 'Member'), Input::old('role'), array('class' => 'form-control')) !!}
         </div>
 
         {!! Form::submit('Edit the role', array('class' => 'btn btn-primary')) !!}

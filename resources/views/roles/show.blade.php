@@ -33,12 +33,17 @@
             <td>{!! $member->firstname !!}</td>
             <td>{!! $member->lastname !!}</td>
             <td>{!! $member->username !!}</td>
-
-            @if(($member->is_manager) == '0')
+<!--
+            @if(($member->role) == '0')
             <td>Member</td>
             @else
             <td>Manager</td>
             @endif
+-->
+
+            <td>
+                {!! $member->role !!}
+            </td>
             
             <td>
                 <a class="btn btn-small btn-info" href="{{ URL::to('roles/' . $member->id . '/edit') }}">Edit Role</a>

@@ -1,4 +1,4 @@
-@extends('layouts.managermaster')
+@extends('layouts.master')
 
 @section('title')
     Manager - Pending request(s)

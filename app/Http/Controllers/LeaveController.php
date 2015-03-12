@@ -32,11 +32,6 @@ class LeaveController extends Controller {
         return View::make('leaves.allrequest')->with('leaves', $leaves);
     }
 
-    public function showPending()
-    {
-        $leaves = Leave::all();
-        return View::make('leaves.pending')->with('leaves', $leaves);
-    }
 
 	public function store()
 	{
@@ -126,6 +121,9 @@ class LeaveController extends Controller {
 		Session::flash('message','Successfully deleted Leave Request '.$leave->id.'!');
 		return Redirect::to('leaves');
 	}
+
+
+
 
 }
 	

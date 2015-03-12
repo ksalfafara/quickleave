@@ -9,46 +9,46 @@ use Illuminate\Http\Request;
 
 class PendingEditController extends Controller {
 
-	public function __construct()
-	{
-		$this->middleware('auth'); //change later to auth
-	}
-		public function index()
-	{
-		$leaves = Leave::all();
+        public function __construct()
+        {
+                $this->middleware('auth'); //change later to auth
+        }
+        public function index()
+        {
+                $leaves = Leave::all();
         return View::make('pending.index')->with('leaves', $leaves);
-	}
+        }
 
-	 public function showHistory()
+         public function showHistory()
     {
         $leaves = Leave::all();
         return View::make('pending.teamrequest')->with('leaves', $leaves);
     }
 
-	public function create()
-	{
-		//
-	}
+        public function create()
+        {
+                //
+        }
 
-	public function store()
-	{
-		//
-	}
+        public function store()
+        {
+                //
+        }
 
-	public function show($id)
-	{
-		//
-	}
+        public function show($id)
+        {
+                //
+        }
 
-	public function edit($id)
-	{
-		$leave = Leave::find($id);
-		return View::make('pending.edit')->with('leave',$leave);
-	}
+        public function edit($id)
+        {
+                $leave = Leave::find($id);
+                return View::make('pending.edit')->with('leave',$leave);
+        }
 
-	public function update($id)
-	{
-		$rules = array(
+        public function update($id)
+        {
+                $rules = array(
             'status' => 'required'
         );
 
@@ -65,12 +65,12 @@ class PendingEditController extends Controller {
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
         return Redirect::to('pending');
-    	}
-	}
+        }
+        }
 
-	public function destroy($id)
-	{
-		//	
-	}
+        public function destroy($id)
+        {
+                //      
+        }
 
 }

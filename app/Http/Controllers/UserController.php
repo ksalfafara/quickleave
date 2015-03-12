@@ -13,6 +13,7 @@ class UserController extends Controller {
 	{
 		$this->middleware('auth'); //change later to auth
 	}
+	
 		public function index()
 	{
 		//return View::make('users')->withUsers(User::all());
@@ -75,4 +76,20 @@ class UserController extends Controller {
 	{
 		//
 	}
+	
+	public function indexAdmin()
+	{
+		return view('users.admin');
+	}
+
+	public function indexManager()
+	{
+		return view('users.managerdash');
+	}
+
+	public function indexMember()
+	{
+		return view('users.userdash');
+	}
+
 }

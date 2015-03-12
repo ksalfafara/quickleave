@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->integer('sl_bal')->default(10)->nullable();
 			$table->integer('vl_bal')->default(15)->nullable();
-			$table->boolean('is_manager')->default(0)->nullable();		
+			$table->string('role')->default('member')->nullable();		
 			$table->rememberToken();
 			$table->timestamps();
 		});
