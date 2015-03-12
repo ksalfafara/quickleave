@@ -165,7 +165,7 @@
 
 
 
-          @if((Auth::user()->role) === 'member' || 'manager') <!--member-->
+          @if((Auth::user()->role) <> 'admin') <!--member-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
