@@ -65,7 +65,7 @@
     <div class="wrapper">
       
       <header class="main-header">
-        <a href="/admin" class="logo"><b>Quick</b>Leave</a>
+        <a href="/" class="logo"><b>Quick</b>Leave</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -81,13 +81,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="img/blossom.png" class="user-image" alt="User Image"/>
+                  <img src="/img/blossom.png" class="user-image" alt="User Image"/>
                   <span class="hidden-xs">{!! Auth::user()->username !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="img/blossom.png" class="img-circle" alt="User Image" />
+                    <img src="/img/blossom.png" class="img-circle" alt="User Image" />
                     <p>
                       {!! Auth::user()->username !!}
                       <small>{!! Auth::user()->role !!}</small>
@@ -118,10 +118,10 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="img/blossom.png" class="img-circle" alt="User Image" />
+              <img src="/img/blossom.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>{!! Auth::user()->username !!}</p>
+              <p>Hi, {!! Auth::user()->username !!}</p>
             </div>
           </div>
           <!-- search form -->
@@ -237,7 +237,17 @@
         <section class="content">
 
           <!-- Default box -->
-          <div class="box box-danger">
+          @if((Auth::user()->role) === 'admin')
+            <div class="box box-danger">
+          @endif
+
+          @if((Auth::user()->role) === 'manager')
+            <div class="box box-primary">
+          @endif
+
+          @if((Auth::user()->role) === 'member')
+            <div class="box box-success">
+          @endif
             <div class="box-header with-border">
               <h3 class="box-title">@yield('boxname')</h3>
               <div class="box-tools pull-right">

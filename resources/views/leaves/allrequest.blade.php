@@ -20,7 +20,6 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>ID</td>
             <td>Type of Leave</td>
             <td>From Date</td>
             <td>To Date</td>
@@ -28,13 +27,13 @@
             <td>Note</td>
             <td>Remarks</td>
             <td>Status</td>
+            <td>Date & Time Approved</td>
         </tr>
     </thead>
     <tbody>
     @foreach($leaves as $key => $value)
     @if(($value->status) <> 'Pending')
         <tr>
-            <td>{!! $value->id !!}</td>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
             <td>{!! $value->to_dt !!}</td>
@@ -42,6 +41,7 @@
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
             <td>{!! $value->status !!}</td>
+            <td>{!! $value->updated_at !!}</td>
         </tr>
     @endif
     @endforeach
