@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin - Team Members
+    Admin - Employees
 @stop
 
 @section('pagetitle')
-    View {!! $team->team_name !!}'s Members
+    View Employees
 @stop
 	
 @section('boxname')
-	{!! $team->team_name !!}'s Members
+	Displaying all employees
 @stop
 
 @section('content')
@@ -19,30 +19,29 @@
 
 <table class="table table-striped table-bordered">
     <thead>
-        <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Username</td>
-            <td>Role</td>
-            <td>Actions</td>
+        <tr>  
+            <th>Team Name</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Registration Date Time</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-    @foreach($team->user as $member)
+
+    @foreach($users as $member)
         <tr>
+            <td>{!! $member->team->team_name!!}</td>
             <td>{!! $member->firstname !!}</td>
             <td>{!! $member->lastname !!}</td>
             <td>{!! $member->username !!}</td>
-<!--
-            @if(($member->role) == '0')
-            <td>Member</td>
-            @else
-            <td>Manager</td>
-            @endif
--->
-
             <td>
                 {!! $member->role !!}
+            </td>
+            <td>
+                {!! $member->created_at !!}
             </td>
             
             <td>

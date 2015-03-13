@@ -12,11 +12,12 @@ class RoleController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth'); //change later to auth
+		$this->middleware('auth');
 	}
 		public function index()
 	{
-		//
+		$users = User::all();
+        return View::make('roles.index')->with('users', $users);
 	}
 
 	public function create()

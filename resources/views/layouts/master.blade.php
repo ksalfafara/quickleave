@@ -26,6 +26,7 @@
     <link href="/theme/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <!-- bootstrap wysihtml5 - text editor -->
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    <link href="/landtheme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     @if((Auth::user()->role) === 'admin')
     <link href="/theme/dist/css/skins/skin-red.css" rel="stylesheet" type="text/css" />
@@ -142,17 +143,10 @@
                 <i class="fa fa-home"></i> <span>Admin Board</span>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-users"></i>
-                <span>Teams</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                    <li><a href="/teams"><i class="fa fa-angle-double-right"></i> View all teams</a></li>
-                    <li><a href="/teams/create"><i class="fa fa-angle-double-right"></i> Create team</a></li>
-              </ul>
-            </li>  
+            <li><a href="/teams/create"><i class="fa fa-user-plus"></i> Create team</a></li>
+            <li><a href="/teams"><i class="fa fa-sitemap"></i> View all teams</a></li>
+            <li><a href="/roles"><i class="fa fa-users"></i> View all employees</a></li>
+
             <li>
                     <a href="/balances">
                     <i class="fa fa-pencil-square"></i>

@@ -23,7 +23,7 @@
             {!! Form::select('role', array('' => 'Select a role', 'admin' => 'Administrator', 'manager' => 'Manager', 'member' => 'Member'), Input::old('role'), array('class' => 'form-control')) !!}
         </div>
 
-        {!! Form::submit('Edit the role', array('class' => 'btn btn-primary')) !!}
+        {!! Form::submit('Save changes', array('class' => 'btn btn-primary')) !!}
 
     {!! Form::close() !!}
 

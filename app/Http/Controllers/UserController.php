@@ -92,4 +92,11 @@ class UserController extends Controller {
 		return view('users.userdash');
 	}
 
+	public function showMembers()
+	{
+		$users = User::all();
+        return View::make('users.index')->with('users', $users);
+	}
+
+
 }
