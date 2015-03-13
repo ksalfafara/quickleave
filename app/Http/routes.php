@@ -11,6 +11,11 @@
 |
 */
 
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+
 //landing page
 Route::get('/', 'WelcomeController@index');
 
@@ -27,7 +32,6 @@ Route::get('manager', 'ManagerDashController@index');
 Route::resource('managerleaves', 'ManagerLeaveController');
 Route::get('managerleaves/allrequest', 'ManagerLeaveController@show');
 
-
 //Pending
 Route::resource('pending', 'PendingEditController');
 Route::get('history', 'PendingEditController@showHistory');
@@ -40,7 +44,4 @@ Route::resource('balances','BalanceController');
 
 Route::resource('roles','RoleController');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+

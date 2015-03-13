@@ -26,8 +26,8 @@
     <tbody>
     <?php foreach($teams as $team): ?>
         <tr>
-            <td><?php echo $team->name; ?></td>
-            <td><?php echo $team->code; ?></td>
+            <td><?php echo $team->team_name; ?></td>
+            <td><?php echo $team->team_code; ?></td>
 
             <!-- show, edit, and delete buttons -->
             <td>

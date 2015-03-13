@@ -34,18 +34,6 @@
     }
     </style>
 
-<style type="text/css">
-    body {
-    background-image: url(/img/header-bg.jpg);
-    background-position: center center;
-    background-repeat: none;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    }
-    </style>
-
   </head>
   <body class="login-page">
     <div class="login-box">
