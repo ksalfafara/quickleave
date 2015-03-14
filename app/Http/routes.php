@@ -18,15 +18,12 @@ Route::get('/', 'WelcomeController@index');
 Route::get('admin', 'UserController@indexAdmin');
 Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
+Route::get('manager/members', 'UserController@showMembers');
+Route::get('user/profile/{username}','UserController@user');
 
 Route::resource('teams', 'TeamController'); //, ['except' => ['editRole']]);
 
 Route::resource('leaves', 'LeaveController');
-/**
-Route::get('teampending', 'LeaveController@showPending');
-Route::get('teamrequest', 'LeaveController@showAll');
-Route::get('teampending/{id}/edit', 'LeaveController@editPending');
-**/
 
 //Pending
 Route::resource('pending', 'PendingEditController');

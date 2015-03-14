@@ -62,6 +62,17 @@ class UserController extends Controller {
 		//
 	}
 
+	public function user($username)
+	{
+		//$user = User::where('username', '=', $username);
+		//$user = $user->first();
+
+		//$user = User::find($username);
+
+		$user = Auth::getUser();
+		return view::make('users.indexprofile')->with('users', $user);
+	}
+
 	public function edit($id)
 	{
 		//
@@ -95,7 +106,7 @@ class UserController extends Controller {
 	public function showMembers()
 	{
 		$users = User::all();
-        return View::make('users.index')->with('users', $users);
+        return View::make('users.members')->with('users', $users);
 	}
 
 

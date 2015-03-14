@@ -3,6 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Leave;
+use App\Team;
+use App\User;
 use View, Input, Session, Redirect, Validator;
 
 use Illuminate\Http\Request;

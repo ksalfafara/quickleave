@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Leave;
+use App\User;
 use View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class LeaveController extends Controller {

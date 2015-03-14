@@ -17,7 +17,7 @@
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
 @endif
 
-<table class="table table-striped table-bordered">
+<table id="allrequest" class="table table-bordered table-hover">
     <thead>
         <tr>
             <td>Type of Leave</td>

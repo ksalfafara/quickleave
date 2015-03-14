@@ -24,6 +24,7 @@
             <td>Lastname</td>
             <td>Username</td>
             <td>Role</td>
+            <td>Registration Date Time</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -43,6 +44,9 @@
 
             <td>
                 {!! $member->role !!}
+            </td>
+            <td>
+                {!! $member->created_at !!}
             </td>
             
             <td>

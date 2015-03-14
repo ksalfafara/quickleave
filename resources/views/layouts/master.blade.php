@@ -6,25 +6,18 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Font Awesome Icons -->
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <!-- Theme style -->
     <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
-         folder instead of downloading all of them to reduce the load. -->
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+
+
     <link href="/theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
-    <!-- Morris chart -->
     <link href="/theme/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-    <!-- jvectormap -->
     <link href="/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-    <!-- Date Picker -->
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-    <!-- Daterange picker -->
-    <link href="/theme/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-    <!-- bootstrap wysihtml5 - text editor -->
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <link href="/landtheme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -97,7 +90,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                      <a href="/user/profile/{$username}" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
                       <a href="/auth/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -145,8 +138,6 @@
             </li>
             <li><a href="/teams/create"><i class="fa fa-user-plus"></i> Create team</a></li>
             <li><a href="/teams"><i class="fa fa-sitemap"></i> View all teams</a></li>
-            <li><a href="/roles"><i class="fa fa-users"></i> View all employees</a></li>
-
             <li>
                     <a href="/balances">
                     <i class="fa fa-pencil-square"></i>
@@ -188,8 +179,10 @@
 
             @if((Auth::user()->role) === 'manager') <!--manager-->
 
-            <li class="header">YOUR TEAM'S REQUEST</li>
+            <li class="header">YOUR TEAM</li>
             <li>
+            <li><a href="/manager/members"><i class="fa fa-users"></i> View all employees</a></li>
+
             <li>
               <a href="/pending">
                 <i class="fa fa-check-square-o"></i> <span>For Your Approval</span>
@@ -242,13 +235,11 @@
           @if((Auth::user()->role) === 'member')
             <div class="box box-success">
           @endif
+
             <div class="box-header with-border">
               <h3 class="box-title">@yield('boxname')</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-              </div>
             </div>
-            <div class="box-body">
+            <div class="box-body table-responsive">
               @yield('content')
             </div><!-- /.box-body -->
           </div><!-- /.box -->
@@ -265,6 +256,7 @@
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.3 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="/theme/plugins/jQuery/jQuery-2.1.3.min.js"></script>
     <!-- Bootstrap 3.3.2 JS -->
     <script src="/theme/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -274,6 +266,10 @@
     <script src='/theme/plugins/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
     <script src="/theme/dist/js/app.min.js" type="text/javascript"></script>
+    <script src="/theme/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/theme/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+
     <script src="/theme/plugins/morris/morris.min.js" type="text/javascript"></script>
     <!-- Sparkline -->
     <script src="/theme/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
@@ -309,6 +305,16 @@
                 autoclose: true,
             });
     </script> 
+
+    <script type="text/javascript">
+            $(function() {
+                $("#members").dataTable();
+                $("#teams").dataTable();
+                $("#balances").dataTable();
+                $("#allrequest").dataTable();
+                $("#teamrequest").dataTable();
+            });
+    </script>
 
   </body>
 </html>

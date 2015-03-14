@@ -16,8 +16,7 @@ class RoleController extends Controller {
 	}
 		public function index()
 	{
-		$users = User::all();
-        return View::make('roles.index')->with('users', $users);
+		//
 	}
 
 	public function create()

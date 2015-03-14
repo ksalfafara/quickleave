@@ -26,7 +26,6 @@
             <td>Duration</td>
             <td>Note</td>
             <td>Date Created</td>
-            <td>Last Updated</td>
             <td>Status</td>
             <td>Actions</td>
         </tr>
@@ -41,7 +40,6 @@
             <td>{!! $value->duration !!}</td>
             <td>{!! $value->note !!}</td>
             <td>{!! $value->created_at !!}</td>
-            <td>{!! $value->updated_at !!}</td>
             <td>{!! $value->status !!}</td>
             <td>
                 <a class="btn btn-small btn-info" href="{!! URL::to('pending/' . $value->id . '/edit') !!}">Change Remark</a>
