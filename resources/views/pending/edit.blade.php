@@ -23,7 +23,7 @@
     <div class="form-group">
         {!! Form::label('status', 'Status') !!}
         <div class="input-group">
-        {!! Form::select('status', array('' => 'Select status ', 'Approve' => 'Approve', 'Rejected' => 'Rejected'), Input::old('status'), array('class' => 'form-control')) !!}
+        {!! Form::select('status', array('' => 'Select status ', 'Approved' => 'Approved', 'Rejected' => 'Rejected'), Input::old('status'), array('class' => 'form-control')) !!}
         <div class="input-group-addon">
                         <i class="fa fa-chevron-down"></i>
                       </div>

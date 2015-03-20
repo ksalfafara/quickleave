@@ -107,7 +107,6 @@ class LeaveController extends Controller {
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
         $leave->duration = $duration->format('%R%a');
-       
         $leave->save();
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
