@@ -54,7 +54,7 @@
         <form role="form" method="POST" action="/auth/register">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="username" placeholder="Username"/>
+            <input type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -67,21 +67,21 @@
           </div>
           <p class="login-box-msg"><b>Details</b></p>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="firstname" placeholder="Firstname"/>
+            <input type="text" class="form-control" name="firstname" placeholder="Firstname" value="{{ old('firstname') }}"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="lastname" placeholder="Lastname"/>
+            <input type="text" class="form-control" name="lastname" placeholder="Lastname" value="{{ old('lastname') }}"/>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
 
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" name="email" placeholder="Email"/>
+            <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <p class="login-box-msg"><b>Your Team</b></p>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="team_code" placeholder="Team Code"/>
+            <input type="text" class="form-control" name="team_code" placeholder="Team Code" value="{{ old('team_code') }}"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">
