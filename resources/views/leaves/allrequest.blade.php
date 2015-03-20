@@ -33,6 +33,7 @@
     <tbody>
     @foreach($leaves as $key => $value)
     @if(($value->status) <> 'Pending')
+        @if((Auth::user()->id) === $value->user->id)
         <tr>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
@@ -43,6 +44,7 @@
             <td>{!! $value->status !!}</td>
             <td>{!! $value->updated_at !!}</td>
         </tr>
+        @endif
     @endif
     @endforeach
     </tbody>

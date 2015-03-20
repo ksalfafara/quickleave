@@ -34,8 +34,9 @@
     <tbody>
     @foreach($leaves as $key => $value)
     @if(($value->status) === 'Pending')
+        @if((Auth::user()->team->team_name) === $value->user->team->team_name)
         <tr>
-            <td></td>
+            <td>{!! $value->user->username!!}</td>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
             <td>{!! $value->to_dt !!}</td>
@@ -47,6 +48,7 @@
                 <a class="btn btn-small btn-info" href="{!! URL::to('pending/' . $value->id . '/edit') !!}">Change Remark</a>
             </td>
         </tr>
+        @endif
     @endif
     @endforeach
     </tbody>
