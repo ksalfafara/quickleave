@@ -39,28 +39,11 @@ class QuickLeaveSeeder extends Seeder {
 			'team_id' => $team->id
 		));
 
-
 		for($i = 0; $i < 5; $i++) {
-
 			$team = Team::create(array(
 				'team_name' => 'team_name'.$i,
 				'team_code' => 'team_code'.$i 
 				));
-
-			User::create(array(
-				'firstname' => 'firstname'.$i,
-				'lastname' => 'lastname'.$i,
-				'username' => 'username'.$i,
-				'email' => 'email'.$i.'@gmail.com',
-				'password' => Hash::make('password'.$i),
-				'sl_bal' => 10,
-				'vl_bal' => 15,
-				'role' => 'member',
-				'team_id' => $team->id
-				));
-		}
-
-		for($i = 0; $i < 5; $i++) {
 
 			User::create(array(
 				'firstname' => 'manager'.$i,
@@ -73,6 +56,20 @@ class QuickLeaveSeeder extends Seeder {
 				'role' => 'manager',
 				'team_id' => $team->id
 				));
+
+			User::create(array(
+				'firstname' => 'firstname'.$i,
+				'lastname' => 'lastname'.$i,
+				'username' => 'username'.$i,
+				'email' => 'email'.$i.'@gmail.com',
+				'password' => Hash::make('password'.$i),
+				'sl_bal' => 10,
+				'vl_bal' => 15,
+				'role' => 'member',	
+				'team_id' => $team->id
+				));
 		}
+
+		
 	}
 }
