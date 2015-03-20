@@ -17,9 +17,10 @@
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
 @endif
 
-<table class="table table-striped table-bordered">
+<table id="pending" class="table table-bordered table-hover">
     <thead>
         <tr>
+            <td>User</td>
             <td>Type of Leave</td>
             <td>From Date</td>
             <td>To Date</td>
@@ -34,6 +35,7 @@
     @foreach($leaves as $key => $value)
     @if(($value->status) === 'Pending')
         <tr>
+            <td></td>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
             <td>{!! $value->to_dt !!}</td>

@@ -128,9 +128,9 @@ trait AuthenticatesAndRegistersUsers {
 			return $this->redirectPath;
 		}
 
-		if((Auth::user()->role) === 'admin')
+		if((Auth::user()->role) == 'admin')
 			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'admin';
-		elseif((Auth::user()->role) === 'manager')
+		elseif((Auth::user()->role) == 'manager')
 			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'managerdash';
 		else
 			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'userdash';

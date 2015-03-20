@@ -33,7 +33,7 @@
     <tbody>
     @foreach($leaves as $key => $value)
     @if(($value->status) === 'Pending')
-    <!--@if((Auth::user()->username) === $value->username)-->
+        @if((Auth::user()->id) === $value->user->id)
         <tr>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
@@ -51,7 +51,7 @@
                 {!! Form::close() !!}
             </td>
         </tr>
-    <!--@endif-->
+        @endif
     @endif
     @endforeach
     </tbody>

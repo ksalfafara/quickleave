@@ -18,13 +18,14 @@ class PendingEditController extends Controller {
         public function index()
         {
                 $leaves = Leave::all();
-        return View::make('pending.index')->with('leaves', $leaves);
+                $user = User::all();
+                return View::make('pending.index')->with('leaves', $leaves);
         }
 
          public function showHistory()
     {
-        $leaves = Leave::all();
-        return View::make('pending.teamrequest')->with('leaves', $leaves);
+                $leaves = Leave::all();
+                return View::make('pending.teamrequest')->with('leaves', $leaves);
     }
 
         public function create()

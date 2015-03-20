@@ -2,7 +2,19 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>@yield('title')</title>
+    <title>
+    @if((Auth::user()->role) === 'admin')
+      Admin Dashboard
+    @endif
+
+    @if((Auth::user()->role) === 'manager')
+      Manager Dashboard
+    @endif
+
+    @if((Auth::user()->role) === 'member')
+      User Dashboard
+    @endif
+    </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -313,6 +325,7 @@
                 $("#balances").dataTable();
                 $("#allrequest").dataTable();
                 $("#teamrequest").dataTable();
+                $("#pending").dataTable();
             });
     </script>
 
