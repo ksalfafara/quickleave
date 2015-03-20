@@ -128,7 +128,6 @@
             </div>
             <div class="pull-left info">
               <p>Hi, {!! Auth::user()->username !!}</p>
-              <p>Team: {!! Auth::user()->team->team_name !!}</p>
             </div>
           </div>
           <!-- search form -->
