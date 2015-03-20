@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Leave;
 use App\Team;
 use App\User;
+use DB;
 use View, Input, Session, Redirect, Validator;
 
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class PendingEditController extends Controller {
 
         public function update($id)
         {
-                $rules = array(
+            $rules = array(
             'status' => 'required'
         );
 
@@ -64,6 +65,21 @@ class PendingEditController extends Controller {
         $leave = Leave::find($id);
         $leave->status = Input::get('status');
         $leave->remark = Input::get('remark');
+
+        $user = $leave->user->id;
+        $type = $leave->type;
+
+            if ($type == 'SL') {
+                $type = 'sl_bal';
+            }
+            elseif ($type == 'VL') {
+                $type = 'vl_bal';
+            }
+            
+        $duration = $leave->duration;
+        DB::table('users')->where('id', $user)->decrement($type, $duration);
+
+
         $leave->save();
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');

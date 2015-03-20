@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth, View, Input, Session, Redirect, Validator;
 use App\User;
+use App\Leave;
 
 class UserController extends Controller {
 
@@ -80,7 +81,28 @@ class UserController extends Controller {
 
 	public function update($id)
 	{
-		//
+	#	$user_id = Auth::id();
+	#	$user 	 = Auth::user();
+		$leave 	 = Leave::find($id);
+
+		if ($leave->status == 'Approved') 
+		{
+		   $type = $leave->type;
+			if ($type == 'SL') {
+				$type = 'sl_bal';
+			}
+			elseif ($type == 'VL') {
+				$type = 'vl_bal';
+			}
+
+		$duration = $leave->duration;
+		DB::table('users')->decrement($type, $duration);
+
+		#$type_bal = ($user->$type) - ($leave->duration);
+		#$user->$type = $type_bal;
+		#Users::where($type, '>', '-1')->decrement($type, $leave->duration);
+		$leave->save();
+		}
 	}
 
 	public function destroy($id)
