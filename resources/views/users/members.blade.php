@@ -31,7 +31,7 @@
         <tbody>
 
     @foreach($users as $member)
-        @if((Auth::user()->team->team_name) === $member->team->team_name)
+        @if((Auth::user()->team->team_name) == $member->team->team_name)
             <tr>
                 <td>{!! $member->team->team_name!!}
                 <td>{!! $member->firstname !!}</td>

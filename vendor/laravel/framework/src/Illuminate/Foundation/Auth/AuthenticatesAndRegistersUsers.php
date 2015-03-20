@@ -85,7 +85,8 @@ trait AuthenticatesAndRegistersUsers {
 
 		if ($this->auth->attempt($credentials, $request->has('remember')))
 		{
-			return redirect('user');
+			//return redirect('user');
+			return redirect($this->redirectPath());
 		}
 
 		return redirect($this->loginPath())
