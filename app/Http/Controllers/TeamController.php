@@ -116,7 +116,8 @@ class TeamController extends Controller {
         $member->save();
 
         Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
-       	return Redirect::to('teams/' . $id . '/showmembers');
+
+       	return Redirect::to('teams');
     	}
 	}
 }
