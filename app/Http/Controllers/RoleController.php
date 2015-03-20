@@ -12,7 +12,7 @@ class RoleController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth'); //change later to auth
+		$this->middleware('auth');
 	}
 		public function index()
 	{
@@ -44,7 +44,7 @@ class RoleController extends Controller {
 	public function update($id)
 	{
 		$rules = array(
-            'is_manager' => 'required'
+            'role' => 'required'
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -54,7 +54,7 @@ class RoleController extends Controller {
                 ->withErrors($validator);
         } else {
         $member = User::find($id);
-        $member->is_manager = Input::get('is_manager');
+        $member->role = Input::get('role');
         $member->save();
 
         Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");

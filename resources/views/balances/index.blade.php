@@ -17,7 +17,7 @@
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
 @endif
 
-<table class="table table-striped table-bordered">
+<table id="balances" class="table table-bordered table-hover">
     <thead>
         <tr>
             <td>Team Name</td>
@@ -30,7 +30,7 @@
     <tbody>
     @foreach($balances as $balance)
         <tr>
-            <td>{!! $balance->team->name !!}</td>
+            <td>{!! $balance->team->team_name !!}</td>
             <td>{!! $balance->firstname !!}</td>
             <td>{!! $balance->sl_bal !!}</td>
             <td>{!! $balance->vl_bal !!}</td>

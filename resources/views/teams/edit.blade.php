@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-    Edit {!! $team->name !!}
+    Edit {!! $team->team_name !!}
 @stop
 
 @section('content')
@@ -18,16 +18,16 @@
     {!! Form::model($team, array('route' => array('teams.update', $team->id), 'method' => 'PUT')) !!}
 
         <div class="form-group">
-            {!! Form::label('name', 'Team Name') !!}
-            {!! Form::text('name', null, array('class' => 'form-control')) !!}
+            {!! Form::label('team_name', 'Team Name') !!}
+            {!! Form::text('team_name', null, array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('code', 'Team Code') !!}
-            {!! Form::text('code', null, array('class' => 'form-control')) !!}
+            {!! Form::label('team_code', 'Team Code') !!}
+            {!! Form::text('team_code', null, array('class' => 'form-control')) !!}
         </div>
 
-        {!! Form::submit('Edit the Team!', array('class' => 'btn btn-primary')) !!}
+        {!! Form::submit('Submit Changes', array('class' => 'btn btn-primary')) !!}
 
     {!! Form::close() !!}
 @stop

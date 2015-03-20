@@ -1,4 +1,4 @@
-@extends('layouts.managermaster')
+@extends('layouts.master')
 
 @section('title')
     Manager - Edit a leave
@@ -45,5 +45,3 @@
 
 </div>
 @stop
-
-    

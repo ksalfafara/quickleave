@@ -18,16 +18,16 @@
     {!! Form::open(array('url' => 'teams')) !!}
 
         <div class="form-group">
-            {!! Form::label('name', 'Team Name') !!}
-            {!! Form::text('name', Input::old('name'), array('class' => 'form-control')) !!}
+            {!! Form::label('team_name', 'Team Name') !!}
+            {!! Form::text('team_name', Input::old('team_name'), array('class' => 'form-control')) !!}
         </div>
 
         <div class="form-group">
-            {!! Form::label('code', 'Team Code') !!}
-            {!! Form::text('code', Input::old('code'), array('class' => 'form-control')) !!}
+            {!! Form::label('team_code', 'Team Code') !!}
+            {!! Form::text('team_code', Input::old('team_code'), array('class' => 'form-control')) !!}
         </div>
 
-        {!! Form::submit('Create the Team!', array('class' => 'btn btn-primary')) !!}
+        {!! Form::submit('Create the Team', array('class' => 'btn btn-primary')) !!}
 
     {!! Form::close() !!}
 @stop

@@ -28,7 +28,7 @@
             {!! Form::input('number','vl_bal', null, array('class' => 'form-control')) !!}
         </div>
 
-        {!! Form::submit('Edit the Balance!', array('class' => 'btn btn-primary')) !!}
+        {!! Form::submit('Submit changes', array('class' => 'btn btn-primary')) !!}
 
     {!! Form::close() !!}
 @stop

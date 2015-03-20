@@ -35,7 +35,7 @@ class QuickLeaveSeeder extends Seeder {
 		'password' => Hash::make('admin'),
 		'sl_bal' => null,
 		'vl_bal' => null,
-		'is_manager' => null,
+		'role' => 'admin',
 		'team_id' => $team->id
 		));
 
@@ -54,27 +54,9 @@ class QuickLeaveSeeder extends Seeder {
 				'password' => Hash::make('password'.$i),
 				'sl_bal' => 10,
 				'vl_bal' => 15,
-				'is_manager' => 0,
+				'role' => 'member',
 				'team_id' => $team->id
 				));
 		}
-
-		$team = Team::create(array(
-			'name'	=> 'Team2',
-			'code'	=>	'code2'
-			));
-
-		User::create(array(
-			'firstname'	=> 'Elaine',
-			'lastname'	=> 'Lee',
-			'username'	=> 'elaine',
-			'email'		=> 'elainelee@yahoo.com',
-			'password'	=>  Hash::make('elaine'),
-			'sl_bal' => 10,
-			'vl_bal' => 15,
-			'is_manager' => '0',
-			'team_id'	=> $team->id
-			));
-
 	}
 }

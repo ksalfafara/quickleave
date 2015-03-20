@@ -19,26 +19,22 @@ Route::controllers([
 //landing page
 Route::get('/', 'WelcomeController@index');
 
-//admin dashboard
-Route::resource('admin', 'AdminController@index');
-
-//user dashboard
-Route::get('user', 'UserDashController@index');
-
-//manager dashboard
-Route::get('manager', 'ManagerDashController@index');
-
-//manager's leaves
-Route::resource('managerleaves', 'ManagerLeaveController');
-Route::get('managerleaves/allrequest', 'ManagerLeaveController@show');
-
-//Pending
-Route::resource('pending', 'PendingEditController');
-Route::get('history', 'PendingEditController@showHistory');
+//User dashboards
+Route::get('admin', 'UserController@indexAdmin');
+Route::get('manager', 'UserController@indexManager');
+Route::get('user', 'UserController@indexMember');
+Route::get('manager/members', 'UserController@showMembers');
+Route::get('user/profile/{username}','UserController@user');
 
 Route::resource('teams', 'TeamController'); //, ['except' => ['editRole']]);
 
 Route::resource('leaves', 'LeaveController');
+
+//Pending
+Route::resource('pending', 'PendingEditController');
+Route::get('teamrequest', 'PendingEditController@showHistory');
+
+//Route::resource('pending', 'PendingEditController');
 
 Route::resource('balances','BalanceController');
 

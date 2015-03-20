@@ -13,6 +13,7 @@ class UserController extends Controller {
 	{
 		$this->middleware('auth'); //change later to auth
 	}
+	
 		public function index()
 	{
 		//return View::make('users')->withUsers(User::all());
@@ -61,6 +62,17 @@ class UserController extends Controller {
 		//
 	}
 
+	public function user($username)
+	{
+		//$user = User::where('username', '=', $username);
+		//$user = $user->first();
+
+		//$user = User::find($username);
+
+		$user = Auth::getUser();
+		return view::make('users.indexprofile')->with('users', $user);
+	}
+
 	public function edit($id)
 	{
 		//
@@ -75,4 +87,27 @@ class UserController extends Controller {
 	{
 		//
 	}
+	
+	public function indexAdmin()
+	{
+		return view('users.admin');
+	}
+
+	public function indexManager()
+	{
+		return view('users.managerdash');
+	}
+
+	public function indexMember()
+	{
+		return view('users.userdash');
+	}
+
+	public function showMembers()
+	{
+		$users = User::all();
+        return View::make('users.members')->with('users', $users);
+	}
+
+
 }

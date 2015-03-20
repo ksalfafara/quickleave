@@ -15,6 +15,10 @@ class CreateLeavesTable extends Migration {
 		Schema::create('leaves', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+			$table->integer('user_id')->unsigned();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
 			$table->string('type', 2);
 			$table->date('from_dt');
 			$table->date('to_dt');
@@ -34,6 +38,10 @@ class CreateLeavesTable extends Migration {
 	public function down()
 	{
 		Schema::drop('leaves');
+		Schema::table('leaves', function($table)
+		{
+			$table->dropForeign('leaves_user_id_foreign');
+			$table->dropColumn('user_id');
+		});
 	}
-
 }

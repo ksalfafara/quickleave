@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-
+    Displaying all 
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
     @endif
 
-<table class="table table-striped table-bordered">
+<table id="teams" class="table table-bordered table-hover">
     <thead>
         <tr>
             <td>Team Name</td>

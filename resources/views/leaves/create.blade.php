@@ -1,4 +1,4 @@
-@extends('layouts.usermaster')
+@extends('layouts.master')
 
 @section('title')
     User - Request a leave

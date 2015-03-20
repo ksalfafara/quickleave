@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Leave;
-use View, Input, Session, Redirect, Validator, Datetime, DB, Date;
+use App\User;
+use Auth, View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class LeaveController extends Controller {
 
@@ -32,11 +33,6 @@ class LeaveController extends Controller {
         return View::make('leaves.allrequest')->with('leaves', $leaves);
     }
 
-    public function showPending()
-    {
-        $leaves = Leave::all();
-        return View::make('leaves.pending')->with('leaves', $leaves);
-    }
 
 	public function store()
 	{
@@ -53,6 +49,8 @@ class LeaveController extends Controller {
                 ->withErrors($validator);
         } else {
         $leave = new Leave();
+        $user = Auth::user();
+
         $leave->type = Input::get('type');
         $leave->note = Input::get('note');
 
@@ -66,7 +64,8 @@ class LeaveController extends Controller {
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
         $leave->duration = $duration->format('%R%a');
-       
+
+        $leave->user()->associate($user);
         $leave->save();
 
         Session::flash('message', 'Your leave request has been submitted. Kindly wait for the approval.');
@@ -126,6 +125,9 @@ class LeaveController extends Controller {
 		Session::flash('message','Successfully deleted Leave Request '.$leave->id.'!');
 		return Redirect::to('leaves');
 	}
+
+
+
 
 }
 	
