@@ -71,7 +71,7 @@
     <div class="wrapper">
       
       <header class="main-header">
-        <a href="/" class="logo"><b>Quick</b>Leave</a>
+        <a href="#" class="logo"><b>Quick</b>Leave</a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -96,7 +96,7 @@
                     <img src="/img/blossom.png" class="img-circle" alt="User Image" />
                     <p>
                       {!! Auth::user()->username !!}
-                      <small>{!! Auth::user()->role !!}</small>
+                      <small>{!! Auth::user()->role !!} of {!! Auth::user()->team->team_name!!}</small>
                     </p>
                   </li>
                   <!-- Menu Footer-->
@@ -128,6 +128,7 @@
             </div>
             <div class="pull-left info">
               <p>Hi, {!! Auth::user()->username !!}</p>
+              <p>Team: {!! Auth::user()->team->team_name !!}</p>
             </div>
           </div>
           <!-- search form -->
