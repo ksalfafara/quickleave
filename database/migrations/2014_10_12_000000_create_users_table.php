@@ -10,6 +10,12 @@ class CreateUsersTable extends Migration {
 		Schema::create('users', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+			$table->integer('team_id')->unsigned()->nullable();
+			$table->foreign('team_id')->references('id')->on('teams')
+				->onUpdate('cascade')
+				->onDelete('cascade');
+
 			$table->string('username')->unique();
 			$table->string('password', 60);
 			$table->string('firstname');
@@ -26,6 +32,11 @@ class CreateUsersTable extends Migration {
 	public function down()
 	{
 		Schema::drop('users');
+		Schema::table('users', function($table)
+		{
+			$table->dropForeign('users_team_id_foreign');
+			$table->dropColumn('team_id');
+		});
 	}
 
 }
