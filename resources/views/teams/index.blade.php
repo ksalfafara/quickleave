@@ -34,12 +34,12 @@
             <!-- show, edit, and delete buttons -->
             <td>
                  <!-- show the team members (uses the show method found at GET /teams/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('roles/' . $team->id) }}">Show Members</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('teams/' . $team->id . '/showmembers') }}">Show Members</a>
 
                 <!-- edit this team (uses the edit method found at GET /teams/{id}/edit -->
                 <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $team->id . '/edit') }}">Edit this Team</a>
 
-                {!! Form::open(array('url' => 'teams/' . $team->id, 'class' => 'btn')) !!}
+                {!! Form::open(array('url' => 'teams/' . $team->id . '/delete', 'class' => 'btn')) !!}
                     {!! Form::hidden('_method', 'DELETE') !!}
                     {!! Form::submit('Delete this Team', array('class' => 'btn btn-warning')) !!}
                 {!! Form::close() !!}

@@ -14,7 +14,6 @@
 <?php $__env->startSection('content'); ?>
     <?php echo HTML::ul($errors->all()); ?>
 
-
     <?php echo Form::model($team, array('route' => array('teams.update', $team->id), 'method' => 'PUT')); ?>
 
 
@@ -32,7 +31,7 @@
 
         </div>
 
-        <?php echo Form::submit('Edit the Team!', array('class' => 'btn btn-primary')); ?>
+        <?php echo Form::submit('Submit Changes', array('class' => 'btn btn-primary')); ?>
 
 
     <?php echo Form::close(); ?>

@@ -49,13 +49,11 @@ class TeamController extends Controller {
     	}
 	}
 	
-	/*
-	public function show($id)
+	public function showMembers($id)
 	{
 		$team = Team::find($id);
-		return View::make('teams.show')->with('team',$team);
+		return View::make('teams.showMembers')->with('team',$team);
 	}
-	*/
 	
 	public function edit($id)
 	{
@@ -94,7 +92,7 @@ class TeamController extends Controller {
 		Session::flash('message','Successfully deleted '.$team->team_name.'!');
 		return Redirect::to('teams');
 	}
-/*
+
 	public function editRole($id)
 	{
 		$member = User::find($id);
@@ -103,23 +101,22 @@ class TeamController extends Controller {
 
 	public function updateRole($id)
 	{
-		    $rules = array(
-            'is_manager' => 'required'
+    	$rules = array(
+            'role' => 'required'
         );
 
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('teams/role' . $id . '/edit')
+            return Redirect::to('teams/' . $id . '/editrole')
                 ->withErrors($validator);
         } else {
         $member = User::find($id);
-        $member->is_manager = Input::get('is_manager');
+        $member->role = Input::get('role');
         $member->save();
 
-        Session::flash('message', 'Successfully updated '.$member->team_name.' role!');
-        return Redirect::to('teams/' . $id);
+        Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
+       	return Redirect::to('teams/' . $id . '/showmembers');
     	}
 	}
-*/
 }

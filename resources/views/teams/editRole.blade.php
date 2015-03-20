@@ -16,11 +16,11 @@
 
     {!! HTML::ul($errors->all()) !!}
 
-    {!! Form::model($member, array('route' => array('roles.update', $member->id), 'method' => 'PUT')) !!}
+    {!! Form::model($member, array('route' => array('teams.updateRole', $member->id), 'method' => 'PUT')) !!}
 
         <div class="form-group">
             {!! Form::label('role', 'Role') !!}
-            {!! Form::select('role', array('' => 'Select a role', 'admin' => 'Administrator', 'manager' => 'Manager', 'member' => 'Member'), Input::old('role'), array('class' => 'form-control')) !!}
+            {!! Form::select('role', array('' => 'Select a role', 'Admin' => 'Administrator', 'Manager' => 'Manager', 'Member' => 'Member'), Input::old('role'), array('class' => 'form-control')) !!}
         </div>
 
         {!! Form::submit('Save changes', array('class' => 'btn btn-primary')) !!}

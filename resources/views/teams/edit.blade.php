@@ -14,7 +14,6 @@
 
 @section('content')
     {!! HTML::ul($errors->all()) !!}
-
     {!! Form::model($team, array('route' => array('teams.update', $team->id), 'method' => 'PUT')) !!}
 
         <div class="form-group">

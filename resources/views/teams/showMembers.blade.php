@@ -7,9 +7,9 @@
 @section('pagetitle')
     View {!! $team->team_name !!}'s Members
 @stop
-	
+    
 @section('boxname')
-	{!! $team->team_name !!}'s Members
+    {!! $team->team_name !!}'s Members
 @stop
 
 @section('content')
@@ -50,10 +50,10 @@
             </td>
             
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('roles/' . $member->id . '/edit') }}">Edit Role</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $member->id . '/editrole') }}">Edit Role</a>
             </td>
-		</tr>
+        </tr>
     @endforeach
     </tbody>
-</table>	
+</table>    
 @stop
