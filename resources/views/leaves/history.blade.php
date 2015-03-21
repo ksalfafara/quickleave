@@ -5,11 +5,11 @@
 @stop
 
 @section('pagetitle')
-    All submitted requests by your members
+    Approved/Rejected Leave Request(s) of Members
 @stop
 
 @section('boxname')
-    Displaying all of approved/rejected requests of your members
+    Approved/Rejected Leave Request(s) of Members
 @stop
 
 @section('content')
@@ -31,18 +31,18 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($leaves as $key => $value)
-    @if(($value->status) <> 'Pending')
-        @if((Auth::user()->team->team_name) === $value->user->team->team_name)
+    @foreach($leaves as $leave)
+    @if(($leave->status) <> 'Pending')
+        @if((Auth::user()->team->team_name) == $leave->user->team->team_name)
         <tr>
-            <td>{!! $value->type !!}</td>
-            <td>{!! $value->from_dt !!}</td>
-            <td>{!! $value->to_dt !!}</td>
-            <td>{!! $value->duration !!}</td>
-            <td>{!! $value->note !!}</td>
-            <td>{!! $value->remark !!}</td>
-            <td>{!! $value->status !!}</td>
-            <td>{!! $value->updated_at !!}</td>
+            <td>{!! $leave->type !!}</td>
+            <td>{!! $leave->from_dt !!}</td>
+            <td>{!! $leave->to_dt !!}</td>
+            <td>{!! $leave->duration !!}</td>
+            <td>{!! $leave->note !!}</td>
+            <td>{!! $leave->remark !!}</td>
+            <td>{!! $leave->status !!}</td>
+            <td>{!! $leave->updated_at !!}</td>
         </tr>
         @endif
     @endif

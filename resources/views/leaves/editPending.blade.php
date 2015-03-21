@@ -24,7 +24,7 @@
     @endif
 
 
-{!! Form::model($leave, array('route' => array('pending.update', $leave->id), 'method' => 'PUT')) !!}
+{!! Form::model($leave, array('route' => array('leaves.updatePending', $leave->id), 'method' => 'PUT')) !!}
 
     <div class="form-group">
         {!! Form::label('status', 'Status') !!}

@@ -9,6 +9,6 @@ class Team extends Model {
 	protected $fillable = ['team_name', 'team_code'];
 
 	public function user() {
-		return $this->hasMany('App\User');
+		return $this->hasMany('App\User'); //->where('user_parent', 0);
 	}
 }

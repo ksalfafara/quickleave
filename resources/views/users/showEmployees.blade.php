@@ -29,17 +29,17 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($balances as $balance)
+    @foreach($employees as $employee)
         <tr>
-            <td>{!! $balance->team->team_name !!}</td>
-            <td>{!! $balance->firstname . ' ' . $balance->lastname !!}</td>
-            <td>{!! $balance->date_hired !!}</td>
-            <td>{!! $balance->sl_bal !!}</td>
-            <td>{!! $balance->vl_bal !!}</td>
+            <td>{!! $employee->team->team_name !!}</td>
+            <td>{!! $employee->firstname . ' ' . $employee->lastname !!}</td>
+            <td>{!! $employee->date_hired !!}</td>
+            <td>{!! $employee->sl_bal !!}</td>
+            <td>{!! $employee->vl_bal !!}</td>
 
             <!--edit and delete buttons -->
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $balance->id . '/edit') }}">Edit Employee Info</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('admin/' . $employee->id . '/editemployee') }}">Edit Employee Info</a>
             </td>
         </tr>
     @endforeach

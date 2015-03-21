@@ -3,7 +3,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('pagetitle'); ?>
-    Leave Balances
+    Employees
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('boxname'); ?>
@@ -20,6 +20,7 @@
         <tr>
             <td>Team Name</td>
             <td>Employee Name</td>
+            <td>Date Hired</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
             <td>Actions</td>
@@ -29,13 +30,14 @@
     <?php foreach($balances as $balance): ?>
         <tr>
             <td><?php echo $balance->team->team_name; ?></td>
-            <td><?php echo $balance->firstname; ?></td>
+            <td><?php echo $balance->firstname . ' ' . $balance->lastname; ?></td>
+            <td><?php echo $balance->date_hired; ?></td>
             <td><?php echo $balance->sl_bal; ?></td>
             <td><?php echo $balance->vl_bal; ?></td>
 
             <!--edit and delete buttons -->
             <td>
-                <a class="btn btn-small btn-info" href="<?php echo e(URL::to('balances/' . $balance->id . '/edit')); ?>">Edit balances</a>
+                <a class="btn btn-small btn-info" href="<?php echo e(URL::to('balances/' . $balance->id . '/edit')); ?>">Edit Employee Info</a>
             </td>
         </tr>
     <?php endforeach; ?>

@@ -9,7 +9,7 @@
 @stop
 
 @section('boxname')
-    Edit {!! $balance->firstname !!}'s Balances
+    Edit {!! $employee->firstname !!}'s Balances
 @stop
 
 @section('content')
@@ -24,7 +24,7 @@
     @endif
 
 
-    {!! Form::model($balance, array('route' => array('balances.update', $balance->id), 'method' => 'PUT')) !!}
+    {!! Form::model($employee, array('route' => array('admin.updateEmployee', $employee->id), 'method' => 'PUT')) !!}
 
         <div class="form-group">
         {!! Form::label('date_hired', 'Date Hired') !!}

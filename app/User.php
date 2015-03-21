@@ -24,4 +24,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('App\Leave');
 	}
 
+	public function member() {
+		return $this->hasMany('App\User', 'user_parent', 'id'); //return $this->hasMany('App\Comment', 'foreign_key', 'local_key');
+	}
+
 }

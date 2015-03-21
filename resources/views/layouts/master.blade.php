@@ -151,7 +151,7 @@
             <li><a href="/teams/create"><i class="fa fa-user-plus"></i> Create team</a></li>
             <li><a href="/teams"><i class="fa fa-sitemap"></i> Teams</a></li>
             <li>
-                    <a href="/balances">
+                    <a href="/admin/showemployees">
                     <i class="fa fa-pencil-square"></i>
                     <span>Employees</span>
                     </a>
@@ -179,29 +179,29 @@
 
             <li>
               <a href="/leaves">
-                <i class="fa fa-file-text-o"></i> <span>Pending request</span>
+                <i class="fa fa-bars"></i> <span>All Leave Requests</span>
               </a>
-            </li>
+            </li> 
 
             <li>
-              <a href="/leaves/allrequest">
-                <i class="fa fa-bars"></i> <span>Requests</span>
+              <a href="/leaves/pending">
+                <i class="fa fa-file-text-o"></i> <span>Pending Leave Requests</span>
               </a>
-            </li>
+            </li><!--member-->
 
             @if((Auth::user()->role) === 'manager') <!--manager-->
 
             <li class="header">YOUR TEAM</li>
             <li>
-            <li><a href="/manager/members"><i class="fa fa-users"></i> View all employees</a></li>
+            <li><a href="/manager/members"><i class="fa fa-users"></i>Your Team Members</a></li>
 
             <li>
-              <a href="/pending">
+              <a href="/leaves/memberspending">
                 <i class="fa fa-check-square-o"></i> <span>For Your Approval</span>
               </a>
             </li>
             <li>
-              <a href="/teamrequest">
+              <a href="/leaves/history">
                 <i class="fa fa-check-square-o"></i> <span>Approved/Rejected Requests</span>
               </a>
             </li>

@@ -43,17 +43,14 @@
       <div class="login-box-body">
         <p class="login-box-msg"><b>SIGN IN</b></p>
         
-        <?php if(count($errors) > 0): ?>
-            <div>
-            <i><strong>Whoops!</strong> There were some problems with your input.<br><br>
-              <ul>
-                <?php foreach($errors->all() as $error): ?>
-                  <li><?php echo e($error); ?></li>
-                <?php endforeach; ?>
-              </ul>
-            </i>
-            </div>
-        <?php endif; ?>
+    <?php if($errors->has()): ?>
+        <div class="alert alert-danger">
+          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+            <?php foreach($errors->all() as $error): ?>
+                <?php echo e($error); ?><br>        
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
           <form role="form" method="POST" action="/auth/login">
             <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">

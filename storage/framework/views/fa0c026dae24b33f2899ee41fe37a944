@@ -7,11 +7,18 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('boxname'); ?>
-
+    Create a team and designate the code to the members
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <?php echo HTML::ul($errors->all()); ?>
+    <?php if($errors->has()): ?>
+        <div class="alert alert-danger">
+          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+            <?php foreach($errors->all() as $error): ?>
+                <?php echo e($error); ?><br>        
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
 
     <?php echo Form::open(array('url' => 'teams')); ?>
