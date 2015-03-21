@@ -18,11 +18,11 @@ class Registrar implements RegistrarContract {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-			'username' => 'required|max:255',
-			'password' => 'required|confirmed|min:6',
+			'username' 	=> 'required|max:255',
+			'password' 	=> 'required|confirmed|min:6',
 			'firstname' => 'required|max:255',
-			'lastname' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:users',
+			'lastname' 	=> 'required|max:255',
+			'email' 	=> 'required|email|max:255|unique:users',
 			//'team_id' => 'required',
 			'team_code' => 'exists:teams,team_code'
 		]);

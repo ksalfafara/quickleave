@@ -12,6 +12,11 @@
     Your profile info
 @stop
 
+@section('right')
+    <a class="btn bg-orange btn-xs" href="{{ URL::to('user/' . Auth::user()->id . '/edit') }}">Edit Information</a>
+    <a class="btn bg-maroon btn-xs" href="{{ URL::to('user/' . Auth::user()->id . '/changepassword') }}">Change Password</a>
+@stop
+
 @section('content')
     @if (Session::has('message'))
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
@@ -27,6 +32,8 @@
                 <dl class="dl-horizontal">
                     <dt>Username:</dt>
                     <dd>{!! Auth::user()->username !!}</dd>
+                    <dt>Email:</dt>
+                    <dd>{!! Auth::user()->email !!}</dd>
                     <dt>First Name:</dt>
                     <dd>{!! Auth::user()->firstname !!}</dd>
                     <dt>Last Name:</dt>
