@@ -5,7 +5,7 @@
 @stop
 
 @section('pagetitle')
-    Leave Balances
+    Employees
 @stop
 
 @section('boxname')
@@ -22,6 +22,7 @@
         <tr>
             <td>Team Name</td>
             <td>Employee Name</td>
+            <td>Date Hired</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
             <td>Actions</td>
@@ -31,13 +32,14 @@
     @foreach($balances as $balance)
         <tr>
             <td>{!! $balance->team->team_name !!}</td>
-            <td>{!! $balance->firstname !!}</td>
+            <td>{!! $balance->firstname . ' ' . $balance->lastname !!}</td>
+            <td>{!! $balance->date_hired !!}</td>
             <td>{!! $balance->sl_bal !!}</td>
             <td>{!! $balance->vl_bal !!}</td>
 
             <!--edit and delete buttons -->
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $balance->id . '/edit') }}">Edit balances</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('balances/' . $balance->id . '/edit') }}">Edit Employee Info</a>
             </td>
         </tr>
     @endforeach

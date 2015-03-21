@@ -149,11 +149,11 @@
               </a>
             </li>
             <li><a href="/teams/create"><i class="fa fa-user-plus"></i> Create team</a></li>
-            <li><a href="/teams"><i class="fa fa-sitemap"></i> View all teams</a></li>
+            <li><a href="/teams"><i class="fa fa-sitemap"></i> Teams</a></li>
             <li>
                     <a href="/balances">
                     <i class="fa fa-pencil-square"></i>
-                    <span>Leave Balances</span>
+                    <span>Employees</span>
                     </a>
             </li>          
             
@@ -309,6 +309,14 @@
                 autoclose: true,
             });
         $('#to_dt').datepicker(
+            {
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                todayHighlight: true,
+                daysOfWeekDisabled: "0",
+                autoclose: true,
+            });
+        $('#date_hired').datepicker(
             {
                 format: "yyyy/mm/dd",
                 todayBtn: "linked",

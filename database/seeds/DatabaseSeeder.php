@@ -29,13 +29,14 @@ class QuickLeaveSeeder extends Seeder {
 
 		User::create(array(
 			'firstname' => 'admin',
-			'lastname' => 'admin_lastname',
+			'lastname' => 'adminlastname',
 			'username' => 'admin',
 			'email' => 'admin@gmail.com',
 			'password' => Hash::make('admin'),
 			'sl_bal' => null,
 			'vl_bal' => null,
 			'role' => 'admin',
+			'date_hired' => '2015-03-15',
 			'team_id' => $team->id
 		));
 
@@ -47,13 +48,14 @@ class QuickLeaveSeeder extends Seeder {
 
 			User::create(array(
 				'firstname' => 'manager'.$i,
-				'lastname' => 'manager_last'.$i,
+				'lastname' => 'managerlast'.$i,
 				'username' => 'manager'.$i,
 				'email' => 'manager'.$i.'@gmail.com',
 				'password' => Hash::make('password'.$i),
 				'sl_bal' => 10,
 				'vl_bal' => 15,
 				'role' => 'manager',
+				'date_hired' => '2015-03-15',
 				'team_id' => $team->id
 				));
 
@@ -66,6 +68,7 @@ class QuickLeaveSeeder extends Seeder {
 				'sl_bal' => 10,
 				'vl_bal' => 15,
 				'role' => 'member',	
+				'date_hired' => '2015-03-15',
 				'team_id' => $team->id
 				));
 		}

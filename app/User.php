@@ -23,4 +23,5 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function leave() {
 		return $this->hasMany('App\Leave');
 	}
+
 }
