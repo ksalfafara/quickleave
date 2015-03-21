@@ -17,11 +17,11 @@
     <div class="alert alert-info">{!! Session::get('message') !!}</div>
     @endif
 
-<table class="table table-striped table-bordered">
+<table id="members" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <td>Firstname</td>
             <td>Lastname</td>
+            <td>Firstname</td>
             <td>Username</td>
             <td>Role</td>
             <td>Registration Date Time</td>
@@ -34,23 +34,14 @@
             <td>{!! $member->firstname !!}</td>
             <td>{!! $member->lastname !!}</td>
             <td>{!! $member->username !!}</td>
-<!--
-            @if(($member->role) == '0')
-            <td>Member</td>
-            @else
-            <td>Manager</td>
-            @endif
--->
-
-            <td>
-                {!! $member->role !!}
-            </td>
-            <td>
-                {!! $member->created_at !!}
-            </td>
-            
+            <td>{!! $member->role !!}</td>
+            <td>{!! date("M d, Y - H:i",strtotime($member->created_at)) !!}</td>
             <td>
                 <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $member->id . '/editrole') }}">Edit Role</a>
+                {!! Form::open(array('url' => 'teams/' . $member->id . '/deletemember', 'class' => 'btn')) !!}
+                    {!! Form::hidden('_method', 'DELETE') !!}
+                    {!! Form::submit('Delete', array('class' => 'btn btn-warning')) !!}
+                {!! Form::close() !!}
             </td>
         </tr>
     @endforeach

@@ -42,7 +42,7 @@
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
             <td>{!! $value->status !!}</td>
-            <td>{!! $value->updated_at !!}</td>
+            <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
         </tr>
         @endif
     @endif

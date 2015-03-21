@@ -13,7 +13,15 @@
 @stop
 
 @section('content')
-    {!! HTML::ul($errors->all()) !!}
+    @if ($errors->has())
+        <div class="alert alert-danger">
+          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br>        
+            @endforeach
+        </div>
+    @endif
+
 
 
 {!! Form::open(array('url' => 'leaves')) !!}

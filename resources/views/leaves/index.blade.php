@@ -18,7 +18,7 @@
 @endif
 
 <table class="table table-striped table-bordered">
-    <thead>
+    <thead> 
         <tr>
             <td>Type of Leave</td>
             <td>From Date</td>
@@ -40,8 +40,8 @@
             <td>{!! $value->to_dt !!}</td>
             <td>{!! $value->duration !!}</td>
             <td>{!! $value->note !!}</td>
-            <td>{!! $value->created_at !!}</td>
-            <td>{!! $value->updated_at !!}</td>
+            <td>{!! date("M d, Y - H:i",strtotime($value->created_at)) !!}</td>
+            <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
             <td>
                 <a class="btn btn-small btn-info" href="{!! URL::to('leaves/' . $value->id . '/edit') !!}">Edit</a>
             

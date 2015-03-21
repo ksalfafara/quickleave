@@ -120,4 +120,13 @@ class TeamController extends Controller {
        	return Redirect::to('teams');
     	}
 	}
+
+	public function destroyMember($id)
+	{
+		$member = User::find($id);
+		$member->delete();
+
+		Session::flash('message','Successfully deleted '.$member->username.'!');
+		return Redirect::to('teams');
+	}
 }

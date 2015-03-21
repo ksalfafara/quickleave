@@ -43,17 +43,14 @@
       <div class="login-box-body">
         <p class="login-box-msg"><b>SIGN IN</b></p>
         
-        @if (count($errors) > 0)
-            <div>
-            <i><strong>Whoops!</strong> There were some problems with your input.<br><br>
-              <ul>
-                @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </i>
-            </div>
-        @endif
+    @if ($errors->has())
+        <div class="alert alert-danger">
+          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br>        
+            @endforeach
+        </div>
+    @endif
 
           <form role="form" method="POST" action="/auth/login">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
