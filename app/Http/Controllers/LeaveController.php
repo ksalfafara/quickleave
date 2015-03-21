@@ -63,9 +63,24 @@ class LeaveController extends Controller {
         $to_dt_datetime = new Datetime($to_dt);
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
-        $leave->duration = $duration->format('%R%a');
+        $leave->duration = $duration->format('%R%a') + 1;
 
         $leave->user()->associate($user);
+
+        $type = $leave->type;
+         if ($type == 'SL') {
+            $type = 'sl_bal';
+         }
+         elseif ($type == 'VL') {
+            $type = 'vl_bal';
+         }
+
+        $duration = $leave->duration;
+        if ($user->$type < $duration) {
+            Session::flash('message', 'Insufficient leave balance!');
+            return Redirect::to('leaves/create');
+        }
+
         $leave->save();
 
         Session::flash('message', 'Your leave request has been submitted. Kindly wait for the approval.');
@@ -107,6 +122,7 @@ class LeaveController extends Controller {
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
         $leave->duration = $duration->format('%R%a');
+
         $leave->save();
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');

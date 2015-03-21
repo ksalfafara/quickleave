@@ -69,6 +69,8 @@ class PendingEditController extends Controller {
         $user = $leave->user->id;
         $type = $leave->type;
 
+        if ($leave->status == 'Approved')
+        {
             if ($type == 'SL') {
                 $type = 'sl_bal';
             }
@@ -78,8 +80,7 @@ class PendingEditController extends Controller {
             
         $duration = $leave->duration;
         DB::table('users')->where('id', $user)->decrement($type, $duration);
-
-
+        }
         $leave->save();
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
