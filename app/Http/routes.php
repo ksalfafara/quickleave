@@ -24,7 +24,14 @@ Route::get('admin', 'UserController@indexAdmin');
 Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
 Route::get('manager/members', 'UserController@showMembers');
-Route::get('user/profile/{username}','UserController@user');
+Route::get('user/profile/{username}','UserController@show');
+
+//User Profile
+Route::get('user/{id}/edit', 'UserController@edit');
+Route::put('user/{id}/update', ['uses' => 'UserController@update', 'as' => 'users.update']);
+Route::get('user/{id}/changepassword', 'UserController@changePass');
+Route::put('user/{id}/updatepassword', ['uses' => 'UserController@updatePass', 'as' => 'users.updatePass']);
+
 
 //Team
 Route::get('teams', 'TeamController@index');
@@ -36,6 +43,7 @@ Route::put('teams/{id}/update', ['uses' => 'TeamController@update', 'as' => 'tea
 Route::delete('teams/{id}/delete', 'TeamController@destroy');
 Route::get('teams/{id}/editrole', 'TeamController@editRole');
 Route::put('teams/{id}/updateRole', ['uses' => 'TeamController@updateRole', 'as' => 'teams.updateRole']);
+
 
 Route::resource('leaves', 'LeaveController');
 

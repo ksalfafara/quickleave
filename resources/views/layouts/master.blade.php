@@ -250,6 +250,9 @@
 
             <div class="box-header with-border">
               <h3 class="box-title">@yield('boxname')</h3>
+              <div class="box-tools pull right">
+                @yield('right')
+              </div>
             </div>
             <div class="box-body table-responsive">
               @yield('content')

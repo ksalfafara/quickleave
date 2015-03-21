@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth, View, Input, Session, Redirect, Validator;
 use App\User;
 use App\Leave;
+use Hash;
 
 class UserController extends Controller {
 
@@ -60,49 +61,83 @@ class UserController extends Controller {
 
 	public function show($id)
 	{
-		//
-	}
-
-	public function user($username)
-	{
-		//$user = User::where('username', '=', $username);
-		//$user = $user->first();
-
-		//$user = User::find($username);
-
 		$user = Auth::getUser();
 		return view::make('users.indexprofile')->with('users', $user);
 	}
 
 	public function edit($id)
 	{
-		//
+		$user = User::find($id);
+		return View::make('users.editProfile')->with('user', $user);
 	}
 
 	public function update($id)
 	{
-	#	$user_id = Auth::id();
-	#	$user 	 = Auth::user();
-		$leave 	 = Leave::find($id);
+		$rules = array(
+            'username' => 'max:255|unique:users',
+            'email' => 'email|max:255',
+        );
 
-		if ($leave->status == 'Approved') 
-		{
-		   $type = $leave->type;
-			if ($type == 'SL') {
-				$type = 'sl_bal';
-			}
-			elseif ($type == 'VL') {
-				$type = 'vl_bal';
-			}
+        $validator = Validator::make(Input::all(), $rules);
 
-		$duration = $leave->duration;
-		DB::table('users')->decrement($type, $duration);
+        if ($validator->fails()) {
+            return Redirect::to('user/' . $id . '/edit')
+                ->withErrors($validator);
+        } else {
+        $user = User::find($id);
+        $user->username = Input::get('username');
+        $user->firstname = Input::get('firstname');
+        $user->lastname = Input::get('lastname');
+        $user->email = Input::get('email');
+        $user->save();
 
-		#$type_bal = ($user->$type) - ($leave->duration);
-		#$user->$type = $type_bal;
-		#Users::where($type, '>', '-1')->decrement($type, $leave->duration);
-		$leave->save();
-		}
+        Session::flash('message', 'Successfully updated your profile!');
+
+       	return Redirect::to('user/profile/{$user->username}');
+       }
+		
+	}
+
+	public function changePass($id)
+	{
+		$user = User::find($id);
+		return View::make('users.changePass')->with('user', $user);
+	}
+
+	public function updatePass($id)
+	{
+		$rules = array(
+			'old_password' => 'required:min:6',
+            'new_password' => 'required|min:6',
+            'retype_password' => 'required|same:new_password'
+
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('user/' . $id . '/changepassword')
+                ->withErrors($validator);
+        } 
+        else {
+	        $user = User::find($id);
+
+	        //get inputs
+	        $old_pass = Input::get('old_password');
+	        $new_pass = Input::get('new_password');
+
+	        //test old to existing password
+	        if(Hash::check($old_pass, $user->getAuthPassword())) { 
+	        	$user->password = Hash::make($new_pass); 
+	        	$user->save();
+	        	Session::flash('message', 'Successfully updated password.');
+       			return Redirect::to('user/profile/'. $user->username);
+       		}
+       		else {
+       			Session::flash('message', 'Your old password is incorrect.');
+       			return Redirect::to('user/' . $id . '/changepassword');
+       		}      
+       }	
 	}
 
 	public function destroy($id)
