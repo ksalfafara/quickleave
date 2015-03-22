@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    Manager - Pending request(s)
+    Manager - Pending Leave Request(s)
 @stop
 
 @section('pagetitle')
-    View Request/s
+    View Leave Request(s)
 @stop
 
 @section('boxname')
-    Your member's request
+    Your Members' Leave Request(s)
 @stop
 
 @section('content')
@@ -32,20 +32,20 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($leaves as $key => $value)
-    @if(($value->status) === 'Pending')
-        @if((Auth::user()->team->team_name) === $value->user->team->team_name)
+    @foreach($leaves as $leave)
+    @if(($leave->status) === 'Pending')
+        @if((Auth::user()->team->team_name) === $leave->user->team->team_name)
         <tr>
-            <td>{!! $value->user->username!!}</td>
-            <td>{!! $value->type !!}</td>
-            <td>{!! $value->from_dt !!}</td>
-            <td>{!! $value->to_dt !!}</td>
-            <td>{!! $value->duration !!}</td>
-            <td>{!! $value->note !!}</td>
-            <td>{!! $value->created_at !!}</td>
-            <td>{!! $value->status !!}</td>
+            <td>{!! $leave->user->username!!}</td>
+            <td>{!! $leave->type !!}</td>
+            <td>{!! $leave->from_dt !!}</td>
+            <td>{!! $leave->to_dt !!}</td>
+            <td>{!! $leave->duration !!}</td>
+            <td>{!! $leave->note !!}</td>
+            <td>{!! $leave->created_at !!}</td>
+            <td>{!! $leave->status !!}</td>
             <td>
-                <a class="btn btn-small btn-info" href="{!! URL::to('pending/' . $value->id . '/edit') !!}">Change Remark</a>
+                <a class="btn btn-small btn-info" href="{!! URL::to('leaves/pending/' . $leave->id . '/edit') !!}">Change Status</a>
             </td>
         </tr>
         @endif

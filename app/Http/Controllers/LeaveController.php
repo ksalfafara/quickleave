@@ -12,7 +12,7 @@ class LeaveController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth'); //change later to auth
+		$this->middleware('auth'); 
 	}
 
 	public function index()
@@ -21,16 +21,15 @@ class LeaveController extends Controller {
         return View::make('leaves.index')->with('leaves', $leaves);
 	}
 
-
 	public function create()
 	{
 		return View::make('leaves.create');
 	}
 
-    public function show()
+    public function pending()
     {
         $leaves = Leave::all();
-        return View::make('leaves.allrequest')->with('leaves', $leaves);
+        return View::make('leaves.pending')->with('leaves', $leaves);
     }
 
     public function showApproved()
@@ -69,13 +68,28 @@ class LeaveController extends Controller {
         $to_dt_datetime = new Datetime($to_dt);
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
-        $leave->duration = $duration->format('%R%a');
+        $leave->duration = $duration->format('%R%a') + 1;
 
         $leave->user()->associate($user);
+
+        $type = $leave->type;
+         if ($type == 'SL') {
+            $type = 'sl_bal';
+         }
+         elseif ($type == 'VL') {
+            $type = 'vl_bal';
+         }
+
+        $duration = $leave->duration;
+        if ($user->$type < $duration) {
+            Session::flash('message', 'Insufficient leave balance!');
+            return Redirect::to('leaves/create');
+        }
+
         $leave->save();
 
         Session::flash('message', 'Your leave request has been submitted. Kindly wait for the approval.');
-        return Redirect::to('leaves');
+        return Redirect::to('leaves/pending');
     	}
 	}
 
@@ -112,11 +126,12 @@ class LeaveController extends Controller {
         $to_dt_datetime = new Datetime($to_dt);
 
         $duration = $from_dt_datetime->diff($to_dt_datetime);
-        $leave->duration = $duration->format('%R%a');
+        $leave->duration = $duration->format('%R%a') + 1;
+
         $leave->save();
 
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
-        return Redirect::to('leaves');
+        return Redirect::to('leaves/pending');
     	}
 	}
 
@@ -128,11 +143,69 @@ class LeaveController extends Controller {
 
 		// redirect
 		Session::flash('message','Successfully deleted Leave Request '.$leave->id.'!');
-		return Redirect::to('leaves');
+		return Redirect::to('leaves/pending');
 	}
 
+    public function membersPending()
+    {
+        $leaves = Leave::all();
+        return View::make('leaves.membersPending')->with('leaves', $leaves);
+    }
 
+    public function editPending($id)
+    {
+        $leave = Leave::find($id);
+        return View::make('leaves.editPending')->with('leave',$leave);
+    }
 
+    public function updatePending($id)
+    {
+        $rules = array(
+            'status' => 'required'
+        );
 
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('leaves/pending/' . $id . '/edit')
+                ->withErrors($validator);
+        } 
+
+        else {
+        $leave = Leave::find($id);
+        $leave->status = Input::get('status');
+        $leave->remark = Input::get('remark');
+
+        $user = $leave->user->id;
+        $type = $leave->type;
+
+            if ($leave->status == 'Approved')
+            {
+                if ($type == 'SL')
+                {
+                    $type = 'sl_bal';
+                }
+            
+                elseif ($type == 'VL')
+                {
+                    $type = 'vl_bal';
+                }
+            
+                $duration = $leave->duration;
+                DB::table('users')->where('id', $user)->decrement($type, $duration);
+            }
+        
+        $leave->save();
+
+        Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
+        return Redirect::to('leaves/memberspending');
+        }
+    }
+
+    public function showHistory()
+    {
+        $leaves = Leave::all();
+        return View::make('leaves.history')->with('leaves', $leaves);
+    }
 }
 	

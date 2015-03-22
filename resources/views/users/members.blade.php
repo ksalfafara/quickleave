@@ -5,11 +5,11 @@
 @stop
 
 @section('pagetitle')
-    View {!! Auth::user()->team->team_name !!}
+    View {!! Auth::user()->team->team_name !!} Members
 @stop
 	
 @section('boxname')
-	Displaying all members of your team
+	Your Team Members
 @stop
 
 @section('content')

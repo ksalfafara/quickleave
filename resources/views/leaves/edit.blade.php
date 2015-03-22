@@ -5,11 +5,11 @@
 @stop
 
 @section('pagetitle')
-    Edit a request
+    Edit a Leave Request
 @stop
 
 @section('boxname')
-    Edit leave #{!! $leave->id !!}
+    Edit Leave Request #{{ $leave->id }}
 @stop
 
 @section('content')
@@ -45,8 +45,8 @@
 
     <div class="form-group">
         {!! Form::label('note', 'Reason/Note') !!}
-        {!! Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'size' => '30x3', 'placeholder' => 
-        '(Optional) Additional note')) !!}
+        {!! Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'size' => '30x3', 
+        'placeholder' => '(Optional) Additional note')) !!}
     </div>
 
     {!! Form::submit('Submit changes', array('class' => 'btn btn-primary')) !!}

@@ -16,10 +16,10 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-//landing page
+//Landing Page
 Route::get('/', 'WelcomeController@index');
 
-//User dashboards
+//User Dashboards
 Route::get('admin', 'UserController@indexAdmin');
 Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
@@ -33,6 +33,10 @@ Route::put('user/{id}/update', ['uses' => 'UserController@update', 'as' => 'user
 Route::get('user/{id}/changepassword', 'UserController@changePass');
 Route::put('user/{id}/updatepassword', ['uses' => 'UserController@updatePass', 'as' => 'users.updatePass']);
 
+//User Balances and DateHired
+Route::get('admin/showemployees', 'UserController@showEmployees');
+Route::get('admin/{id}/editemployee', 'UserController@editEmployee');
+Route::put('admin/{id}/updateemployee', ['uses' => 'UserController@updateEmployee', 'as' => 'admin.updateEmployee']);
 
 //Team
 Route::get('teams', 'TeamController@index');
@@ -43,19 +47,21 @@ Route::get('teams/{id}/edit', 'TeamController@edit');
 Route::put('teams/{id}/update', ['uses' => 'TeamController@update', 'as' => 'teams.update']);
 Route::delete('teams/{id}/delete', 'TeamController@destroy');
 Route::get('teams/{id}/editrole', 'TeamController@editRole');
-Route::put('teams/{id}/updateRole', ['uses' => 'TeamController@updateRole', 'as' => 'teams.updateRole']);
+Route::put('teams/{id}/updaterole', ['uses' => 'TeamController@updateRole', 'as' => 'teams.updateRole']);
 Route::delete('teams/{id}/deletemember', 'TeamController@destroyMember');
 
-Route::resource('leaves', 'LeaveController');
+//Leave
+Route::get('leaves', 'LeaveController@index');
+Route::get('leaves/create', 'LeaveController@create');
+Route::post('leaves', 'LeaveController@store');
+Route::get('leaves/pending', 'LeaveController@pending');
+Route::get('leaves/{id}/edit', 'LeaveController@edit');
+Route::put('leaves/{id}/update', ['uses' => 'LeaveController@update', 'as' => 'leaves.update']);
+Route::delete('leaves/{id}/delete', 'LeaveController@destroy');
 
-//Pending
-Route::resource('pending', 'PendingEditController');
-Route::get('teamrequest', 'PendingEditController@showHistory');
-
-//Route::resource('pending', 'PendingEditController');
-
-Route::resource('balances','BalanceController');
-
-Route::resource('roles','RoleController');
+Route::get('leaves/memberspending', 'LeaveController@membersPending');
+Route::get('leaves/pending/{id}/edit', 'LeaveController@editPending');
+Route::put('leaves/pending/{id}/update', ['uses' => 'LeaveController@updatePending', 'as' => 'leaves.updatePending']);
+Route::get('leaves/history', 'LeaveController@showHistory');
 
 

@@ -16,7 +16,28 @@ class UserController extends Controller {
 		$this->middleware('auth'); //change later to auth
 	}
 	
-		public function index()
+	public function indexAdmin()
+	{
+		return view('users.admin');
+	}
+
+	public function indexManager()
+	{
+		return view('users.managerdash');
+	}
+
+	public function indexMember()
+	{
+		return view('users.userdash');
+	}
+
+	public function showMembers()
+	{
+		$users = User::all();
+        return View::make('users.members')->with('users', $users);
+	}
+
+	public function index()
 	{
 		//return View::make('users')->withUsers(User::all());
 		$users = User::all();
@@ -26,7 +47,6 @@ class UserController extends Controller {
 	public function create()
 	{
 		return View::make('users.create');
-
 	}
 
 	public function store()
@@ -137,7 +157,7 @@ class UserController extends Controller {
        			Session::flash('message', 'Your old password is incorrect.');
        			return Redirect::to('user/' . $id . '/changepassword');
        		}      
-       }	
+       	}	
 	}
 
 	public function destroy($id)
@@ -145,32 +165,46 @@ class UserController extends Controller {
 		//
 	}
 	
-	public function indexAdmin()
+	public function showEmployees()
 	{
-		return view('users.admin');
+		$employees = User::all();
+		return View::make('users.showEmployees')->with('employees', $employees); 
 	}
 
-	public function indexManager()
+	public function editEmployee($id)
 	{
-		$users = User::all();
-		return view('users.managerdash');
+
+		$employee = User::find($id);
+		return View::make('users.editEmployee')->with('employee',$employee);
 	}
 
-	public function indexMember()
+	public function updateEmployee($id)
 	{
-		return view('users.userdash');
-	}
+        $rules = array(
+        	'date_hired' => 'required',
+            'sl_bal' => 'required',
+            'vl_bal' => 'required',
+        );
 
-	public function showMembers()
-	{
-		$users = User::all();
-        return View::make('users.members')->with('user', $users);
-	}
 
-	public function adminLeave()
-	{
-		$users = User::all();
-        return View::make('users.members')->with('users', $users);
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('admin/' . $id . '/editemployee')
+                ->withErrors($validator);
+        } 
+        else {
+        $employee = User::find($id);
+
+        $employee->date_hired = Input::get('date_hired');
+        $employee->sl_bal = Input::get('sl_bal');
+        $employee->vl_bal = Input::get('vl_bal');
+
+        $employee->save();
+
+        Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
+        return Redirect::to('admin/showemployees');
+    	}
 	}
 
 

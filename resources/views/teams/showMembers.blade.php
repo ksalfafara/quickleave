@@ -20,8 +20,8 @@
 <table id="members" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <td>Lastname</td>
             <td>Firstname</td>
+            <td>Lastname</td>
             <td>Username</td>
             <td>Role</td>
             <td>Registration Date Time</td>

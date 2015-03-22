@@ -22,9 +22,13 @@
         </div>
     @endif
 
+    @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+    @endif
 
+    {!! HTML::ul($errors->all()) !!}
 
-{!! Form::open(array('url' => 'leaves')) !!}
+    {!! Form::open(array('url' => 'leaves')) !!}
 
     <div class="form-group">
         {!! Form::label('type', 'LEAVE TYPE') !!}
