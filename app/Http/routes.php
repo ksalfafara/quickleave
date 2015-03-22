@@ -17,7 +17,9 @@ Route::controllers([
 ]);
 
 //Landing Page
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function(){
+	return View::make('welcome');
+});
 
 //User Dashboards
 Route::get('admin', 'UserController@indexAdmin');
@@ -59,6 +61,7 @@ Route::get('leaves/{id}/edit', 'LeaveController@edit');
 Route::put('leaves/{id}/update', ['uses' => 'LeaveController@update', 'as' => 'leaves.update']);
 Route::delete('leaves/{id}/delete', 'LeaveController@destroy');
 
+//For Manager
 Route::get('leaves/memberspending', 'LeaveController@membersPending');
 Route::get('leaves/pending/{id}/edit', 'LeaveController@editPending');
 Route::put('leaves/pending/{id}/update', ['uses' => 'LeaveController@updatePending', 'as' => 'leaves.updatePending']);
