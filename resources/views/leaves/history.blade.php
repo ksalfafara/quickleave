@@ -20,6 +20,7 @@
 <table id="teamrequest" class="table table-bordered table-hover">
     <thead>
         <tr>
+            <td>Employee Name</td>
             <td>Type of Leave</td>
             <td>From Date</td>
             <td>To Date</td>
@@ -35,6 +36,7 @@
     @if(($leave->status) <> 'Pending')
         @if((Auth::user()->team->team_name) == $leave->user->team->team_name)
         <tr>
+            <td>{!! $leave->user->firstname . ' ' . $leave->user->lastname !!}
             <td>{!! $leave->type !!}</td>
             <td>{!! $leave->from_dt !!}</td>
             <td>{!! $leave->to_dt !!}</td>

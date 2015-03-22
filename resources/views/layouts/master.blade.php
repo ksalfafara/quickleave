@@ -146,7 +146,7 @@
                 <i class="fa fa-home"></i> <span>Admin Board</span>
               </a>
             </li>
-            <li><a href="/teams/create"><i class="fa fa-user-plus"></i> Create team</a></li>
+            <li><a href="/teams/create"><i class="fa fa-users"></i> Create team</a></li>
             <li><a href="/teams"><i class="fa fa-sitemap"></i> Teams</a></li>
             <li>
                     <a href="/admin/showemployees">

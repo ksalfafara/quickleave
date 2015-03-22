@@ -18,8 +18,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
@@ -29,7 +28,6 @@
     <link href="/theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <link href="/landtheme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -148,10 +146,10 @@
                 <i class="fa fa-home"></i> <span>Admin Board</span>
               </a>
             </li>
-            <li><a href="/teams/create"><i class="fa fa-user-plus"></i> Create team</a></li>
+            <li><a href="/teams/create"><i class="fa fa-users"></i> Create team</a></li>
             <li><a href="/teams"><i class="fa fa-sitemap"></i> Teams</a></li>
             <li>
-                    <a href="/balances">
+                    <a href="/admin/showemployees">
                     <i class="fa fa-pencil-square"></i>
                     <span>Employees</span>
                     </a>
@@ -180,29 +178,29 @@
 
             <li>
               <a href="/leaves">
-                <i class="fa fa-file-text-o"></i> <span>Pending request</span>
+                <i class="fa fa-bars"></i> <span>All Leave Requests</span>
               </a>
-            </li>
+            </li> 
 
             <li>
-              <a href="/leaves/allrequest">
-                <i class="fa fa-bars"></i> <span>Requests</span>
+              <a href="/leaves/pending">
+                <i class="fa fa-file-text-o"></i> <span>Pending Leave Requests</span>
               </a>
-            </li>
+            </li><!--member-->
 
             @if((Auth::user()->role) === 'manager') <!--manager-->
 
             <li class="header">YOUR TEAM</li>
             <li>
-            <li><a href="/manager/members"><i class="fa fa-users"></i> View all employees</a></li>
+            <li><a href="/manager/members"><i class="fa fa-users"></i>Your Team Members</a></li>
 
             <li>
-              <a href="/pending">
+              <a href="/leaves/memberspending">
                 <i class="fa fa-check-square-o"></i> <span>For Your Approval</span>
               </a>
             </li>
             <li>
-              <a href="/teamrequest">
+              <a href="/leaves/history">
                 <i class="fa fa-check-square-o"></i> <span>Approved/Rejected Requests</span>
               </a>
             </li>
@@ -235,10 +233,10 @@
 
         <!-- Main content -->
         <section class="content">
-
             <div class="box-body table-responsive">
               @yield('content')
             </div><!-- /.box-body -->
+          </div><!-- /.box -->
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
