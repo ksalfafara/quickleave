@@ -1,15 +1,15 @@
 @extends('layouts.master')
 
 @section('title')
-    User - All Request(s)
+    Admin - All Requests
 @stop
 
 @section('pagetitle')
-    Your submitted requests
+    Approved Requests
 @stop
 
 @section('boxname')
-    Displaying all of your Approved/Rejected requests
+    Displaying All of Your Approved Requests
 @stop
 
 @section('content')
@@ -34,7 +34,6 @@
     <tbody>
     @foreach($leaves as $key => $value)
     @if(($value->status) <> 'Pending')
-        @if((Auth::user()->id) === $value->user->id)
         <tr>
             <td>{!! $value->user->firstname . ' ' . $value->user->lastname!!}</td>
             <td>{!! $value->type !!}</td>
@@ -46,7 +45,6 @@
             <td>{!! $value->status !!}</td>
             <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
         </tr>
-        @endif
     @endif
     @endforeach
     </tbody>

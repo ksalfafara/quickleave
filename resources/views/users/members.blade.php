@@ -20,9 +20,8 @@
 <table id="members" class="table table-bordered table-hover">
         <thead>
             <tr>  
-                <th>Team</th> <!--to delete -->
-                <th>Firstname</th>
-                <th>Lastname</th>
+                <th>Team</th>
+                <th>Name</th>
                 <th>Username</th>
                 <th>Role</th>
                 <th>Registration Date Time</th>
@@ -32,14 +31,15 @@
 
     @foreach($users as $member)
         @if((Auth::user()->team->team_name) == $member->team->team_name)
+            @if($member->role <> 'manager')
             <tr>
                 <td>{!! $member->team->team_name!!}
-                <td>{!! $member->firstname !!}</td>
-                <td>{!! $member->lastname !!}</td>
+                <td>{!! $member->firstname . ' ' . $member->lastname !!}</td>
                 <td>{!! $member->username !!}</td>
                 <td>{!! $member->role !!}</td>
                 <td>{!! $member->created_at !!}</td>
             </tr>
+            @endif
         @endif
     @endforeach
         </tbody>

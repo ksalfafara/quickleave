@@ -25,6 +25,7 @@ Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
 Route::get('manager/members', 'UserController@showMembers');
 Route::get('user/profile/{username}','UserController@show');
+Route::get('approved', 'LeaveController@showApproved');
 
 //User Profile
 Route::get('user/{id}/edit', 'UserController@edit');

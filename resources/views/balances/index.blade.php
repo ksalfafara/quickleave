@@ -21,6 +21,7 @@
     <thead>
         <tr>
             <td>Team Name</td>
+            <td>Username</td>
             <td>Employee Name</td>
             <td>Date Hired</td>
             <td>SL Balance</td>
@@ -32,6 +33,7 @@
     @foreach($balances as $balance)
         <tr>
             <td>{!! $balance->team->team_name !!}</td>
+            <td>{!! $balance->username !!}</td>
             <td>{!! $balance->firstname . ' ' . $balance->lastname !!}</td>
             <td>{!! $balance->date_hired !!}</td>
             <td>{!! $balance->sl_bal !!}</td>

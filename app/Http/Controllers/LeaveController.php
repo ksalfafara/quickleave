@@ -33,6 +33,12 @@ class LeaveController extends Controller {
         return View::make('leaves.allrequest')->with('leaves', $leaves);
     }
 
+    public function showApproved()
+    {
+        $leaves = Leave::all();
+        return View::make('users.adminLeaves')->with('leaves', $leaves);
+    }
+
 
 	public function store()
 	{

@@ -18,7 +18,8 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
@@ -28,6 +29,7 @@
     <link href="/theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <link href="/landtheme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -234,29 +236,9 @@
         <!-- Main content -->
         <section class="content">
 
-          <!-- Default box -->
-          @if((Auth::user()->role) === 'admin')
-            <div class="box box-danger">
-          @endif
-
-          @if((Auth::user()->role) === 'manager')
-            <div class="box box-primary">
-          @endif
-
-          @if((Auth::user()->role) === 'member')
-            <div class="box box-success">
-          @endif
-
-            <div class="box-header with-border">
-              <h3 class="box-title">@yield('boxname')</h3>
-              <div class="box-tools pull right">
-                @yield('right')
-              </div>
-            </div>
             <div class="box-body table-responsive">
               @yield('content')
             </div><!-- /.box-body -->
-          </div><!-- /.box -->
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

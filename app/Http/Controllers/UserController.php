@@ -152,6 +152,7 @@ class UserController extends Controller {
 
 	public function indexManager()
 	{
+		$users = User::all();
 		return view('users.managerdash');
 	}
 
@@ -163,8 +164,15 @@ class UserController extends Controller {
 	public function showMembers()
 	{
 		$users = User::all();
+        return View::make('users.members')->with('user', $users);
+	}
+
+	public function adminLeave()
+	{
+		$users = User::all();
         return View::make('users.members')->with('users', $users);
 	}
+
 
 
 }
