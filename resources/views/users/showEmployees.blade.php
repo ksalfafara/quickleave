@@ -21,7 +21,6 @@
     <thead>
         <tr>
             <td>Team Name</td>
-            <td>Username</td>
             <td>Employee Name</td>
             <td>Date Hired</td>
             <td>SL Balance</td>

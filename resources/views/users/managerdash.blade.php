@@ -60,10 +60,7 @@
               <div class="small-box bg-red">
                 <div class="inner">
                   <h3>         
-                    {!! DB::table('leaves')
-                      ->join('users', 'user_id', '=', 'users.id')
-                      ->where('status', 'pending')
-                      ->count()!!}
+                    {!! $team->leave->count() !!}
                     <sup style="font-size: 20px"> requests </sup>
                   </h3>
                   <p>Pending Request</p>
