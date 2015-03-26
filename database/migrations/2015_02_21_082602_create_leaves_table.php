@@ -18,6 +18,8 @@ class CreateLeavesTable extends Migration {
 
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->integer('team_id')->unsigned();
+			$table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
 
 			$table->string('type', 2);
 			$table->date('from_dt');
@@ -40,8 +42,8 @@ class CreateLeavesTable extends Migration {
 		Schema::drop('leaves');
 		Schema::table('leaves', function($table)
 		{
-			$table->dropForeign('leaves_user_id_foreign');
-			$table->dropColumn('user_id');
+			$table->dropForeign('leaves_user_id_foreign', 'leaves_team_id_foreign');
+			$table->dropColumn('user_id', 'team_id');
 		});
 	}
 }

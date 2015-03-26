@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin - Edit Balances
+    Admin - Edit Employee Info
 @stop
 
 @section('pagetitle')

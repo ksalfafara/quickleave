@@ -165,10 +165,17 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
+              @if((Auth::user()->role) === 'member') <!--member-->
               <a href="/user">
                 <i class="fa fa-home"></i> <span>User Board</span>
               </a>
+               @elseif((Auth::user()->role) === 'manager') <!--manager-->
+               <a href="/manager">
+                <i class="fa fa-home"></i> <span>Manager Board</span>
+              </a>
+              @endif
             </li>
+
 
             <li>
               <a href="/leaves/create">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth, View, Input, Session, Redirect, Validator;
 use App\User;
 use App\Leave;
+use App\Team;
 use Hash;
 
 class UserController extends Controller {
@@ -23,7 +24,8 @@ class UserController extends Controller {
 
 	public function indexManager()
 	{
-		return view('users.managerdash');
+		$team = Team::all();
+		return view('users.managerdash')->with('team',$team);
 	}
 
 	public function indexMember()
@@ -79,9 +81,9 @@ class UserController extends Controller {
 		return Redirect::to('users');
 	}
 
-	public function show($id)
+	public function show($username)
 	{
-		$user = Auth::getUser();
+		$user = Auth::user();
 		return view::make('users.indexprofile')->with('users', $user);
 	}
 
