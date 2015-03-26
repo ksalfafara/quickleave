@@ -32,6 +32,7 @@
             <td>Date Hired</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
+            <td>Role</td>
             <td>Actions</td>
         </tr>
     </thead>
@@ -43,7 +44,15 @@
             <td>{!! date("M d, Y",strtotime($employee->date_hired)) !!}</td>
             <td>{!! $employee->sl_bal !!}</td>
             <td>{!! $employee->vl_bal !!}</td>
-
+            <td>
+                @if(($employee->role) == 'manager')
+                    <button class="btn btn-warning btn-xs">Manager</button>
+                @elseif(($employee->role) == 'member')
+                    <button class="btn btn-success btn-xs">Member</button>
+                @else
+                    <button class="btn btn-danger btn-xs">Admin</button>
+                @endif
+            </td>
             <!--edit and delete buttons -->
             <td>
                 <a class="btn btn-small btn-info" href="{{ URL::to('admin/' . $employee->id . '/editemployee') }}">Edit Employee Info</a>
