@@ -38,14 +38,7 @@ class UserController extends Controller {
 		$users = User::all();
         return View::make('users.members')->with('users', $users);
 	}
-
-	public function index()
-	{
-		//return View::make('users')->withUsers(User::all());
-		$users = User::all();
-        return View::make('users.index')->with('users', $users);
-	}
-
+	
 	public function create()
 	{
 		return View::make('users.create');

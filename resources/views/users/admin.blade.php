@@ -1,7 +1,12 @@
-@extends('layouts.dash')
+@extends('layouts.master')
 
 @section('title')
     Admin Dashboard
+@stop
+
+@section('breadcrumbs')
+  <li><a href="/admin"><i class="fa fa-home"></i> Home</a></li>
+  <li class="active"><a href="/admin">Admin Dashboard</a></li>
 @stop
 
 @section('pagetitle')

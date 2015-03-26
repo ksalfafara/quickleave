@@ -5,19 +5,26 @@
 @stop
 
 @section('pagetitle')
-    Employees
+    View All Employees
 @stop
 
-@section('boxname')
-
+@section('breadcrumbs')
+    @if((Auth::user()->role) == 'manager')
+    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+    @elseif((Auth::user()->role) == 'member')
+    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
+    @endif
+    <li class="active"><a href="">All Employees</a></li>
 @stop
 
 @section('content')
-    @if (Session::has('message'))
-    <div class="alert alert-info">{!! Session::get('message') !!}</div>
-@endif
+<div class="box box-warning">
 
-<table id="balances" class="table table-bordered table-hover">
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+<table id="table" class="table table-bordered table-hover">
     <thead>
         <tr>
             <td>Team Name</td>
@@ -33,7 +40,7 @@
         <tr>
             <td>{!! $employee->team->team_name !!}</td>
             <td>{!! $employee->firstname . ' ' . $employee->lastname !!}</td>
-            <td>{!! $employee->date_hired !!}</td>
+            <td>{!! date("M d, Y",strtotime($employee->date_hired)) !!}</td>
             <td>{!! $employee->sl_bal !!}</td>
             <td>{!! $employee->vl_bal !!}</td>
 
@@ -45,4 +52,7 @@
     @endforeach
     </tbody>
 </table>
+
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop

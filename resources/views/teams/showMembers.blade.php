@@ -8,24 +8,41 @@
     View {!! $team->team_name !!}'s Members
 @stop
     
-@section('boxname')
-    {!! $team->team_name !!}'s Members
+@section('breadcrumbs')
+  <li><a href="/admin"><i class="fa fa-home"></i> Admin Dashboard</a></li>
+  <li><a href="">{!! $team->team_name !!}</a></li>
+  <li class="active"><a href="">All Members</a></li>
 @stop
 
 @section('content')
-    @if (Session::has('message'))
-    <div class="alert alert-info">{!! Session::get('message') !!}</div>
-    @endif
+<div class="box box-warning">
+    <div class="box-header with-border">
+            Create a team and designate the code to the members
+    <div class="box-tools pull right"></div>
+    </div>
 
-<table id="members" class="table table-bordered table-hover">
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+        @if ($errors->has())
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>        
+                @endforeach
+            </div>
+        @endif
+
+<table id="table" class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Username</td>
-            <td>Role</td>
-            <td>Registration Date Time</td>
-            <td>Actions</td>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Registration Date Time</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -34,17 +51,24 @@
             <td>{!! $member->firstname !!}</td>
             <td>{!! $member->lastname !!}</td>
             <td>{!! $member->username !!}</td>
-            <td>{!! $member->role !!}</td>
-            <td>{!! date("M d, Y - H:i",strtotime($member->created_at)) !!}</td>
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $member->id . '/editrole') }}">Edit Role</a>
-                {!! Form::open(array('url' => 'teams/' . $member->id . '/deletemember', 'class' => 'btn')) !!}
-                    {!! Form::hidden('_method', 'DELETE') !!}
-                    {!! Form::submit('Delete', array('class' => 'btn btn-warning')) !!}
-                {!! Form::close() !!}
+                @if(($member->role) == 'manager')
+                    <button class="btn btn-warning btn-xs">Manager</button>
+                @elseif(($member->role) == 'member')
+                    <button class="btn btn-success btn-xs">Member</button>
+                @endif
+            </td>
+            <td>
+                {!! $member->created_at !!}
+            </td>
+            
+            <td>
+                <a class="btn btn-small btn-info" href="{{ URL::to('roles/' . $member->id . '/edit') }}">Edit Role</a>
             </td>
         </tr>
     @endforeach
     </tbody>
 </table>    
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop

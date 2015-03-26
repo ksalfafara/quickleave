@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.master')
 
 @section('title')
     Manager Dashboard
@@ -7,6 +7,11 @@
 @section('pagetitle')
     Dashboard 
     <small>Page</small>
+@stop
+
+@section('breadcrumbs')
+  <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+  <li class="active"><a href="/manager">Manager Dashboard</a></li>
 @stop
 
 
@@ -60,7 +65,7 @@
               <div class="small-box bg-red">
                 <div class="inner">
                   <h3>         
-                    {!! $team->leave->count() !!}
+                    12
                     <sup style="font-size: 20px"> requests </sup>
                   </h3>
                   <p>Pending Request</p>

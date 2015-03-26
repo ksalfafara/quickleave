@@ -5,61 +5,72 @@
 @stop
 
 @section('pagetitle')
-    Edit Profile Information
+    Edit {!! Auth::user()->username !!}'s Profile Information
 @stop
     
-@section('boxname')
-    {!! Auth::user()->username !!}'s Profile Information
+@section('breadcrumbs')
+    <li><a href=""><i class="fa fa-user"></i> {!! Auth::user()->username !!}</a></li>
+    <li class="active"><a href="">Edit Profile</a></li>
 @stop
 
-@section('right')
 
-@stop
+@section('content')
 
-@section('content') 
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+        @if ($errors->has())
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>        
+                @endforeach
+            </div>
+        @endif
 
-    @if ($errors->has())
-        <div class="alert alert-danger">
-          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
-            @foreach ($errors->all() as $error)
-                {{ $error }}<br>        
-            @endforeach
-        </div>
-    @endif
+<div class="row">
 
-
-    {!! Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) !!}
-
-    <div class="col-md-6">
-
-            <div class="box-header">
-                <i class="fa fa-user"></i>
-                <h3 class="box-title">PERSONAL INFORMATION</h3>
-            </div><!-- /.box-header -->
-
+    <section class="col-lg-5 connectedSortable">
+        <div class="box box-solid ">
             <div class="box-body">
-                <dl class="dl-horizontal">
-                    <dt>Username:</dt>
-                    <dd>{!! Form::text('username', Input::old('username'), array('class' => 'form-control',
-        'placeholder' => 'Username')) !!} </dd> <br>
-                    <dt>Email:</dt>
-                    <dd>{!! Form::text('email', Input::old('email'), array('class' => 'form-control',
-        'placeholder' => 'Email Address')) !!}</dd> <br>
-                    <dt>First Name:</dt>
-                    <dd>{!! Form::text('firstname', Input::old('firstname'), array('class' => 'form-control',
-        'placeholder' => 'Firstname')) !!}</dd> <br>
-                    <dt>Last Name:</dt>
-                    <dd>{!! Form::text('lastname', Input::old('lastname'), array('class' => 'form-control',
-        'placeholder' => 'Lastname')) !!}</dd>
-                    
-                </dl>
+                <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
+            </div>
+        </div>
+    </section>
+
+    <section class="col-lg-5 connectedSortable">
+        <div class="box box-warning ">
+            <div class="box-body ">
+                <br>
+                {!! Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) !!}
+
+                    {!! Form::label('username', 'Username:') !!}
+                    {!! Form::text('username', Input::old('username'), array('class' => 'form-control',
+        'placeholder' => 'Username')) !!}<br>
+                    {!! Form::label('email', 'Email Address:') !!}
+                    {!! Form::text('email', Input::old('email'), array('class' => 'form-control',
+        'placeholder' => 'Email Address')) !!} <br>
+                    {!! Form::label('firstname', 'Firstname:') !!}
+                    {!! Form::text('firstname', Input::old('firstname'), array('class' => 'form-control',
+        'placeholder' => 'Firstname')) !!} <br>
+                    {!! Form::label('lastname', 'Lastname:') !!}
+                    {!! Form::text('lastname', Input::old('lastname'), array('class' => 'form-control',
+        'placeholder' => 'Lastname')) !!}
             </div><!-- /.box-body -->
+          
 
-
-           <center> {!! Form::submit('Save changes', array('class' => 'btn btn-primary')) !!} </center>
-    </div><!-- ./col -->
-       
+            <div class="box-footer">
+                  <div class="row">
+                    <center>{!! Form::submit('Save changes', array('class' => 'btn btn-primary')) !!} </center>
+                  </div><!-- /.row -->
+            </div>
 
     {!! Form::close() !!}
 
+            </div>
+        </div>
+    </section>
+
+
+</div><!-- row -->
 @stop

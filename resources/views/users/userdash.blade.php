@@ -1,4 +1,4 @@
-@extends('layouts.dash')
+@extends('layouts.master')
 
 @section('title')
     User Dashboard
@@ -9,6 +9,10 @@
     <small>Page</small>
 @stop
 
+@section('breadcrumbs')
+  <li><a href="/user"><i class="fa fa-home"></i> Home</a></li>
+  <li class="active"><a href="/user">User Dashboard</a></li>
+@stop
 
 @section('content')
 <!-- Small boxes (Stat box) -->

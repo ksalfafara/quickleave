@@ -5,31 +5,39 @@
 @stop
 
 @section('pagetitle')
-    Your profile information
+    {!! Auth::user()->username !!}'s Profile Information
 @stop
 
-@section('boxname')
-    Your profile info
+@section('breadcrumbs')
+    <li><a href=""><i class="fa fa-user"></i> {!! Auth::user()->username !!}</a></li>
+    <li class="active"><a href="">Profile</a></li>
 @stop
 
-@section('right')
-    <a class="btn bg-orange btn-xs" href="{{ URL::to('user/' . Auth::user()->id . '/edit') }}">Edit Information</a>
-    <a class="btn bg-maroon btn-xs" href="{{ URL::to('user/' . Auth::user()->id . '/changepassword') }}">Change Password</a>
-@stop
 
 @section('content')
-    @if (Session::has('message'))
-    <div class="alert alert-info">{!! Session::get('message') !!}</div>
-@endif
-    <div class="col-md-6">
 
-            <div class="box-header">
-	            <i class="fa fa-user"></i>
-	            <h3 class="box-title">PERSONAL INFORMATION</h3>
-            </div><!-- /.box-header -->
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
 
+<div class="row">
+
+    <section class="col-lg-5 connectedSortable">
+        <div class="box box-solid ">
             <div class="box-body">
+                <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
+            </div>
+        </div>
+    </section>
+
+    <section class="col-lg-5 connectedSortable">
+        <div class="box box-warning ">
+            <div class="box-body ">
                 <dl class="dl-horizontal">
+                <div class="box-header">
+                <i class="fa fa-user"></i>
+                <h3 class="box-title">PERSONAL INFORMATION</h3>
+                </div><!-- /.box-header -->
                     <dt>Username:</dt>
                     <dd>{!! Auth::user()->username !!}</dd>
                     <dt>Email:</dt>
@@ -42,9 +50,10 @@
                 </dl>
             </div><!-- /.box-body -->
 
+            @if((Auth::user()->role) <> 'admin')
             <div class="box-header">
-	            <i class="fa fa-edit"></i>
-	            <h3 class="box-title">LEAVE INFORMATION</h3>
+                <i class="fa fa-edit"></i>
+                <h3 class="box-title">LEAVE INFORMATION</h3>
             </div><!-- /.box-header -->
 
             <div class="box-body">
@@ -56,18 +65,40 @@
                 </dl>
             </div><!-- /.box-body -->
 
-			<div class="box-header">
-	            <i class="fa fa-users"></i>
-	            <h3 class="box-title">TEAM INFORMATION</h3>
+            <div class="box-header">
+                <i class="fa fa-users"></i>
+                <h3 class="box-title">TEAM INFORMATION</h3>
             </div><!-- /.box-header -->
 
             <div class="box-body">
                 <dl class="dl-horizontal">
-                    <dt>Manager:</dt>
-                    <dd>Need recursive association to user</dd>
+                        <dt>Team:<dt>
+                        <dd>{!! Auth::user()->team->team_name !!}</dd>
+                        <dt>Manager:</dt>
+                    @if((Auth::user()->role) == 'manager')
+                        <dd>You are the manager of the team</dd>
+                    @else
+                        <dd>No association yet! FIX!</dd>
+                    @endif
+                    
                 </dl>
             </div><!-- /.box-body -->
+            @endif
 
-    </div><!-- ./col -->
+            <div class="box-footer">
+                  <div class="row">
+                    <center>
+                    <a class="btn bg-orange" href="{{ URL::to('user/' . Auth::user()->id . '/edit') }}">Edit Information</a>
+                    &nbsp;
+                    <a class="btn bg-maroon" href="{{ URL::to('user/' . Auth::user()->id . '/changepassword') }}">Change Password</a>
+                    </center>
+                  </div><!-- /.row -->
+            </div>
 
+            </div>
+        </div>
+    </section>
+
+
+</div><!-- row -->
 @stop
