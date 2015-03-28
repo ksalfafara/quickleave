@@ -37,12 +37,13 @@
 
         <div class= "row">
             <div class="col-md-6" class="form-group">
-                {!! Form::label('team_name', 'Team') !!}
-                <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="fa fa-chevron-down"></i>
-                </div>
-                {!! Form::select('team_id', $teams, Input::old('team_id'), array('class' => 'form-control')) !!}
+                {!! Form::label('date_hired', 'Date Hired') !!}
+            <div class="input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+            {!! Form::text('date_hired', Input::old('date_hired'), array('class' => 'form-control', 'id' => 'date_hired',
+            'placeholder' => 'Pick a date','required' => 'required' )) !!} 
             </div>
             </div>
 
@@ -56,18 +57,7 @@
             </div>
             </div>
         </div>
-<br>
-        <div class="form-group">
-        {!! Form::label('date_hired', 'Date Hired') !!}
-            <div class="input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                          </div>
-            {!! Form::text('date_hired', Input::old('date_hired'), array('class' => 'form-control', 'id' => 'date_hired',
-            'placeholder' => 'Pick a date','required' => 'required' )) !!} 
-            </div>
-        </div>
-
+        <br>
         <div class="row">
 
             <div class="col-md-6" class="form-group">

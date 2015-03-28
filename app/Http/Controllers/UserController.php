@@ -169,10 +169,8 @@ class UserController extends Controller {
 
 	public function editEmployee($id)
 	{
-
-		$teams = Team::lists('team_name','id');
 		$employee = User::find($id);
-		return View::make('users.editEmployee')->with('employee',$employee)->with('teams',$teams);
+		return View::make('users.editEmployee')->with('employee',$employee);
 	}
 
 	public function updateEmployee($id)
@@ -193,12 +191,67 @@ class UserController extends Controller {
         } 
         else {
         $employee = User::find($id);
-
-        $employee->team_id = Input::get('team_id');
-        $employee->role = Input::get('role');
+       	//$employee->role = Input::get('role');
         $employee->date_hired = Input::get('date_hired');
         $employee->sl_bal = Input::get('sl_bal');
         $employee->vl_bal = Input::get('vl_bal');
+
+        $input = Input::get('role');
+        $team =  Team::find($employee->team->id);
+
+        	if ($team->user->where('role','manager')->first())
+        	{
+        		if ($input == 'manager')
+        		{
+        			if ($employee->role == 'manager')
+        			{
+        				$employee->role = $input;
+	        			$employee->save();
+
+	        			Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
+       					return Redirect::to('admin/showemployees');
+        			}
+
+        			else
+        			{
+        				Session::flash('message', 'Manager role has already been taken.');
+        				return Redirect::to('admin/' . $id . '/editemployee');
+        			}
+        		}
+
+        		else
+        		{
+        			$employee->role = $input;
+	        		$employee->save();
+
+	        		Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
+        			return Redirect::to('admin/showemployees');
+        		}
+        	}
+
+        	else
+        	{
+        		if ($input == 'manager')
+        		{
+	        		$employee->role = $input;
+	        		$employee->save();
+
+	        		$team = Team::find($employee->team->id);
+		        	$team->manager_id = $employee->id;
+		        	$team->save();
+
+		        	Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
+        			return Redirect::to('admin/showemployees');
+	        	}
+	        	else
+	        	{
+	        		$employee->role = $input;
+	        		$employee->save();
+
+	        		Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
+        			return Redirect::to('admin/showemployees');
+	        	}
+        	} 
 
         $employee->save();
 
