@@ -11,9 +11,6 @@ class CreateTeamsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('manager_id')->unsigned();
-			$table->foreign('manager_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-
 			$table->string('team_name')->unique();
 			$table->string('team_code', 60)->unique();
 			$table->timestamps();
@@ -23,11 +20,7 @@ class CreateTeamsTable extends Migration {
 	public function down()
 	{
 		Schema::drop('teams');
-		Schema::table('teams', function($table)
-		{
-			$table->dropForeign('teams_manager_id_foreign');
-			$table->dropColumn('manager_id');
-		});
+		
 	}
 
 }
