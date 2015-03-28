@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth, View, Input, Session, Redirect, Validator;
 use App\User;
 use App\Leave;
+use App\Team;
 use Hash;
 
 class UserController extends Controller {
@@ -23,7 +24,8 @@ class UserController extends Controller {
 
 	public function indexManager()
 	{
-		return view('users.managerdash');
+		$team = Team::all();
+		return view('users.managerdash')->with('team',$team);
 	}
 
 	public function indexMember()
@@ -36,14 +38,7 @@ class UserController extends Controller {
 		$users = User::all();
         return View::make('users.members')->with('users', $users);
 	}
-
-	public function index()
-	{
-		//return View::make('users')->withUsers(User::all());
-		$users = User::all();
-        return View::make('users.index')->with('users', $users);
-	}
-
+	
 	public function create()
 	{
 		return View::make('users.create');
@@ -79,9 +74,9 @@ class UserController extends Controller {
 		return Redirect::to('users');
 	}
 
-	public function show($id)
+	public function show($username)
 	{
-		$user = Auth::getUser();
+		$user = Auth::user();
 		return view::make('users.indexprofile')->with('users', $user);
 	}
 
@@ -173,6 +168,7 @@ class UserController extends Controller {
 
 	public function editEmployee($id)
 	{
+
 		$employee = User::find($id);
 		return View::make('users.editEmployee')->with('employee',$employee);
 	}
@@ -184,6 +180,7 @@ class UserController extends Controller {
             'sl_bal' => 'required',
             'vl_bal' => 'required',
         );
+
 
         $validator = Validator::make(Input::all(), $rules);
 
@@ -204,6 +201,7 @@ class UserController extends Controller {
         return Redirect::to('admin/showemployees');
     	}
 	}
+
 
 
 }

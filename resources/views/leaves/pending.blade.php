@@ -1,33 +1,56 @@
 @extends('layouts.master')
 
 @section('title')
+    @if((Auth::user()->role) == 'manager')
+    Manager - Pending request(s)
+    @else
     User - Pending request(s)
+    @endif
+
 @stop
 
 @section('pagetitle')
     Pending Requests
 @stop
 
-@section('boxname')
-    Your Pending Request(s)
+@section('breadcrumbs')
+    @if((Auth::user()->role) == 'manager')
+    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+    @elseif((Auth::user()->role) == 'member')
+    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
+    @endif
+    <li class="active"><a href="">{!! Auth::user()->username !!}</a></li>
+    <li class="active"><a href="">Pending Requests</a></li>
 @stop
 
-@section('content')
-    @if (Session::has('message'))
-    <div class="alert alert-info">{!! Session::get('message') !!}</div>
-@endif
 
-<table class="table table-striped table-bordered">
+@section('content')
+<div class="box box-warning">
+
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+        @if ($errors->has())
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>        
+                @endforeach
+            </div>
+        @endif
+
+<table id="table" class="table table-striped table-bordered">
     <thead> 
         <tr>
-            <td>Type of Leave</td>
-            <td>From Date</td>
-            <td>To Date</td>
-            <td>Duration</td>
-            <td>Note</td>
-            <td>Date Created</td>
-            <td>Last Updated</td>
-            <td>Actions</td>
+            <th>Type of Leave</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Duration</th>
+            <th>Note</th>
+            <th>Date Created</th>
+            <th>Last Updated</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -56,4 +79,6 @@
     @endforeach
     </tbody>
 </table>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop

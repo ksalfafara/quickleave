@@ -5,23 +5,30 @@
 @stop
 
 @section('pagetitle')
-    Edit Team Roles
-@stop
-	
-@section('boxname')
-	Edit {!! $member->firstname !!}'s Role
+    Edit {!! $member->firstname !!}'s Role
 @stop
 
-@section('content') 
+@section('breadcrumbs')
+  <li><a href="/admin"><i class="fa fa-home"></i> Admin Dashboard</a></li>
+  <li><a href="">{!! $member->firstname !!}</a></li>
+  <li class="active"><a href="">Edit Role</a></li>
+@stop
 
-    @if ($errors->has())
-        <div class="alert alert-danger">
-          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
-            @foreach ($errors->all() as $error)
-                {{ $error }}<br>        
-            @endforeach
-        </div>
-    @endif
+@section('content')
+<div class="box box-warning">
+
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+        @if ($errors->has())
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>        
+                @endforeach
+            </div>
+        @endif
 
     {!! Form::model($member, array('route' => array('teams.updateRole', $member->id), 'method' => 'PUT')) !!}
 
@@ -34,4 +41,6 @@
 
     {!! Form::close() !!}
 
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop

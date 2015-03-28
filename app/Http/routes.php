@@ -17,16 +17,19 @@ Route::controllers([
 ]);
 
 //Landing Page
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function(){
+	return View::make('welcome');
+});
 
 //User Dashboards
 Route::get('admin', 'UserController@indexAdmin');
 Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
 Route::get('manager/members', 'UserController@showMembers');
-Route::get('user/profile/{username}','UserController@show');
+Route::get('approved', 'LeaveController@showApproved');
 
 //User Profile
+Route::get('user/profile/{username}','UserController@show');
 Route::get('user/{id}/edit', 'UserController@edit');
 Route::put('user/{id}/update', ['uses' => 'UserController@update', 'as' => 'users.update']);
 Route::get('user/{id}/changepassword', 'UserController@changePass');
@@ -58,6 +61,7 @@ Route::get('leaves/{id}/edit', 'LeaveController@edit');
 Route::put('leaves/{id}/update', ['uses' => 'LeaveController@update', 'as' => 'leaves.update']);
 Route::delete('leaves/{id}/delete', 'LeaveController@destroy');
 
+//For Manager
 Route::get('leaves/memberspending', 'LeaveController@membersPending');
 Route::get('leaves/pending/{id}/edit', 'LeaveController@editPending');
 Route::put('leaves/pending/{id}/update', ['uses' => 'LeaveController@updatePending', 'as' => 'leaves.updatePending']);

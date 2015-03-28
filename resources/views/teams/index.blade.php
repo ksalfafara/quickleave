@@ -8,21 +8,26 @@
     View all Teams
 @stop
 
-@section('boxname')
-    Displaying all 
+@section('breadcrumbs')
+  <li><a href="/admin"><i class="fa fa-home"></i> Admin Dashboard</a></li>
+  <li class="active"><a href="">All Teams</a></li>
 @stop
 
 @section('content')
-    @if (Session::has('message'))
-    <div class="alert alert-info">{!! Session::get('message') !!}</div>
-    @endif
+<div class="box box-warning">
 
-<table id="teams" class="table table-bordered table-hover">
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+     
+
+<table id="table" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <td>Team Name</td>
-            <td>Team Code</td>
-            <td>Actions</td>
+            <th>Team Name</th>
+            <th>Team Code</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -49,4 +54,6 @@
     @endforeach
     </tbody>
 </table>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop

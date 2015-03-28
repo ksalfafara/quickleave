@@ -5,24 +5,33 @@
 @stop
 
 @section('pagetitle')
-    Edit a Leave Request
+    Edit your <b>{!! $leave->type !!}</b> request from <b>{!! date("M d, Y",strtotime($leave->from_dt)) !!}</b> to <b>{!! date("M d, Y",strtotime($leave->to_dt)) !!}</b>
 @stop
 
-@section('boxname')
-    Edit Leave Request #{{ $leave->id }}
+@section('breadcrumbs')
+    @if((Auth::user()->role) == 'manager')
+    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+    @elseif((Auth::user()->role) == 'member')
+    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
+    @endif
+    <li class="active"><a href="">Edit Request</a></li>
 @stop
 
 @section('content')
- <!-- if there are creation errors, they will show here -->
-    @if ($errors->has())
-        <div class="alert alert-danger">
-          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
-            @foreach ($errors->all() as $error)
-                {{ $error }}<br>        
-            @endforeach
-        </div>
-    @endif
+<div class="box box-warning">
 
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+        @if ($errors->has())
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>        
+                @endforeach
+            </div>
+        @endif
 
 {!! Form::model($leave, array('route' => array('leaves.update', $leave->id), 'method' => 'PUT')) !!}
 
@@ -54,6 +63,10 @@
 {!! Form::close() !!}
 
 </div>
+
+
+ </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop
 
     

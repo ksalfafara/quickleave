@@ -7,53 +7,53 @@
 @section('pagetitle')
     Change Password
 @stop
-    
-@section('boxname')
-    {!! Auth::user()->username !!}'s Password
+
+@section('breadcrumbs')
+    <li><a href=""><i class="fa fa-user"></i> {!! Auth::user()->username !!}</a></li>
+    <li class="active"><a href="">Change Password</a></li>
 @stop
 
-@section('right')
+@section('content')
 
-@stop
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
 
-@section('content') 
-    @if (Session::has('message'))
-        <div class="alert alert-danger">{!! Session::get('message') !!}</div>
-    @endif
+<div class="row">
 
-    @if ($errors->has())
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                {{ $error }}<br>        
-            @endforeach
-        </div>
-    @endif
-
-    {!! Form::model($user, array('route' => array('users.updatePass', $user->id), 'method' => 'PUT')) !!}
-
-    <div class="col-md-6">
-
-            <div class="box-header">
-                <i class="fa fa-lock"></i>
-                <h3 class="box-title">Password</h3>
-            </div><!-- /.box-header -->
-
+    <section class="col-lg-5 connectedSortable">
+        <div class="box box-solid ">
             <div class="box-body">
-                <dl class="dl-horizontal">
-                    <dt>Old Password:</dt>
-                    <dd>{!! Form::password('old_password', array('class' => 'form-control', 'Placeholder' => 'Input old password')) !!} </dd> <br>
-                    <dt>New Password:</dt>
-                    <dd>{!! Form::password('new_password', array('class' => 'form-control', 'Placeholder' => 'Input new password')) !!} </dd> <br>
-                    <dt>Re-type Password:</dt>
+                <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
+            </div>
+        </div>
+    </section>
+
+    <section class="col-lg-5 connectedSortable">
+        <div class="box box-warning ">
+            <div class="box-body">
+                <br>
+                {!! Form::model($user, array('route' => array('users.updatePass', $user->id), 'method' => 'PUT')) !!}
+                    {!! Form::label('old_password', 'Old Password:') !!}
+                    {!! Form::password('old_password', array('class' => 'form-control', 'Placeholder' => 'Input old password')) !!} <br>
+                    {!! Form::label('new_password', 'New Password:') !!}
+                    {!! Form::password('new_password', array('class' => 'form-control', 'Placeholder' => 'Input new password')) !!} <br>
+                    {!! Form::label('retype_password', 'Retype Password:') !!}
                     <dd>{!! Form::password('retype_password', array('class' => 'form-control', 'Placeholder' => 'Retype password')) !!} </dd> 
-                </dl>
             </div><!-- /.box-body -->
+            
+
+            <div class="box-footer">
+                  <div class="row">
+                    <center> {!! Form::submit('Save changes', array('class' => 'btn btn-primary')) !!} </center>
+                  </div><!-- /.row -->
+            </div>
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+    </section>
 
 
-           <center> {!! Form::submit('Save changes', array('class' => 'btn btn-primary')) !!} </center>
-    </div><!-- ./col -->
-       
-
-    {!! Form::close() !!}
-
+</div><!-- row -->
 @stop

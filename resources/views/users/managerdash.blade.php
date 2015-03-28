@@ -5,12 +5,15 @@
 @stop
 
 @section('pagetitle')
-    Dashboard
+    Dashboard 
+    <small>Page</small>
 @stop
 
-@section('boxname')
-    Hi 
+@section('breadcrumbs')
+  <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+  <li class="active"><a href="/manager">Manager Dashboard</a></li>
 @stop
+
 
 @section('content')
 <!-- Small boxes (Stat box) -->
@@ -19,52 +22,58 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h3>150</h3>
-                  <p>New Orders</p>
+                  <h3>{!! Auth::user()->sl_bal !!}<sup style="font-size: 20px"> SL </sup></h3>
+                  <p>Available Balance</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fa fa-bed"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-                  <p>Bounce Rate</p>
+                  <h3>{!! Auth::user()->vl_bal !!}<sup style="font-size: 20px"> VL </sup></h3>
+                  <p>Available Balance</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fa fa-car"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>44</h3>
-                  <p>User Registrations</p>
+                  <h3>
+                    {!! DB::table('users')->where('team_id', '=', Auth::user()->team->id)->count()!!}
+                    <sup style="font-size: 20px"> members </sup>
+                  </h3>
+                  <p>In your team</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fa fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>65</h3>
-                  <p>Unique Visitors</p>
+                  <h3>         
+                    12
+                    <sup style="font-size: 20px"> requests </sup>
+                  </h3>
+                  <p>Pending Request</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fa fa-pencil-square-o"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
           </div><!-- /.row -->

@@ -5,36 +5,53 @@
 @stop
 
 @section('pagetitle')
-    View Leave Request(s)
+    Pending Requests from <b>{!! Auth::user()->team->team_name !!}</b>'s Members
 @stop
 
-@section('boxname')
-    Your Members' Leave Request(s)
+@section('breadcrumbs')
+    @if((Auth::user()->role) == 'manager')
+    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+    @elseif((Auth::user()->role) == 'member')
+    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
+    @endif
+    <li class="active"><a href="">{!! Auth::user()->team->team_name !!}</a></li>
+    <li class="active"><a href="">Pending Requests</a></li>
 @stop
 
 @section('content')
-    @if (Session::has('message'))
-    <div class="alert alert-info">{!! Session::get('message') !!}</div>
-@endif
+<div class="box box-warning">
 
-<table id="pending" class="table table-bordered table-hover">
+    <div class="box-body table-responsive">
+        @if (Session::has('message'))
+        <div class="alert alert-info">{!! Session::get('message') !!}</div>
+        @endif
+        @if ($errors->has())
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>        
+                @endforeach
+            </div>
+        @endif
+
+<table id="table" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <td>User</td>
-            <td>Type of Leave</td>
-            <td>From Date</td>
-            <td>To Date</td>
-            <td>Duration</td>
-            <td>Note</td>
-            <td>Date Created</td>
-            <td>Status</td>
-            <td>Actions</td>
+            <th>User</th>
+            <th>Type of Leave</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Duration</th>
+            <th>Note</th>
+            <th>Date Created</th>
+            <th>Status</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
     @foreach($leaves as $leave)
     @if(($leave->status) === 'Pending')
-        @if((Auth::user()->team->team_name) === $leave->user->team->team_name)
+        @if((Auth::user()->team->team_name) == $leave->user->team->team_name && ($leave->user->role <> 'manager'))
         <tr>
             <td>{!! $leave->user->username!!}</td>
             <td>{!! $leave->type !!}</td>
@@ -53,4 +70,6 @@
     @endforeach
     </tbody>
 </table>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 @stop

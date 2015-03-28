@@ -4,8 +4,14 @@
     Admin Dashboard
 @stop
 
+@section('breadcrumbs')
+  <li><a href="/admin"><i class="fa fa-home"></i> Home</a></li>
+  <li class="active"><a href="/admin">Admin Dashboard</a></li>
+@stop
+
 @section('pagetitle')
-    Dashboard
+    Dashboard 
+    <small>Page</small>
 @stop
 
 @section('content')
@@ -16,51 +22,51 @@
               <div class="small-box bg-aqua">
                 <div class="inner">
                   <h3>{!! time() !!}</h3>
-                  <p>New Orders</p>
+                  <p>System Time</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fa fa-clock-o"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-                  <p>Bounce Rate</p>
+                  <h3>{!! DB::table('teams')->select('id')->distinct()->count() !!} <sup style="font-size: 20px">Teams</sup></h3>
+                  <p>Created By You</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="fa fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>44</h3>
-                  <p>User Registrations</p>
+                  <h3>{!! DB::table('users')->select('id')->distinct()->count() !!} <sup style="font-size: 20px">Users</sup></h3>
+                  <p>Registered Employees</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3>65</h3>
-                  <p>Unique Visitors</p>
+                  <h3>{!! DB::table('leaves')->select('status')->where('status', 'approved')->distinct()->count() !!} <sup style="font-size: 20px">Requests</sup></h3>
+                  <p>Leaves Approved</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fa fa-pencil-square-o"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
           </div><!-- /.row -->

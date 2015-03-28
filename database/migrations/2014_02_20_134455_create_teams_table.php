@@ -10,6 +10,7 @@ class CreateTeamsTable extends Migration {
 		Schema::create('teams', function(Blueprint $table)
 		{
 			$table->increments('id');
+
 			$table->string('team_name')->unique();
 			$table->string('team_code', 60)->unique();
 			$table->timestamps();
@@ -19,6 +20,7 @@ class CreateTeamsTable extends Migration {
 	public function down()
 	{
 		Schema::drop('teams');
+		
 	}
 
 }
