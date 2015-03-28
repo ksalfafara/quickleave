@@ -80,7 +80,7 @@
                     @if((Auth::user()->role) == 'manager')
                         <dd>You are the manager of the team</dd>
                     @else
-                        <dd>No association yet! FIX!</dd>
+                        <dd>{!! Auth::user()->team->manager_id !!}</dd>
                     @endif
                     
                 </dl>

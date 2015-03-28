@@ -26,7 +26,7 @@
       
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+        <a href="index2.html" class="logo"><b>QUICKLEAVE</b></a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -289,6 +289,23 @@
       $(".sidebar-menu").find(".active").removeClass("active");
       $(this).parent().addClass("active");
       });
+    </script>
+
+    <script type="text/javascript">
+    function formatDate(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      var strTime = hours + ':' + minutes + ' ' + ampm;
+      return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
+    }
+
+      var d = new Date();
+      var e = formatDate(d);
+      document.getElementById("datetime").innerHTML = e;
     </script>
 
   </body>

@@ -63,7 +63,7 @@
             </td>
             
             <td>
-                <a class="btn btn-small btn-info" href="{{ URL::to('teams/' . $member->id . '/editrole') }}">Edit Role</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('admin/' . $member->id . '/editemployee') }}">Edit Employee Info</a>
             </td>
         </tr>
     @endforeach

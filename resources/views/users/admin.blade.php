@@ -19,30 +19,26 @@
           <div class="row">
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-aqua">
+              <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>{!! time() !!}</h3>
+                  <h3 id="datetime"></h3>
                   <p>System Time</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-clock-o"></i>
                 </div>
-                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-                  <h3>{!! DB::table('teams')->select('id')->distinct()->count() !!} <sup style="font-size: 20px">Teams</sup></h3>
-                  <p>Created By You</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-users"></i>
-                </div>
-                <a class="small-box-footer">&nbsp;</a>
-              </div>
-            </div><!-- ./col -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">{!! DB::table('teams')->select('id')->distinct()->count() !!} <sup style="font-size: 20px">Teams</sup></span>
+                  <span class="info-box-number">Created By You</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+            
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-yellow">
