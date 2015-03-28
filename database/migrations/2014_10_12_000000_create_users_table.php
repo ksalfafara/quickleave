@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
@@ -12,9 +13,9 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 
 			$table->integer('team_id')->unsigned()->nullable();
-			$table->foreign('team_id')->references('id')->on('teams')
-				->onUpdate('cascade')
-				->onDelete('cascade');
+			$table->foreign('team_id')->references('id')->on('teams')->onUpdate('cascade')->onDelete('cascade');
+			$table->integer('manager_id')->unsigned()->nullable();
+			$table->foreign('manager_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->string('username')->unique();
 			$table->string('password', 60);
@@ -35,8 +36,8 @@ class CreateUsersTable extends Migration {
 		Schema::drop('users');
 		Schema::table('users', function($table)
 		{
-			$table->dropForeign('users_team_id_foreign');
-			$table->dropColumn('team_id');
+			$table->dropForeign('users_team_id_foreign','users_manager_id_foreign');
+			$table->dropColumn('team_id','manager_id');
 		});
 	}
 

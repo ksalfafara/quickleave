@@ -93,34 +93,6 @@ class TeamController extends Controller {
 		return Redirect::to('teams');
 	}
 
-	public function editRole($id)
-	{
-		$member = User::find($id);
-		return View::make('teams.editRole')->with('member', $member);
-	}
-
-	public function updateRole($id)
-	{
-    	$rules = array(
-            'role' => 'required'
-        );
-
-        $validator = Validator::make(Input::all(), $rules);
-
-        if ($validator->fails()) {
-            return Redirect::to('teams/' . $id . '/editrole')
-                ->withErrors($validator);
-        } else {
-        $member = User::find($id);
-        $member->role = Input::get('role');
-        $member->save();
-
-        Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
-
-       	return Redirect::to('teams');
-    	}
-	}
-
 	public function destroyMember($id)
 	{
 		$member = User::find($id);
