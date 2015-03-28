@@ -24,8 +24,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('App\Leave');
 	}
 
+	public function manager()
+	{
+		if ($this->manager_id !== null && $this->manager_id > 0)
+		{
+        	return $this->belongs_to('User','manager_id');
+    	} 
+    	else
+    	{
+        	return null;
+    	}
+	}
+
 	public function member() {
-		return $this->hasMany('App\User', 'user_parent', 'id'); //return $this->hasMany('App\Comment', 'foreign_key', 'local_key');
+		return $this->hasMany('App\User','manager_id');
 	}
 
 }
