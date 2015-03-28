@@ -166,19 +166,22 @@ class UserController extends Controller {
 		return View::make('users.showEmployees')->with('employees', $employees); 
 	}
 
+
 	public function editEmployee($id)
 	{
 
+		$teams = Team::lists('team_name','id');
 		$employee = User::find($id);
-		return View::make('users.editEmployee')->with('employee',$employee);
+		return View::make('users.editEmployee')->with('employee',$employee)->with('teams',$teams);
 	}
 
 	public function updateEmployee($id)
 	{
         $rules = array(
-        	'date_hired' => 'required',
-            'sl_bal' => 'required',
-            'vl_bal' => 'required',
+        	'role'			=> 'required',
+        	'date_hired' 	=> 'required',
+            'sl_bal' 		=> 'required',
+            'vl_bal' 		=> 'required'
         );
 
 
@@ -191,6 +194,8 @@ class UserController extends Controller {
         else {
         $employee = User::find($id);
 
+        $employee->team_id = Input::get('team_id');
+        $employee->role = Input::get('role');
         $employee->date_hired = Input::get('date_hired');
         $employee->sl_bal = Input::get('sl_bal');
         $employee->vl_bal = Input::get('vl_bal');
