@@ -112,12 +112,62 @@ class TeamController extends Controller {
                 ->withErrors($validator);
         } else {
         $member = User::find($id);
-        $member->role = Input::get('role');
-        $member->save();
+        $input = Input::get('role');
+        $team =  Team::find($member->team->id);
 
-        Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
+        	if ($team->user->where('role','manager')->first())
+        	{
+        		if ($input == 'manager')
+        		{
+        			if ($member->role == 'manager')
+        			{
+        				$member->role = $input;
+	        			$member->save();
 
-       	return Redirect::to('teams');
+	        			Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
+       					return Redirect::to('teams/' . $team->id . '/showmembers');
+        			}
+
+        			else
+        			{
+        				Session::flash('message', 'Manager role has already been taken.');
+        				return Redirect::to('teams/' . $id . '/editrole');
+        			}
+        		}
+
+        		else
+        		{
+        			$member->role = $input;
+	        		$member->save();
+
+	        		Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
+       				return Redirect::to('teams/' . $team->id . '/showmembers');
+        		}
+        	}
+
+        	else
+        	{
+        		if ($input == 'manager')
+        		{
+	        		$member->role = $input;
+	        		$member->save();
+
+	        		$team = Team::find($member->team->id);
+		        	$team->manager_id = $member->id;
+		        	$team->save();
+
+		        	Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
+       				return Redirect::to('teams/' . $team->id . '/showmembers');
+	        	}
+	        	else
+	        	{
+	        		$member->role = $input;
+	        		$member->save();
+
+	        		Session::flash('message', 'Successfully updated '.$member->firstname."'s role!");
+       				return Redirect::to('teams/' . $team->id . '/showmembers');
+	        	}
+        	}        
     	}
 	}
 
