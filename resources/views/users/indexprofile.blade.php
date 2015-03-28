@@ -22,7 +22,7 @@
 
 <div class="row">
 
-    <section class="col-lg-5 connectedSortable">
+    <section class="col-lg-3 connectedSortable">
         <div class="box box-solid ">
             <div class="box-body">
                 <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
@@ -46,6 +46,8 @@
                     <dd>{!! Auth::user()->firstname !!}</dd>
                     <dt>Last Name:</dt>
                     <dd>{!! Auth::user()->lastname !!}</dd>
+                    <dt>Date Hired:</dt>
+                    <dd>{!! Auth::user()->date_hired !!}</dd>
                     
                 </dl>
             </div><!-- /.box-body -->

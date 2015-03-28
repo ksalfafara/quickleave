@@ -11,11 +11,9 @@ class Team extends Model {
 	public function user() {
 		return $this->hasMany('App\User'); //->where('user_parent', 0);
 	}
-
-	public function leave() {
-	//	return $this->hasManyThrough('Leaves', 'Users', 'team_id', 'user_id');
-		return $this->hasMany('App/Leave');
-	}
 	 
+	public function manager() {
+		return $this->hasOne('App\User', 'user_id', 'manager_id'); //user_id = FK manager_id = LOCAL KEY
+	}
 
 }

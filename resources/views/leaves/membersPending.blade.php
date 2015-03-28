@@ -51,7 +51,7 @@
     <tbody>
     @foreach($leaves as $leave)
     @if(($leave->status) === 'Pending')
-        @if((Auth::user()->team->team_name) === $leave->user->team->team_name)
+        @if((Auth::user()->team->team_name) == $leave->user->team->team_name && ($leave->user->role <> 'manager'))
         <tr>
             <td>{!! $leave->user->username!!}</td>
             <td>{!! $leave->type !!}</td>
