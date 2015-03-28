@@ -6,42 +6,57 @@
     Create a Team
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('boxname'); ?>
-    Create a team and designate the code to the members
+<?php $__env->startSection('breadcrumbs'); ?>
+  <li><a href="/admin"><i class="fa fa-home"></i> Admin Dashboard</a></li>
+  <li class="active"><a href="">Create Team</a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <?php if($errors->has()): ?>
-        <div class="alert alert-danger">
-          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
-            <?php foreach($errors->all() as $error): ?>
-                <?php echo e($error); ?><br>        
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+<div class="box box-warning">
+    <div class="box-header with-border">
+            Create a team and designate the code to the members
+    <div class="box-tools pull right"></div>
+    </div>
+
+    <div class="box-body table-responsive">
+       
+        <?php if(Session::has('message')): ?>
+        <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
+        <?php endif; ?>
+        <?php if($errors->has()): ?>
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                <?php foreach($errors->all() as $error): ?>
+                    <?php echo e($error); ?><br>        
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
 
-    <?php echo Form::open(array('url' => 'teams')); ?>
+        <?php echo Form::open(array('url' => 'teams')); ?>
 
 
-        <div class="form-group">
-            <?php echo Form::label('team_name', 'Team Name'); ?>
+            <div class="form-group">
+                <?php echo Form::label('team_name', 'Team Name'); ?>
 
-            <?php echo Form::text('team_name', Input::old('team_name'), array('class' => 'form-control')); ?>
+                <?php echo Form::text('team_name', Input::old('team_name'), array('class' => 'form-control')); ?>
 
-        </div>
+            </div>
 
-        <div class="form-group">
-            <?php echo Form::label('team_code', 'Team Code'); ?>
+            <div class="form-group">
+                <?php echo Form::label('team_code', 'Team Code'); ?>
 
-            <?php echo Form::text('team_code', Input::old('team_code'), array('class' => 'form-control')); ?>
+                <?php echo Form::text('team_code', Input::old('team_code'), array('class' => 'form-control')); ?>
 
-        </div>
+            </div>
 
-        <?php echo Form::submit('Create the Team', array('class' => 'btn btn-primary')); ?>
+            <?php echo Form::submit('Create the Team', array('class' => 'btn btn-primary')); ?>
 
 
-    <?php echo Form::close(); ?>
+        <?php echo Form::close(); ?>
 
-<?php $__env->stopSection(); ?>
+ 
+  </div><!-- /.box-body -->
+          </div><!-- /.box -->
+             <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
