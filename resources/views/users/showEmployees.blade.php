@@ -41,7 +41,11 @@
         <tr>
             <td>{!! $employee->team->team_name !!}</td>
             <td>{!! $employee->firstname . ' ' . $employee->lastname !!}</td>
-            <td>{!! date("M d, Y",strtotime($employee->date_hired)) !!}</td>
+            @if($employee->date_hired == null)
+                <td>No specified date hired</td>
+            @else
+                <td>{!! date("M d, Y",strtotime($employee->date_hired)) !!}</td>
+            @endif
             <td>{!! $employee->sl_bal !!}</td>
             <td>{!! $employee->vl_bal !!}</td>
             <td>
@@ -49,8 +53,10 @@
                     <button class="btn btn-warning btn-xs">Manager</button>
                 @elseif(($employee->role) == 'member')
                     <button class="btn btn-success btn-xs">Member</button>
-                @else
+                @elseif(($employee->role) == 'admin')
                     <button class="btn btn-danger btn-xs">Admin</button>
+                @elseif(($employee->role) == null)
+                    <button class="btn btn-danger btn-xs">No specified role</button>
                 @endif
             </td>
             <!--edit and delete buttons -->

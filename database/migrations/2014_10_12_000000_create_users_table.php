@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->integer('sl_bal')->default(5)->nullable();
 			$table->integer('vl_bal')->default(7)->nullable();
-			$table->string('role')->default('member')->nullable();		
+			$table->string('role')->nullable();		
 			$table->date('date_hired')->nullable();
 			$table->string('profile_img');
 			$table->rememberToken();
