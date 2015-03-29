@@ -79,8 +79,12 @@
                         <dt>Manager:</dt>
                     @if((Auth::user()->role) == 'manager')
                         <dd>You are the manager of the team</dd>
-                    @else
-                        <dd>{!! Auth::user()->manager->firstname !!}</dd>
+                    @elseif ((Auth::user()->role) == 'member')
+                        @if($team_manager->first())
+                            <dd>{!! Auth::user()->manager->firstname !!}</dd>
+                        @else
+                            <dd>None</dd>
+                        @endif
                     @endif
                     
                 </dl>

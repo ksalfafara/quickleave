@@ -77,9 +77,10 @@ class UserController extends Controller {
 
 	public function show($username)
 	{
-		$user = Auth::user();
-		
-		return view::make('users.indexprofile')->with('users', $user);
+		$employee = User::find(Auth::user()->id);
+		$team = Team::find($employee->team->id);
+        $team_manager = $team->user->where('role','manager');
+		return view::make('users.indexprofile')->with('team_manager',$team_manager);
 	}
 
 	public function edit($id)
