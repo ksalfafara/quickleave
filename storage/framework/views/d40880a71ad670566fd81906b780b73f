@@ -1,31 +1,45 @@
 <?php $__env->startSection('title'); ?>
-    User - All Request(s)
+     <?php if((Auth::user()->role) == 'manager'): ?>
+    Manager - All request(s)
+    <?php else: ?>
+    User - All request(s)
+    <?php endif; ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('pagetitle'); ?>
     All Approved/Rejected Leave Request(s)
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('boxname'); ?>
-    All Approved/Rejected Leave Request(s)
+<?php $__env->startSection('breadcrumbs'); ?>
+    <?php if((Auth::user()->role) == 'manager'): ?>
+    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+    <?php elseif((Auth::user()->role) == 'member'): ?>
+    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
+    <?php endif; ?>
+    <li class="active"><a href=""><?php echo Auth::user()->username; ?></a></li>
+    <li class="active"><a href="">All Request</a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <?php if(Session::has('message')): ?>
-    <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
-<?php endif; ?>
+<div class="box box-warning">
 
-<table id="allrequest" class="table table-bordered table-hover">
+    <div class="box-body table-responsive">
+        <?php if(Session::has('message')): ?>
+        <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
+        <?php endif; ?>
+        
+
+<table id="table" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <td>Type of Leave</td>
-            <td>From Date</td>
-            <td>To Date</td>
-            <td>Duration</td>
-            <td>Note</td>
-            <td>Remarks</td>
-            <td>Status</td>
-            <td>Date & Time Approved</td>
+            <th>Type of Leave</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Duration</th>
+            <th>Note</th>
+            <th>Remarks</th>
+            <th>Status</th>
+            <th>Date & Time Approved</th>
         </tr>
     </thead>
     <tbody>
@@ -39,7 +53,11 @@
             <td><?php echo $value->duration; ?></td>
             <td><?php echo $value->note; ?></td>
             <td><?php echo $value->remark; ?></td>
-            <td><?php echo $value->status; ?></td>
+            <td><?php if(($value->status) === 'Approved'): ?>
+                    <button class="btn btn-block btn-info">Approved</button>
+                <?php else: ?>
+                    <button class="btn btn-block btn-danger">Rejected</button>
+                <?php endif; ?></td>
             <td><?php echo date("M d, Y - H:i",strtotime($value->updated_at)); ?></td>
         </tr>
         <?php endif; ?>
@@ -47,6 +65,9 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

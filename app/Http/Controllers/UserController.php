@@ -197,20 +197,29 @@ class UserController extends Controller {
         $employee->vl_bal = Input::get('vl_bal');
 
         $input = Input::get('role');
-        $team =  Team::find($employee->team->id);
+        $team = Team::find($employee->team->id);
+        $team_manager = $team->user->where('role','manager');
 
-        	if ($team->user->where('role','manager')->first())
+        	if ($team_manager->first())
         	{
         		if ($input == 'manager')
         		{
         			if ($employee->role == 'manager')
         			{
         				$employee->role = $input;
-	        			$employee->save();
+        				$employee->manager_id = null;
 
-	        			Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
-       					return Redirect::to('admin/showemployees');
-        			}
+        				$team = Team::find($employee->team->id);
+			        	$team->manager_id = $employee->id;
+			        	$team->save();
+        				
+				        $all_members = $team->user->where('role','member');
+				        foreach ($all_members as $value)
+				        {
+				        	$value->manager_id = $employee->id;
+				        	$value->save();
+				       	}
+	       			}
 
         			else
         			{
@@ -221,11 +230,35 @@ class UserController extends Controller {
 
         		else
         		{
-        			$employee->role = $input;
-	        		$employee->save();
+        			if ($employee->role == 'manager')	//making manager the member
+        			{
+        				$employee->role = $input;
+        				$employee->manager_id = null;
 
-	        		Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
-        			return Redirect::to('admin/showemployees');
+        				$team = Team::find($employee->team->id);
+			        	$team->manager_id = null;
+			        	$team->save();
+
+			        	$all_members = $team->user->where('role','member');
+				        foreach ($all_members as $value)
+				        {
+				        	$value->manager_id = null;
+				        	$value->save();
+				       	}    				
+	       			}
+
+        			else 	//retain member role
+        			{
+	        			$employee->role = $input;
+	        			$employee->manager_id = $employee->team->manager_id;
+
+	        			$all_members = $team->user->where('role','member');
+				        foreach ($all_members as $value)
+				        {
+				        	$value->manager_id = $employee->team->manager_id;
+				        	$value->save();
+				       	}
+        			}
         		}
         	}
 
@@ -233,25 +266,40 @@ class UserController extends Controller {
         	{
         		if ($input == 'manager')
         		{
-	        		$employee->role = $input;
-	        		$employee->save();
+		        	$employee->role = $input;
+		        	$employee->manager_id = null;
+		        	$employee->save();
 
-	        		$team = Team::find($employee->team->id);
-		        	$team->manager_id = $employee->id;
-		        	$team->save();
+		        	$team = Team::find($employee->team->id);
+			        $team->manager_id = $employee->id;
+			        $team->save();
 
-		        	Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
-        			return Redirect::to('admin/showemployees');
+		        	$all_members = $team->user->where('role','member');
+					        
+					foreach ($all_members as $value)
+					{
+				      	$value->manager_id = $employee->id;
+				       	$value->save();	        	
+			     	}
 	        	}
 	        	else
 	        	{
 	        		$employee->role = $input;
-	        		$employee->save();
+		        	$employee->manager_id = null;
 
-	        		Session::flash('message', 'Successfully updated '.$employee->firstname."'s information!");
-        			return Redirect::to('admin/showemployees');
+		        	$team = Team::find($employee->team->id);
+			        $team->manager_id = null;
+			        $team->save();
+
+		        	$all_members = $team->user->where('role','member');
+				        
+				    foreach ($all_members as $value)
+				    {
+				       	$value->manager_id = null;
+				       	$value->save();	        	
+			     	}   
 	        	}
-        	} 
+		   	}
 
         $employee->save();
 
@@ -259,7 +307,4 @@ class UserController extends Controller {
         return Redirect::to('admin/showemployees');
     	}
 	}
-
-
-
 }
