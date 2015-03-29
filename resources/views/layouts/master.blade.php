@@ -255,7 +255,7 @@
     <script>
         $('#from_dt').datepicker(
             {
-                format: "yyyy/mm/dd",
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 todayHighlight: true,
                 daysOfWeekDisabled: "0",
@@ -263,7 +263,7 @@
             });
         $('#to_dt').datepicker(
             {
-                format: "yyyy/mm/dd",
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 todayHighlight: true,
                 daysOfWeekDisabled: "0",
@@ -271,7 +271,7 @@
             });
         $('#date_hired').datepicker(
             {
-                format: "yyyy/mm/dd",
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 todayHighlight: true,
                 daysOfWeekDisabled: "0",
