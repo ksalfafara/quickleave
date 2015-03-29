@@ -55,7 +55,7 @@
     </thead>
     <tbody>
     @foreach($leaves as $leave)
-    @if(($leave->status) == 'Pending')
+    @if(($leave->status) == 'pending')
         @if((Auth::user()->id) == $leave->user->id)
         <tr>
             <td>{!! $leave->type !!}</td>

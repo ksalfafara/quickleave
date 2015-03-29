@@ -25,7 +25,7 @@ Route::get('/', function(){
 Route::get('admin', 'UserController@indexAdmin');
 Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
-Route::get('manager/members', 'UserController@showMembers');
+Route::get('manager/{manager_id}/members', 'UserController@showMembers');
 Route::get('approved', 'LeaveController@showApproved');
 
 //User Profile
@@ -62,7 +62,7 @@ Route::put('leaves/{id}/update', ['uses' => 'LeaveController@update', 'as' => 'l
 Route::delete('leaves/{id}/delete', 'LeaveController@destroy');
 
 //For Manager
-Route::get('leaves/memberspending', 'LeaveController@membersPending');
+Route::get('leaves/{team_id}/memberspending', 'LeaveController@membersPending');
 Route::get('leaves/pending/{id}/edit', 'LeaveController@editPending');
 Route::put('leaves/pending/{id}/update', ['uses' => 'LeaveController@updatePending', 'as' => 'leaves.updatePending']);
 Route::get('leaves/history', 'LeaveController@showHistory');

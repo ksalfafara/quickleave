@@ -65,7 +65,7 @@
               <div class="small-box bg-red">
                 <div class="inner">
                   <h3>         
-                    12
+                    {{ $team->leaves->where('status','pending')->count() }}
                     <sup style="font-size: 20px"> requests </sup>
                   </h3>
                   <p>Pending Request</p>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Leave;
 use App\User;
+use App\Team;
 use Auth, View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class LeaveController extends Controller {
@@ -13,6 +14,12 @@ class LeaveController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth'); 
+
+        $manager = User::find(Auth::id());
+        View::share('manager', $manager);
+        
+        $team = Team::find(Auth::user()->team->id);
+        View::share('team', $team);
 	}
 
 	public function index()
@@ -172,15 +179,19 @@ class LeaveController extends Controller {
 		return Redirect::to('leaves/pending');
 	}
 
-    public function membersPending()
+    public function membersPending($team_id)
     {
-        $leaves = Leave::all();
-        return View::make('leaves.membersPending')->with('leaves', $leaves);
+        $team = Team::find($team_id);
+        return View::make('leaves.membersPending')->with('team', $team);
     }
 
     public function editPending($id)
     {
         $leave = Leave::find($id);
+
+        $team = Team::find(Auth::user()->team->id);
+        //View::share('team', $team);
+
         return View::make('leaves.editPending')->with('leave',$leave);
     }
 
@@ -223,8 +234,11 @@ class LeaveController extends Controller {
         
         $leave->save();
 
+        $team = Team::find(Auth::user()->team->id);
+        //View::share('team', $team);
+
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
-        return Redirect::to('leaves/memberspending');
+        return Redirect::to('leaves/ '. $team->id .'/memberspending');
         }
     }
 

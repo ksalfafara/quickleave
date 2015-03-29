@@ -6,26 +6,35 @@
     File a request for leave
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('boxname'); ?>
-	Fill out the form
+<?php $__env->startSection('breadcrumbs'); ?>
+    <?php if((Auth::user()->role) == 'manager'): ?>
+    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
+    <?php elseif((Auth::user()->role) == 'member'): ?>
+    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
+    <?php endif; ?>
+    <li class="active"><a href="">Edit Request</a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <?php if($errors->has()): ?>
-        <div class="alert alert-danger">
-          <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
-            <?php foreach($errors->all() as $error): ?>
-                <?php echo e($error); ?><br>        
-            <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
+<div class="box box-warning">
+    <div class="box-header with-border">
+            Fill out the form. Choose between Sl/VL leave type. Reason/Note is required for Manager's decision.
+    <div class="box-tools pull right"></div>
+    </div>
 
-    <?php if(Session::has('message')): ?>
+    <div class="box-body table-responsive">
+       
+        <?php if(Session::has('message')): ?>
         <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
-    <?php endif; ?>
-
-    <?php echo HTML::ul($errors->all()); ?>
-
+        <?php endif; ?>
+        <?php if($errors->has()): ?>
+            <div class="alert alert-danger">
+              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                <?php foreach($errors->all() as $error): ?>
+                    <?php echo e($error); ?><br>        
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
 
     <?php echo Form::open(array('url' => 'leaves')); ?>
 
@@ -40,18 +49,9 @@
                         <i class="fa fa-chevron-down"></i>
                       </div>
         </div>
-
-        <!--
-        <?php echo Form::label('type', 'Leave Type:'); ?> &nbsp; &nbsp;
-        <?php echo Form::radio('type', 'SL', (Input::old('type') == 'SL')); ?> &nbsp;
-        <?php echo Form::label('type', 'Sick Leave'); ?> &nbsp; &nbsp;
-        <?php echo Form::radio('type', 'VL', (Input::old('type') == 'VL')); ?>&nbsp;
-        <?php echo Form::label('type', 'Vacation Leave'); ?>
-
-        -->
+    
     </div>
-
-
+    
     <div class="form-group">
         <?php echo Form::label('from_dt', 'FROM DATE'); ?>
 
@@ -64,7 +64,7 @@
             </div>
           
     </div>
- 
+
     <div class="form-group">
         <?php echo Form::label('to_dt', 'TO DATE'); ?>
 
@@ -78,11 +78,10 @@
             </div>
     </div>
 
-
     <div class="form-group">
-        <?php echo Form::label('note', 'Reason/Note'); ?>
+        <?php echo Form::label('note', 'REASON/NOTE'); ?>
 
-        <?php echo Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'size'=> '30x3','placeholder' => '(Optional) Additional note')); ?>
+        <?php echo Form::textarea('note', Input::old('note'), array('class' => 'form-control', 'size'=> '30x3','placeholder' => 'Additional note', 'required' => 'required')); ?>
 
     </div>
 
@@ -93,6 +92,9 @@
 
 
 </div>
+
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
 <?php $__env->stopSection(); ?>
 
     

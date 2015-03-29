@@ -25,7 +25,7 @@ class CreateLeavesTable extends Migration {
 			$table->integer('duration');
 			$table->string('note', 250)->nullable();
 			$table->string('remark', 250)->nullable();
-			$table->string('status', 8)->default('Pending');
+			$table->string('status', 8)->default('pending');
 			$table->timestamps();
 		});
 	}

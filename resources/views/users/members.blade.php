@@ -5,7 +5,7 @@
 @stop
 
 @section('pagetitle')
-    View {!! Auth::user()->team->team_name !!}'s' Members
+    View {!! Auth::user()->team->team_name !!}'s Members
 @stop
 	
 @section('breadcrumbs')
@@ -37,9 +37,7 @@
         </thead>
         <tbody>
 
-    @foreach($users as $member)
-        @if((Auth::user()->team->team_name) == $member->team->team_name)
-            @if($member->role <> 'manager')
+        @foreach($manager->members as $member)
             <tr>
                 <td>{!! $member->team->team_name!!}
                 <td>{!! $member->firstname . ' ' . $member->lastname !!}</td>
@@ -47,9 +45,7 @@
                 <td>{!! $member->role !!}</td>
                 <td>{!! date("M d, Y",strtotime($member->ceated_at)) !!}</td>
             </tr>
-            @endif
-        @endif
-    @endforeach
+        @endforeach
         </tbody>
 </table>
 

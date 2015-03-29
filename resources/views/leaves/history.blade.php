@@ -42,28 +42,28 @@
     </thead>
     <tbody>
     @foreach($leaves as $leave)
-    @if(($leave->status) <> 'Pending')
-        @if((Auth::user()->team->team_name) == $leave->user->team->team_name)
-        <tr>
-            <td>{!! $leave->user->firstname . ' ' . $leave->user->lastname !!}
-            <td>{!! $leave->type !!}</td>
-            <td>{!! $leave->from_dt !!}</td>
-            <td>{!! $leave->to_dt !!}</td>
-            <td>{!! $leave->duration !!}</td>
-            <td>{!! $leave->note !!}</td>
-            <td>{!! $leave->remark !!}</td>
-            <td>
-                @if(($leave->status) === 'Approved')
-                    <button class="btn btn-success btn-xs">Approved</button>
-                @else
-                    <button class="btn btn-danger btn-xs">Rejected</button>
-                @endif
+        @if($leave->status <> 'pending')
+            @if((Auth::user()->team->team_name) == $leave->user->team->team_name)
+            <tr>
+                <td>{!! $leave->user->firstname . ' ' . $leave->user->lastname !!}
+                <td>{!! $leave->type !!}</td>
+                <td>{!! $leave->from_dt !!}</td>
+                <td>{!! $leave->to_dt !!}</td>
+                <td>{!! $leave->duration !!}</td>
+                <td>{!! $leave->note !!}</td>
+                <td>{!! $leave->remark !!}</td>
+                <td>
+                    @if(($leave->status) == 'Approved')
+                        <button class="btn btn-success btn-xs">Approved</button>
+                    @else
+                        <button class="btn btn-danger btn-xs">Rejected</button>
+                    @endif
 
-            </td>
-            <td>{!! $leave->updated_at !!}</td>
-        </tr>
+                </td>
+                <td>{!! $leave->updated_at !!}</td>
+            </tr>
+            @endif
         @endif
-    @endif
     @endforeach
     </tbody>
 </table>

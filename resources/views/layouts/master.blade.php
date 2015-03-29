@@ -109,7 +109,7 @@
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           
-@if((Auth::user()->role) === 'admin') <!--admin-->
+@if((Auth::user()->role) == 'admin') <!--admin-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
@@ -136,11 +136,11 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              @if((Auth::user()->role) === 'member') <!--member-->
+              @if((Auth::user()->role) == 'member') <!--member-->
               <a href="/user">
                 <i class="fa fa-home"></i> <span>User Board</span>
               </a>
-               @elseif((Auth::user()->role) === 'manager') <!--manager-->
+               @elseif((Auth::user()->role) == 'manager') <!--manager-->
                <a href="/manager">
                 <i class="fa fa-home"></i> <span>Manager Board</span>
               </a>
@@ -166,14 +166,14 @@
               </a>
             </li><!--member-->
 
-            @if((Auth::user()->role) === 'manager') <!--manager-->
+            @if((Auth::user()->role) == 'manager') <!--manager-->
 
             <li class="header">YOUR TEAM</li>
             <li>
-            <li><a href="/manager/members"><i class="fa fa-users"></i>Your Team Members</a></li>
+            <li><a href="{{ URL::to('manager/' . $manager->id . '/members') }}"><i class="fa fa-users"></i>Your Team Members</a></li>
 
             <li>
-              <a href="/leaves/memberspending">
+              <a href="{{ URL::to('leaves/' . $team->id . '/memberspending') }}">
                 <i class="fa fa-question-circle"></i> <span>For Your Approval</span>
               </a>
             </li>

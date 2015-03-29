@@ -16,4 +16,8 @@ class Team extends Model {
 		return $this->hasOne('App\User', 'user_id', 'manager_id'); //user_id = FK manager_id = LOCAL KEY
 	}
 
+	public function leaves() {
+		return $this->hasManyThrough('App\Leave','App\User','team_id','user_id');
+	}
+
 }

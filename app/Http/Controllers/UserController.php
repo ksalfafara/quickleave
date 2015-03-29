@@ -14,7 +14,13 @@ class UserController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth'); //change later to auth
+		$this->middleware('auth');
+
+		$manager = User::find(Auth::id());
+		View::share('manager', $manager);
+
+		$team = Team::find(Auth::user()->team->id);
+        View::share('team', $team);
 	}
 	
 	public function indexAdmin()
@@ -25,7 +31,9 @@ class UserController extends Controller {
 
 	public function indexManager()
 	{
-		$team = Team::all();
+		$team = Team::find(Auth::user()->team->id);
+		View::share('team', $team);
+
 		return view('users.managerdash')->with('team',$team);
 	}
 
@@ -34,10 +42,12 @@ class UserController extends Controller {
 		return view('users.userdash');
 	}
 
-	public function showMembers()
+	public function showMembers($manager_id)
 	{
-		$users = User::all();
-        return View::make('users.members')->with('users', $users);
+		$manager = User::find($manager_id);
+        return View::make('users.members')->with('manager', $manager);
+		//$users = User::all();
+        //return View::make('users.members')->with('users', $users);
 	}
 	
 	public function create()

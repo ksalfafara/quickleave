@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     	//}
 	}
 
-	public function member() {
+	public function members() {
 		return $this->hasMany('App\User','manager_id');
 	}
 
