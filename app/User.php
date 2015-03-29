@@ -12,7 +12,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $table = 'users';
 
-	protected $fillable = ['username', 'password', 'firstname', 'lastname', 'email', 'sl_bal', 'vl_bal', 'role', 'team_id', 'profile_img'];
+
+	protected $fillable = ['username', 'password', 'firstname', 'lastname', 'email',
+							'sl_bal', 'vl_bal', 'role', 'team_id', 'manager_id', 'profile_img'];
 
 	protected $hidden = ['password', 'remember_token'];
 
@@ -26,14 +28,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function manager()
 	{
-		if ($this->manager_id !== null && $this->manager_id > 0)
-		{
-        	return $this->belongs_to('User','manager_id');
-    	} 
-    	else
-    	{
-        	return null;
-    	}
+		//if ($this->manager_id !== null && $this->manager_id > 0)
+		//{
+        	return $this->belongsTo('App\User','manager_id');
+    	//} 
+    	//else
+    	//{
+		//	return 'No manager yet';
+    	//}
 	}
 
 	public function member() {

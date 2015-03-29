@@ -14,15 +14,72 @@
     <small>Page</small>
 @stop
 
+@section('notif')
+<!-- Notifications: style can be found in dropdown.less -->
+              <li class="dropdown notifications-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-users"></i>
+                  <span class="label label-warning">{!! DB::table('users')->select('id')->distinct()->count() !!}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">All users</li>
+                  <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                      @foreach($users as $user)
+                      <li><a htref=""><i class="fa fa-users text-aqua"></i> {!! $user->username !!}</a></li>
+                      @endforeach
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="/admin/showemployees">View all</a></li>
+                </ul>
+              </li>
+@stop
+
 @section('content')
 <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-md-3 col-sm-5 col-xs-12">
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3 id="datetime"></h3>
-                  <p>System Time</p>
+                  <h3>
+                    <script>
+                    /*Current date script credit: 
+                    JavaScript Kit (www.javascriptkit.com)
+                    Over 200+ free scripts here!
+                    */
+
+                    var mydate=new Date()
+                    var year=mydate.getYear()
+                    if (year < 1000)
+                    year+=1900
+                    var day=mydate.getDay()
+                    var month=mydate.getMonth()
+                    var daym=mydate.getDate()
+                    if (daym<10)
+                    daym="0"+daym
+                    //var dayarray=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+                    var montharray=new Array("January","February","March","April","May","June","July","August","September","October","November","December")
+                    document.write("<small><font color='ffffff'><b>"+montharray[month]+" "+daym+", "+year+"</b></font></small>")
+                    </script>
+                  </h3>
+                  <p>
+                    <script type="text/javascript">
+                    <!--
+                    var a_p = "";
+                    var d = new Date();
+                    var curr_hour = d.getHours();
+                    if (curr_hour < 12){a_p = "AM";}
+                    else{a_p = "PM";}
+                    if (curr_hour == 0){urr_hour = 12;}
+                    if (curr_hour > 12){curr_hour = curr_hour - 12;}
+                    var curr_min = d.getMinutes();
+                    document.write(curr_hour + " : " + curr_min + " " + a_p);
+
+                    //-->
+                    </script>
+                  </p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-clock-o"></i>
@@ -31,40 +88,34 @@
             </div><!-- ./col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <span class="info-box-icon bg-black"><i class="ion ion-person-add"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">{!! DB::table('teams')->select('id')->distinct()->count() !!} <sup style="font-size: 20px">Teams</sup></span>
-                  <span class="info-box-number">Created By You</span>
+                  <span class="info-box-text"> Created</span>
+                  <span class="info-box-number">{!! DB::table('teams')->select('id')->distinct()->count() !!}</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
-            
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-                  <h3>{!! DB::table('users')->select('id')->distinct()->count() !!} <sup style="font-size: 20px">Users</sup></h3>
-                  <p>Registered Employees</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a class="small-box-footer">&nbsp;</a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner">
-                  <h3>{!! DB::table('leaves')->select('status')->where('status', 'approved')->distinct()->count() !!} <sup style="font-size: 20px">Requests</sup></h3>
-                  <p>Leaves Approved</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-pencil-square-o"></i>
-                </div>
-                <a class="small-box-footer">&nbsp;</a>
-              </div>
-            </div><!-- ./col -->
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-black"><i class="fa fa-users"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"> Registered</span>
+                  <span class="info-box-number">{!! DB::table('users')->select('id')->distinct()->count() !!}</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-black"><i class="fa fa-users"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"> Approved Requests</span>
+                  <span class="info-box-number">{!! DB::table('leaves')->select('status')->where('status', 'approved')->distinct()->count() !!} </span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+
           </div><!-- /.row -->
           <!-- Main row -->
           <div class="row">

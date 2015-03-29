@@ -43,10 +43,10 @@ class QuickLeaveSeeder extends Seeder {
 		for($i = 0; $i < 5; $i++) {
 			$team = Team::create(array(
 				'team_name' => 'team_name'.$i,
-				'team_code' => 'team_code'.$i 
+				'team_code' => 'team_code'.$i
 				));
 
-			User::create(array(
+			$manager = User::create(array(
 				'firstname' => 'manager'.$i,
 				'lastname' => 'managerlast'.$i,
 				'username' => 'manager'.$i,
@@ -56,10 +56,11 @@ class QuickLeaveSeeder extends Seeder {
 				'vl_bal' => 15,
 				'role' => 'manager',
 				'date_hired' => '2015-03-15',
-				'team_id' => $team->id
+				'team_id' => $team->id,
+				'manager_id' => null
 				));
 
-			User::create(array(
+			$member = User::create(array(
 				'firstname' => 'firstname'.$i,
 				'lastname' => 'lastname'.$i,
 				'username' => 'username'.$i,
@@ -69,8 +70,13 @@ class QuickLeaveSeeder extends Seeder {
 				'vl_bal' => 15,
 				'role' => 'member',	
 				'date_hired' => '2015-03-15',
-				'team_id' => $team->id
+				'team_id' => $team->id,
+				'manager_id' => $manager->id
 				));
+
+			$team = Team::find($team->id);
+			$team->manager_id = $manager->id;
+			$team->save();
 		}
 
 		
