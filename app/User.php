@@ -26,14 +26,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	public function manager()
 	{
-		if ($this->manager_id !== null && $this->manager_id > 0)
-		{
-        	return $this->belongs_to('User','manager_id');
-    	} 
-    	else
-    	{
-        	return null;
-    	}
+		//if ($this->manager_id !== null && $this->manager_id > 0)
+		//{
+        	return $this->belongs_to('App\User','manager_id');
+    	// } 
+    	// else
+    	// {
+			//return null;
+    	//}
 	}
 
 	public function member() {

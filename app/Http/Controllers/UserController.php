@@ -19,7 +19,8 @@ class UserController extends Controller {
 	
 	public function indexAdmin()
 	{
-		return view('users.admin');
+		$users = User::all();
+		return view('users.admin')->with('users', $users);
 	}
 
 	public function indexManager()
@@ -77,6 +78,7 @@ class UserController extends Controller {
 	public function show($username)
 	{
 		$user = Auth::user();
+		
 		return view::make('users.indexprofile')->with('users', $user);
 	}
 

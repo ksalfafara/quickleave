@@ -9,7 +9,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <link href="/theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="/theme/dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="/theme/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 
@@ -36,6 +36,7 @@
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              @yield('notif')
     
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
@@ -292,20 +293,39 @@
     </script>
 
     <script type="text/javascript">
-    function formatDate(date) {
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var ampm = hours >= 12 ? 'pm' : 'am';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      minutes = minutes < 10 ? '0'+minutes : minutes;
-      var strTime = hours + ':' + minutes + ' ' + ampm;
-      return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
-    }
+      var d_names = new Array("Sunday", "Monday", "Tuesday",
+      "Wednesday", "Thursday", "Friday", "Saturday");
+
+      var m_names = new Array("January", "February", "March", 
+      "April", "May", "June", "July", "August", "September", 
+      "October", "November", "December");
 
       var d = new Date();
-      var e = formatDate(d);
-      document.getElementById("datetime").innerHTML = e;
+      var curr_day = d.getDay();
+      var curr_date = d.getDate();
+      var sup = "";
+      if (curr_date == 1 || curr_date == 21 || curr_date ==31)
+         {
+         sup = "st";
+         }
+      else if (curr_date == 2 || curr_date == 22)
+         {
+         sup = "nd";
+         }
+      else if (curr_date == 3 || curr_date == 23)
+         {
+         sup = "rd";
+         }
+      else
+         {
+         sup = "th";
+         }
+      var curr_month = d.getMonth();
+      var curr_year = d.getFullYear();
+
+
+      document.getElementById("datetime").innerHTML = document.write(d_names[curr_day] + " " + curr_date + "<SUP>"
+      + sup + "</SUP> " + m_names[curr_month] + " " + curr_year);
     </script>
 
   </body>
