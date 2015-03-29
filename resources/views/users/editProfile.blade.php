@@ -30,10 +30,17 @@
 
 <div class="row">
 
-    <section class="col-lg-5 connectedSortable">
+    <section class="col-lg-3 connectedSortable">
         <div class="box box-solid ">
             <div class="box-body">
                 <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
+            </div>
+            <div class="box-footer">
+                  <div class="row">
+                    <center>
+                        <button class="btn btn-primary>"><a href="">Browse Image</a></button>
+                        </center>
+                  </div><!-- /.row -->
             </div>
         </div>
     </section>
