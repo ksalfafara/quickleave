@@ -84,10 +84,10 @@ class LeaveController extends Controller {
 
         $leave->duration = $duration;
       if ($user->$type < $duration) {
-            Session::flash('message', "Insufficient leave balance!");
+            Session::flash('message', "Insufficient leave balance! You only have " .$user->$type." remaining " .$leave->type. " balance.");
             return Redirect::to('leaves/create');
         }
-         //echo "$duration";
+         
         $leave->save();
 
         Session::flash('message', 'Your leave request has been submitted. Kindly wait for the approval.');
@@ -121,17 +121,41 @@ class LeaveController extends Controller {
 
         $from_dt = Input::get('from_dt');
         $leave->from_dt = $from_dt;
-        $from_dt_datetime = new Datetime($from_dt);
 
         $to_dt = Input::get('to_dt');
         $leave->to_dt = $to_dt;
-        $to_dt_datetime = new Datetime($to_dt);
 
-        $duration = $from_dt_datetime->diff($to_dt_datetime);
-        $leave->duration = $duration->format('%R%a') + 1;
+        $duration_query = DB::select("SELECT ((DATEDIFF('" . $to_dt . "', '" . $from_dt . "') + 1) -
+        ((WEEK('" . $to_dt . "') - WEEK('" .$from_dt . "')) * 2) -
+        (case when weekday('" . $to_dt . "') = 6 then 1 else 0 end) -
+        (case when weekday('" . $from_dt . "') = 5 then 1 else 0 end)) as duration");
+
+        $duration = $duration_query[0]->duration;
+
+        $leave->user()->associate($user);
+
+        $user = $leave->user->id;
+        $type = $leave->type;
+
+        if ($leave->status == 'Approved')
+        {
+             if ($type == 'SL') {
+             $type = 'sl_bal';
+           }
+         elseif ($type == 'VL') {
+            $type = 'vl_bal';
+         }
+
+        $leave->duration = $duration;
+        DB::table('users')->where('id', $user)->decrement($type, $duration);
+        }
+        
+        if ($user->$type < $duration) {
+            Session::flash('message', "Insufficient leave balance!");
+            return Redirect::to('leaves/create');
+        }
 
         $leave->save();
-
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
         return Redirect::to('leaves/pending');
     	}
