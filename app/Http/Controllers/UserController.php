@@ -25,9 +25,8 @@ public $manager, $team, $notif_user;
 		$this->team = Team::find(Auth::user()->team->id);
         View::share('team', $this->team);
 
-        //not displaying the 
-        $this->notif_user = User::all()->where('created_at', new DateTime('today'));
-        View::share('notif_user', $this->notif_user);
+        $this->members = User::where('team_id',$this->team);
+        View::share('members',$this->members);
 	}
 	
 	public function indexAdmin()
@@ -46,11 +45,9 @@ public $manager, $team, $notif_user;
 
 	public function indexMember()
 	{
-		$team_id = Auth::user()->team->id;
-		$members = User::where('team_id',$team_id);
+		
 		$pending = Auth::user()->leave->where('status','pending');
-	
-		return view('users.userdash')->with('members',$members)->with('pending', $pending);
+		return view('users.userdash')->with('pending', $pending);
 	}
 
 	public function showMembers($manager_id)
