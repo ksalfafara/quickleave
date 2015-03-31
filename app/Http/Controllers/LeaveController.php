@@ -217,51 +217,50 @@ public $manager, $team;
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('leaves/pending/' . $id . '/edit')
-                ->withErrors($validator);
+            return Redirect::to('leaves/pending/' . $id . '/edit')->withErrors($validator);
         } 
 
         else {
-        $leave = Leave::find($id);
-        $stat = $leave->status;
-        $remark = $leave->remark;
+            $leave = Leave::find($id);
 
-        $stat = Input::get('status');
-        $remark = Input::get('remark');
+            $user = $leave->user->id;
+            $type = $leave->type;
 
-        $user = $leave->user->id;
-        $type = $leave->type;
+            if ($type == 'SL') {
+               $type = 'sl_bal';
+            }
+            elseif ($type == 'VL') {
+                $type = 'vl_bal';
+            }
+           
+            $stat = Input::get('status');
+            $remark = Input::get('remark');
 
-        if ($type == 'SL')
-        {
-           $type = 'sl_bal';
-        }
-        elseif ($type == 'VL')
-        {
-            $type = 'vl_bal';
-        }
-       
-        $balance = $leave->user->$type;
-        $duration = $leave->duration;
-        if ($balance < $duration && $stat == 'approved') {
-            $leave->status = 'rejected';
-            $leave->remark = "Cannot process approval. You've exceeded your leave balance - Admin";
-            $leave->save();
-            Session::flash('message', "Cannot process approval of leave request. Employee has exceeded his leave balance.");
-            return Redirect::to('leaves/history');
-        }
-        elseif ($balance >= $duration && $leave->status == 'approved')
-        {
-        DB::table('users')->where('id', $user)->decrement($type, $duration);
-        }
-        
-        $leave->save();
+            if ($stat == 'approved') {
 
-        $team = Team::find(Auth::user()->team->id);
-        //View::share('team', $team);
+                $balance = $leave->user->$type;
+                $duration = $leave->duration;
 
-        Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
-        return Redirect::to('leaves/ '. $team->id .'/memberspending');
+                if ($balance < $duration) {
+                    $leave->status = 'rejected';
+                    $leave->remark = "Cannot process approval. You've exceeded your leave balance - Admin";
+                    $leave->save();
+
+                    Session::flash('message', "Cannot process approval of leave request. Employee has exceeded his leave balance.");
+                    return Redirect::to('leaves/history');
+                }
+                elseif ($balance >= $duration) {
+                    DB::table('users')->where('id', $user)->decrement($type, $duration);
+                    $leave->status = $stat;
+                    $leave->remark = $remark;
+                    $leave->save();
+
+                    $team = Team::find(Auth::user()->team->id);
+
+                    Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
+                    return Redirect::to('leaves/ '. $team->id .'/memberspending');
+                }
+            }
         }
     }
 
