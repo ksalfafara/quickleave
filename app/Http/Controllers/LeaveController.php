@@ -254,13 +254,18 @@ public $manager, $team;
                     $leave->status = $stat;
                     $leave->remark = $remark;
                     $leave->save();
-
-                    $team = Team::find(Auth::user()->team->id);
-
-                    Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
-                    return Redirect::to('leaves/ '. $team->id .'/memberspending');
                 }
             }
+            else {
+                $leave->status = $stat;
+                $leave->remark = $remark;
+                $leave->save();
+            }
+
+            $team = Team::find(Auth::user()->team->id);
+
+            Session::flash('message', 'Successfully ' .$stat. ' leave request '.$leave->id.'!');
+            return Redirect::to('leaves/ '. $team->id .'/memberspending');
         }
     }
 
