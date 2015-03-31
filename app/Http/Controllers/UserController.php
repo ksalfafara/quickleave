@@ -9,10 +9,11 @@ use App\User;
 use App\Leave;
 use App\Team;
 use Hash;
+use DateTime;
 
 class UserController extends Controller {
 
-public $manager, $team;
+public $manager, $team, $notif_user;
 
 	public function __construct()
 	{
@@ -24,6 +25,9 @@ public $manager, $team;
 		$this->team = Team::find(Auth::user()->team->id);
         View::share('team', $this->team);
 
+        //not displaying the 
+        $this->notif_user = User::all()->where('created_at', new DateTime('today'));
+        View::share('notif_user', $this->notif_user);
 	}
 	
 	public function indexAdmin()
@@ -45,6 +49,7 @@ public $manager, $team;
 		$team_id = Auth::user()->team->id;
 		$members = User::where('team_id',$team_id);
 		$pending = Auth::user()->leave->where('status','pending');
+	
 		return view('users.userdash')->with('members',$members)->with('pending', $pending);
 	}
 

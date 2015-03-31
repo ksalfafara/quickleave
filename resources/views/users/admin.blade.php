@@ -14,28 +14,6 @@
     <small>Page</small>
 @stop
 
-@section('notif')
-<!-- Notifications: style can be found in dropdown.less -->
-              <li class="dropdown notifications-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-users"></i>
-                  <span class="label label-warning">{!! DB::table('users')->select('id')->distinct()->count() !!}</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">All users</li>
-                  <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="menu">
-                      @foreach($users as $user)
-                      <li><a htref=""><i class="fa fa-users text-aqua"></i> {!! $user->username !!}</a></li>
-                      @endforeach
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="/admin/showemployees">View all</a></li>
-                </ul>
-              </li>
-@stop
-
 @section('content')
 <!-- Small boxes (Stat box) -->
           <div class="row">
