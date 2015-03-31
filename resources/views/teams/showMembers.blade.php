@@ -56,6 +56,10 @@
                     <button class="btn btn-warning btn-xs">Manager</button>
                 @elseif(($member->role) == 'member')
                     <button class="btn btn-success btn-xs">Member</button>
+                @elseif(($member->role) == null)
+                    <button class="btn btn-danger btn-xs">No specified role</button>
+                @elseif(($member->role) == 'admin')
+                    <button class="btn btn-danger btn-xs">Admin</button>
                 @endif
             </td>
             <td>

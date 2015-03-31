@@ -216,12 +216,9 @@ public $manager, $team;
         $team = Team::find($employee->team->id);
         $team_manager = $team->user->where('role','manager');
 
-        	if ($team_manager->first())
-        	{
-        		if ($input == 'manager')
-        		{
-        			if ($employee->role == 'manager')
-        			{
+        	if ($team_manager->first()) {
+        		if ($input == 'manager') {
+        			if ($employee->role == 'manager') {
         				$employee->role = $input;
         				$employee->manager_id = null;
 
@@ -230,24 +227,20 @@ public $manager, $team;
 			        	$team->save();
         				
 				        $all_members = $team->user->where('role','member');
-				        foreach ($all_members as $value)
-				        {
+				        foreach ($all_members as $value) {
 				        	$value->manager_id = $employee->id;
 				        	$value->save();
 				       	}
 	       			}
 
-        			else
-        			{
+        			else {
         				Session::flash('message', 'Manager role has already been taken.');
         				return Redirect::to('admin/' . $id . '/editemployee');
         			}
         		}
 
-        		else
-        		{
-        			if ($employee->role == 'manager')	//making manager the member
-        			{
+        		else {
+        			if ($employee->role == 'manager') {	//making manager the member
         				$employee->role = $input;
         				$employee->manager_id = null;
 
@@ -256,21 +249,18 @@ public $manager, $team;
 			        	$team->save();
 
 			        	$all_members = $team->user->where('role','member');
-				        foreach ($all_members as $value)
-				        {
+				        foreach ($all_members as $value) {
 				        	$value->manager_id = null;
 				        	$value->save();
 				       	}    				
 	       			}
 
-        			else 	//retain member role
-        			{
+        			else { 	//retain member role
 	        			$employee->role = $input;
 	        			$employee->manager_id = $employee->team->manager_id;
 
 	        			$all_members = $team->user->where('role','member');
-				        foreach ($all_members as $value)
-				        {
+				        foreach ($all_members as $value) {
 				        	$value->manager_id = $employee->team->manager_id;
 				        	$value->save();
 				       	}
@@ -278,10 +268,8 @@ public $manager, $team;
         		}
         	}
 
-        	else
-        	{
-        		if ($input == 'manager')
-        		{
+        	else {
+        		if ($input == 'manager') {
 		        	$employee->role = $input;
 		        	$employee->manager_id = null;
 		        	$employee->save();
@@ -292,14 +280,12 @@ public $manager, $team;
 
 		        	$all_members = $team->user->where('role','member');
 					        
-					foreach ($all_members as $value)
-					{
+					foreach ($all_members as $value) {
 				      	$value->manager_id = $employee->id;
 				       	$value->save();	        	
 			     	}
 	        	}
-	        	else
-	        	{
+	        	else {
 	        		$employee->role = $input;
 		        	$employee->manager_id = null;
 
@@ -309,8 +295,7 @@ public $manager, $team;
 
 		        	$all_members = $team->user->where('role','member');
 				        
-				    foreach ($all_members as $value)
-				    {
+				    foreach ($all_members as $value) {
 				       	$value->manager_id = null;
 				       	$value->save();	        	
 			     	}   
