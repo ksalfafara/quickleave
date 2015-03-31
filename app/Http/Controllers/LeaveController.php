@@ -207,24 +207,35 @@ public $manager, $team;
 
         else {
         $leave = Leave::find($id);
-        $leave->status = Input::get('status');
-        $leave->remark = Input::get('remark');
+        $stat = $leave->status;
+        $remark = $leave->remark;
+
+        $stat = Input::get('status');
+        $remark = Input::get('remark');
 
         $user = $leave->user->id;
         $type = $leave->type;
 
-        if ($leave->status == 'approved')
+        if ($type == 'SL')
         {
-            if ($type == 'SL')
-            {
-               $type = 'sl_bal';
-            }
+           $type = 'sl_bal';
+        }
         elseif ($type == 'VL')
-            {
-                $type = 'vl_bal';
-            }
-            
+        {
+            $type = 'vl_bal';
+        }
+       
+        $balance = $leave->user->$type;
         $duration = $leave->duration;
+        if ($balance < $duration && $stat == 'approved') {
+            $leave->status = 'rejected';
+            $leave->remark = "Cannot process approval. You've exceeded your leave balance - Admin";
+            $leave->save();
+            Session::flash('message', "Cannot process approval of leave request. Employee has exceeded his leave balance.");
+            return Redirect::to('leaves/history');
+        }
+        elseif ($balance >= $duration && $leave->status == 'approved')
+        {
         DB::table('users')->where('id', $user)->decrement($type, $duration);
         }
         
