@@ -23,25 +23,29 @@ public $manager, $team;
 
 		$this->team = Team::find(Auth::user()->team->id);
         View::share('team', $this->team);
+
 	}
 	
 	public function indexAdmin()
 	{
+		$teams = Team::all();
 		$users = User::all();
-		return view('users.admin')->with('users', $users);
+		$leaves = Leave::all()->where('status', 'pending');
+		return view('users.admin')->with('users', $users)->with('teams',$teams)->with('leaves',$leaves);
 	}
 
 	public function indexManager()
 	{
-		$team = Team::find(Auth::user()->team->id);
-		View::share('team', $team);
-
-		return view('users.managerdash')->with('team',$team);
+		$manager = Auth::user();
+		return view('users.managerdash')->with('manager',$manager);
 	}
 
 	public function indexMember()
 	{
-		return view('users.userdash');
+		$team_id = Auth::user()->team->id;
+		$members = User::where('team_id',$team_id);
+		$pending = Auth::user()->leave->where('status','pending');
+		return view('users.userdash')->with('members',$members)->with('pending', $pending);
 	}
 
 	public function showMembers($manager_id)
