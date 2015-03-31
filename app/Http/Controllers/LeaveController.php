@@ -50,13 +50,21 @@ public $manager, $team;
 
 	public function store()
 	{
-       	$rules = array(
+       	Validator::extend('before_equal', function($attribute, $value, $parameters) {
+            return strtotime(Input::get($parameters[0])) >= strtotime($value);
+        });
+
+        $rules = array(
             'type' => 'required',
-            'from_dt' => 'required',
-            'to_dt' => 'required'
+            'from_dt' => 'required|before_equal:to_dt',
+            'to_dt' => 'required',
         );
 
-        $validator = Validator::make(Input::all(), $rules);
+        $messages = [
+            'from_dt.before_equal' => 'To Date must be later than From Date. Please try again.',
+        ];
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
 
         if ($validator->fails()) {
             return Redirect::to('leaves/create')
@@ -113,13 +121,21 @@ public $manager, $team;
 
 	public function update($id)
 	{
-		$rules = array(
+        Validator::extend('before_equal', function($attribute, $value, $parameters) {
+            return strtotime(Input::get($parameters[0])) >= strtotime($value);
+        });
+
+        $rules = array(
             'type' => 'required',
-            'from_dt' => 'required',
-            'to_dt' => 'required'
+            'from_dt' => 'required|before_equal:to_dt',
+            'to_dt' => 'required',
         );
 
-        $validator = Validator::make(Input::all(), $rules);
+        $messages = [
+            'from_dt.before_equal' => 'To Date must be later than From Date. Please try again.',
+        ];
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
 
         if ($validator->fails()) {
             return Redirect::to('leaves/' . $id . '/edit')

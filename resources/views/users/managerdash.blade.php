@@ -18,64 +18,51 @@
 @section('content')
 <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3>{!! Auth::user()->sl_bal !!}<sup style="font-size: 20px"> SL </sup></h3>
-                  <p>Available Balance</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-bed"></i>
-                </div>
-                <a class="small-box-footer">&nbsp;</a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-                  <h3>{!! Auth::user()->vl_bal !!}<sup style="font-size: 20px"> VL </sup></h3>
-                  <p>Available Balance</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-car"></i>
-                </div>
-                <a class="small-box-footer">&nbsp;</a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-md-3 col-sm-5 col-xs-12">
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>
-                    {!! DB::table('users')->where('team_id', '=', Auth::user()->team->id)->count()!!}
-                    <sup style="font-size: 20px"> members </sup>
+                  <h3>{{ $manager->members->count() }}
+                  <sup style="font-size: 20px"> member(s) </sup>
                   </h3>
                   <p>In your team</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-users"></i>
                 </div>
-                <a class="small-box-footer">&nbsp;</a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner">
-                  <h3>         
-                    {{ $team->leaves->where('status','pending')->count() }}
-                    <sup style="font-size: 20px"> requests </sup>
-                  </h3>
-                  <p>Pending Request</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-pencil-square-o"></i>
-                </div>
-                <a class="small-box-footer">&nbsp;</a>
-              </div>
-            </div><!-- ./col -->
+            
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-black"><i class="fa fa-car"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">VL Balance</span>
+                  <span class="info-box-number">{!! Auth::user()->vl_bal !!}</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-black"><i class="fa fa-heart"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">SL Balance</span>
+                  <span class="info-box-number">{!! Auth::user()->sl_bal !!}</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-black"><i class="fa fa-question-circle"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Pending Requests</span>
+                  <span class="info-box-number">{{ $team->leaves->where('status','pending')->count() }}</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div><!-- /.col -->
+
           </div><!-- /.row -->
           <!-- Main row -->
           <div class="row">
