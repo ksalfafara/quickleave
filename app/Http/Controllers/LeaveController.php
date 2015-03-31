@@ -50,13 +50,21 @@ public $manager, $team;
 
 	public function store()
 	{
-       	$rules = array(
+       	Validator::extend('before_equal', function($attribute, $value, $parameters) {
+            return strtotime(Input::get($parameters[0])) >= strtotime($value);
+        });
+
+        $rules = array(
             'type' => 'required',
-            'from_dt' => 'required',
-            'to_dt' => 'required'
+            'from_dt' => 'required|before_equal:to_dt',
+            'to_dt' => 'required',
         );
 
-        $validator = Validator::make(Input::all(), $rules);
+        $messages = [
+            'from_dt.before_equal' => 'To Date must be later than From Date. Please try again.',
+        ];
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
 
         if ($validator->fails()) {
             return Redirect::to('leaves/create')
@@ -92,8 +100,9 @@ public $manager, $team;
          }
 
         $leave->duration = $duration;
-      if ($user->$type < $duration) {
-            Session::flash('message', "Insufficient leave balance! You only have " .$user->$type." remaining " .$leave->type. " balance.");
+        $balance = $user->$type;
+      if ($balance < $duration) {
+            Session::flash('message', "Insufficient leave balance! You only have " .$balance." remaining " .$leave->type. " balance.");
             return Redirect::to('leaves/create');
         }
          
@@ -112,13 +121,21 @@ public $manager, $team;
 
 	public function update($id)
 	{
-		$rules = array(
+        Validator::extend('before_equal', function($attribute, $value, $parameters) {
+            return strtotime(Input::get($parameters[0])) >= strtotime($value);
+        });
+
+        $rules = array(
             'type' => 'required',
-            'from_dt' => 'required',
-            'to_dt' => 'required'
+            'from_dt' => 'required|before_equal:to_dt',
+            'to_dt' => 'required',
         );
 
-        $validator = Validator::make(Input::all(), $rules);
+        $messages = [
+            'from_dt.before_equal' => 'To Date must be later than From Date. Please try again.',
+        ];
+
+        $validator = Validator::make(Input::all(), $rules, $messages);
 
         if ($validator->fails()) {
             return Redirect::to('leaves/' . $id . '/edit')
@@ -140,29 +157,25 @@ public $manager, $team;
         (case when weekday('" . $from_dt . "') = 5 then 1 else 0 end)) as duration");
 
         $duration = $duration_query[0]->duration;
-
+        
         $user = $leave->user->id;
         $type = $leave->type;
 
-        if ($leave->status == 'pending')
-        {
-             if ($type == 'SL') {
-                $type = 'sl_bal';
-            }
-            elseif ($type == 'VL') {
-                $type = 'vl_bal';
-            }
-
-            $leave->duration = $duration;
-            //DB::table('users')->where('id', $user)->decrement($type, $duration);
+        if ($type == 'SL') {
+            $type = 'sl_bal';
         }
-        
-        if ($user->$type < $duration) {
+        elseif ($type == 'VL') {
+            $type = 'vl_bal';
+        }
+
+        $balance = $leave->user->$type;
+        $leave->duration = $duration;
+
+        if ($balance < $duration) {
             Session::flash('message', "Insufficient leave balance!");
             return Redirect::to('leaves/create');
         }
-
-        $leave->user()->associate($user);
+        
         $leave->save();
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
         return Redirect::to('leaves/pending');
@@ -216,21 +229,20 @@ public $manager, $team;
         $user = $leave->user->id;
         $type = $leave->type;
 
-            if ($leave->status == 'approved')
+        if ($leave->status == 'approved')
+        {
+            if ($type == 'SL')
             {
-                if ($type == 'SL')
-                {
-                    $type = 'sl_bal';
-                }
-            
-                elseif ($type == 'VL')
-                {
-                    $type = 'vl_bal';
-                }
-            
-                $duration = $leave->duration;
-                DB::table('users')->where('id', $user)->decrement($type, $duration);
+               $type = 'sl_bal';
             }
+        elseif ($type == 'VL')
+            {
+                $type = 'vl_bal';
+            }
+            
+        $duration = $leave->duration;
+        DB::table('users')->where('id', $user)->decrement($type, $duration);
+        }
         
         $leave->save();
 
