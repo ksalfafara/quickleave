@@ -53,7 +53,7 @@
                 <td>{!! $leave->note !!}</td>
                 <td>{!! $leave->remark !!}</td>
                 <td>
-                    @if(($leave->status) == 'Approved')
+                    @if(($leave->status) == 'approved')
                         <button class="btn btn-success btn-xs">Approved</button>
                     @else
                         <button class="btn btn-danger btn-xs">Rejected</button>

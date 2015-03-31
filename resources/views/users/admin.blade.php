@@ -90,7 +90,7 @@
               <div class="info-box">
                 <span class="info-box-icon bg-black"><i class="ion ion-person-add"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text"> Created</span>
+                  <span class="info-box-text">Teams Created</span>
                   <span class="info-box-number">{!! DB::table('teams')->select('id')->distinct()->count() !!}</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
@@ -100,7 +100,7 @@
               <div class="info-box">
                 <span class="info-box-icon bg-black"><i class="fa fa-users"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text"> Registered</span>
+                  <span class="info-box-text">Users Registered</span>
                   <span class="info-box-number">{!! DB::table('users')->select('id')->distinct()->count() !!}</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
