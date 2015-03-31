@@ -11,15 +11,17 @@ use Auth, View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class LeaveController extends Controller {
 
+public $manager, $team;
+
 	public function __construct()
 	{
 		$this->middleware('auth'); 
-
-        $manager = User::find(Auth::id());
-        View::share('manager', $manager);
         
-        $team = Team::find(Auth::user()->team->id);
-        View::share('team', $team);
+        $this->manager = User::find(Auth::id());
+        View::share('manager', $this->manager);
+
+        $this->team = Team::find(Auth::user()->team->id);
+        View::share('team', $this->team);
 	}
 
 	public function index()
@@ -139,22 +141,20 @@ class LeaveController extends Controller {
 
         $duration = $duration_query[0]->duration;
 
-        $leave->user()->associate($user);
-
         $user = $leave->user->id;
         $type = $leave->type;
 
-        if ($leave->status == 'Approved')
+        if ($leave->status == 'pending')
         {
              if ($type == 'SL') {
-             $type = 'sl_bal';
-           }
-         elseif ($type == 'VL') {
-            $type = 'vl_bal';
-         }
+                $type = 'sl_bal';
+            }
+            elseif ($type == 'VL') {
+                $type = 'vl_bal';
+            }
 
-        $leave->duration = $duration;
-        DB::table('users')->where('id', $user)->decrement($type, $duration);
+            $leave->duration = $duration;
+            //DB::table('users')->where('id', $user)->decrement($type, $duration);
         }
         
         if ($user->$type < $duration) {
@@ -162,6 +162,7 @@ class LeaveController extends Controller {
             return Redirect::to('leaves/create');
         }
 
+        $leave->user()->associate($user);
         $leave->save();
         Session::flash('message', 'Successfully updated Leave Request '.$leave->id.'!');
         return Redirect::to('leaves/pending');
@@ -181,6 +182,8 @@ class LeaveController extends Controller {
 
     public function membersPending($team_id)
     {
+
+
         $team = Team::find($team_id);
         return View::make('leaves.membersPending')->with('team', $team);
     }
@@ -188,9 +191,6 @@ class LeaveController extends Controller {
     public function editPending($id)
     {
         $leave = Leave::find($id);
-
-        $team = Team::find(Auth::user()->team->id);
-        //View::share('team', $team);
 
         return View::make('leaves.editPending')->with('leave',$leave);
     }
@@ -216,7 +216,7 @@ class LeaveController extends Controller {
         $user = $leave->user->id;
         $type = $leave->type;
 
-            if ($leave->status == 'Approved')
+            if ($leave->status == 'approved')
             {
                 if ($type == 'SL')
                 {

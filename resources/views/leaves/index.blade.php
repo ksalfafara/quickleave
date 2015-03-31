@@ -9,7 +9,7 @@
 @stop
 
 @section('pagetitle')
-    All Approved/Rejected Leave Request(s)
+    All Leave Request(s)
 @stop
 
 @section('breadcrumbs')
@@ -46,8 +46,7 @@
     </thead>
     <tbody>
     @foreach($leaves as $key => $value)
-    @if(($value->status) <> 'Pending')
-        @if((Auth::user()->id) === $value->user->id)
+        @if(Auth::user()->id == $value->user->id)
         <tr>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
@@ -55,15 +54,16 @@
             <td>{!! $value->duration !!}</td>
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
-            <td>@if(($value->status) === 'Approved')
-                    <button class="btn btn-block btn-info">Approved</button>
+            <td>@if($value->status == 'approved')
+                    <button class="btn btn-block btn-success">Approved</button>
+                @elseif($value->status == 'pending')
+                    <button class="btn btn-block btn-warning">Pending</button>
                 @else
                     <button class="btn btn-block btn-danger">Rejected</button>
                 @endif</td>
             <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
         </tr>
         @endif
-    @endif
     @endforeach
     </tbody>
 </table>

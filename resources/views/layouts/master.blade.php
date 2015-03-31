@@ -162,7 +162,7 @@
 
             <li>
               <a href="/leaves/pending">
-                <i class="fa fa-file-text-o"></i> <span>Pending Leave Requests</span>
+                <i class="fa fa-file-text-o"></i> <span>Edit Pending Requests</span>
               </a>
             </li><!--member-->
 
@@ -258,7 +258,7 @@
                 format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 todayHighlight: true,
-                daysOfWeekDisabled: "0",
+                daysOfWeekDisabled: "0,6",
                 autoclose: true,
             });
         $('#to_dt').datepicker(
@@ -266,7 +266,7 @@
                 format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 todayHighlight: true,
-                daysOfWeekDisabled: "0",
+                daysOfWeekDisabled: "0,6",
                 autoclose: true,
             });
         $('#date_hired').datepicker(

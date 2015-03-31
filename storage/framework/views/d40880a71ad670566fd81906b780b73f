@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('pagetitle'); ?>
-    All Approved/Rejected Leave Request(s)
+    All Leave Request(s)
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('breadcrumbs'); ?>
@@ -44,8 +44,7 @@
     </thead>
     <tbody>
     <?php foreach($leaves as $key => $value): ?>
-    <?php if(($value->status) <> 'Pending'): ?>
-        <?php if((Auth::user()->id) === $value->user->id): ?>
+        <?php if(Auth::user()->id == $value->user->id): ?>
         <tr>
             <td><?php echo $value->type; ?></td>
             <td><?php echo $value->from_dt; ?></td>
@@ -53,15 +52,16 @@
             <td><?php echo $value->duration; ?></td>
             <td><?php echo $value->note; ?></td>
             <td><?php echo $value->remark; ?></td>
-            <td><?php if(($value->status) === 'Approved'): ?>
-                    <button class="btn btn-block btn-info">Approved</button>
+            <td><?php if($value->status == 'approved'): ?>
+                    <button class="btn btn-block btn-success">Approved</button>
+                <?php elseif($value->status == 'pending'): ?>
+                    <button class="btn btn-block btn-warning">Pending</button>
                 <?php else: ?>
                     <button class="btn btn-block btn-danger">Rejected</button>
                 <?php endif; ?></td>
             <td><?php echo date("M d, Y - H:i",strtotime($value->updated_at)); ?></td>
         </tr>
         <?php endif; ?>
-    <?php endif; ?>
     <?php endforeach; ?>
     </tbody>
 </table>

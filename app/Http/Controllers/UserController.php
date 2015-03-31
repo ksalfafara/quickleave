@@ -12,15 +12,17 @@ use Hash;
 
 class UserController extends Controller {
 
+public $manager, $team;
+
 	public function __construct()
 	{
 		$this->middleware('auth');
 
-		$manager = User::find(Auth::id());
-		View::share('manager', $manager);
+		$this->manager = User::find(Auth::id());
+		View::share('manager', $this->manager);
 
-		$team = Team::find(Auth::user()->team->id);
-        View::share('team', $team);
+		$this->team = Team::find(Auth::user()->team->id);
+        View::share('team', $this->team);
 	}
 	
 	public function indexAdmin()
@@ -44,6 +46,7 @@ class UserController extends Controller {
 
 	public function showMembers($manager_id)
 	{
+		
 		$manager = User::find($manager_id);
         return View::make('users.members')->with('manager', $manager);
 		//$users = User::all();
