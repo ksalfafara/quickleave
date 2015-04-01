@@ -11,17 +11,23 @@ use Auth, View, Input, Session, Redirect, Validator, Datetime, DB, Date;
 
 class LeaveController extends Controller {
 
-public $manager, $team;
+//public $manager, $team;
 
 	public function __construct()
 	{
 		$this->middleware('auth'); 
         
+        /*
         $this->manager = User::find(Auth::id());
         View::share('manager', $this->manager);
 
         $this->team = Team::find(Auth::user()->team->id);
         View::share('team', $this->team);
+        */
+
+        //working!
+        View::share('managerview', Auth::id());
+        View::share('teamview', Auth::user()->team->id);
 	}
 
 	public function index()
@@ -195,8 +201,6 @@ public $manager, $team;
 
     public function membersPending($team_id)
     {
-
-
         $team = Team::find($team_id);
         return View::make('leaves.membersPending')->with('team', $team);
     }

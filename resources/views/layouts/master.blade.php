@@ -168,10 +168,10 @@
 
             <li class="header">YOUR TEAM</li>
             <li>
-            <li><a href="{{ URL::to('manager/' . $manager->id . '/members') }}"><i class="fa fa-users"></i>Your Team Members</a></li>
+            <li><a href="{{ URL::to('manager/' . $managerview . '/members') }}"><i class="fa fa-users"></i>Your Team Members</a></li>
 
             <li>
-              <a href="{{ URL::to('leaves/' . $team->id . '/memberspending') }}">
+              <a href="{{ URL::to('leaves/' . $teamview . '/memberspending') }}">
                 <i class="fa fa-question-circle"></i> <span>For Your Approval</span>
               </a>
             </li>

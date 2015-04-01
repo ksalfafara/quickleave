@@ -13,21 +13,27 @@ use DateTime;
 
 class UserController extends Controller {
 
-public $manager, $team, $notif_user;
+//public $manager, $team, $notif_user;
 
 	public function __construct()
 	{
 		$this->middleware('auth');
 
+		/*
 		$this->manager = User::find(Auth::id());
 		View::share('manager', $this->manager);
 
 		$this->team = Team::find(Auth::user()->team->id);
         View::share('team', $this->team);
+        */
 
         //not displaying the 
-        $this->notif_user = User::all()->where('created_at', new DateTime('today'));
-        View::share('notif_user', $this->notif_user);
+        //$this->notif_user = User::all()->where('created_at', new DateTime('today'));
+        //View::share('notif_user', $this->notif_user);
+
+        //working!
+        View::share('managerview', Auth::id());
+        View::share('teamview', Auth::user()->team->id);
 	}
 	
 	public function indexAdmin()
@@ -40,17 +46,19 @@ public $manager, $team, $notif_user;
 
 	public function indexManager()
 	{
+		$team = Team::find(Auth::user()->team->id);
 		$manager = Auth::user();
-		return view('users.managerdash')->with('manager',$manager);
+		return view('users.managerdash')->with('manager',$manager)->with('team',$team);
 	}
 
 	public function indexMember()
 	{
 		$team_id = Auth::user()->team->id;
+		$team = Team::find($team_id);
 		$members = User::where('team_id',$team_id);
 		$pending = Auth::user()->leave->where('status','pending');
 	
-		return view('users.userdash')->with('members',$members)->with('pending', $pending);
+		return view('users.userdash')->with('members',$members)->with('pending', $pending)->with('team', $team);
 	}
 
 	public function showMembers($manager_id)

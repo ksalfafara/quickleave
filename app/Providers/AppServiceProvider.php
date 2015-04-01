@@ -1,17 +1,23 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use View, Auth;
+use App\User;
+use App\Team;
 
 class AppServiceProvider extends ServiceProvider {
 
-	/**
-	 * Bootstrap any application services.
-	 *
-	 * @return void
-	 */
 	public function boot()
 	{
-		//
+        //$this->manager = User::find(Auth::id());
+        //View::share('manager', Auth::id());
+
+        //$this->team = Team::find(Auth::user()->team->id);
+        //View::share('team', Auth::user()->team->id);
+
+        //View::share('managerview', Auth::id());
+        //View::share('teamview', Auth::user()->team->id);
+        
 	}
 
 	/**
