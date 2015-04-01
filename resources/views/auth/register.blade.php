@@ -118,6 +118,15 @@
             <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
+
+          <div class="form-group has-feedback">
+            <div class="input-group">
+            {!! Form::select('gender', array('' => 'Select gender', 'M' => 'Male', 'F' => 'Female'), Input::old('gender'), array('class' => 'form-control')) !!}
+            <div class="input-group-addon">
+                <i class="fa fa-chevron-down"></i>
+            </div>
+          </div>
+
           <p class="login-box-msg"><b>Your Team</b></p>
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="team_code" placeholder="Team Code" value="{{ old('team_code') }}"/>

@@ -25,7 +25,11 @@
     <section class="col-lg-3 connectedSortable">
         <div class="box box-solid ">
             <div class="box-body">
-                <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
+                @if(Auth::user()->gender == 'M')
+                    <center><img style="width=100%" align="center" src="/theme/dist/img/avatar5.png"></center>
+                @else
+                    <center><img style="width=100%" align="center" src="/theme/dist/img/avatar2.png"></center>
+                @endif
             </div>
         </div>
     </section>

@@ -23,6 +23,7 @@ class Registrar implements RegistrarContract {
 			'firstname' => 'required|max:255',
 			'lastname' 	=> 'required|max:255',
 			'email' 	=> 'required|email|max:255|unique:users',
+			'gender'	=> 'required',
 			//'team_id' => 'required',
 			'team_code' => 'exists:teams,team_code'
 		]);
@@ -48,9 +49,7 @@ class Registrar implements RegistrarContract {
 			'firstname' => $data['firstname'],
 			'lastname'	=> $data['lastname'],
 			'email' 	=> $data['email'],
-			//'sl_bal'	=> $data['sl_bal'],
-			//'vl_bal'	=> $data['vl_bal'],
-			//'is_manager'=> $data['is_manager'],
+			'gender' 	=> $data['gender'],
 			'team_id'   => $team_id
 		]);
 	}

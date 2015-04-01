@@ -37,6 +37,7 @@ class QuickLeaveSeeder extends Seeder {
 			'vl_bal' => null,
 			'role' => 'admin',
 			'date_hired' => '2015-03-15',
+			'gender' => 'M',
 			'team_id' => $team->id
 		));
 
@@ -56,6 +57,7 @@ class QuickLeaveSeeder extends Seeder {
 				'vl_bal' => 7,
 				'role' => 'manager',
 				'date_hired' => '2015-03-15',
+				'gender' => 'M',
 				'team_id' => $team->id,
 				'manager_id' => null
 				));
@@ -70,6 +72,7 @@ class QuickLeaveSeeder extends Seeder {
 				'vl_bal' => 7,
 				'role' => 'member',	
 				'date_hired' => '2015-03-15',
+				'gender' => 'M',
 				'team_id' => $team->id,
 				'manager_id' => $manager->id
 				));

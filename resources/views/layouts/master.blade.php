@@ -39,13 +39,21 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="/img/blossom.png" class="user-image" alt="User Image"/>
+                  @if(Auth::user()->gender == 'M')
+                     <img src="/theme/dist/img/avatar5.png" class="user-image" alt="User Image"/>
+                  @else
+                    <img src="/theme/dist/img/avatar2.png" class="user-image" alt="User Image"/>
+                  @endif
                   <span class="hidden-xs">{!! Auth::user()->username !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="/img/blossom.png" class="img-circle" alt="User Image" />
+                    @if(Auth::user()->gender == 'M')
+                      <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
+                    @else
+                      <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
+                    @endif
                     <p>
                       {!! Auth::user()->firstname !!} {!! Auth::user()->lastname !!}
                       <small>{!! Auth::user()->role !!} of {!! Auth::user()->team->team_name!!}</small>
@@ -86,7 +94,11 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="/img/blossom.png" class="img-circle" alt="User Image" />
+              @if(Auth::user()->gender == 'M')
+                <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
+              @else
+                <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
+              @endif 
             </div>
             <div class="pull-left info">
               <p>Hi, {!! Auth::user()->username !!}</p>
@@ -168,10 +180,10 @@
 
             <li class="header">YOUR TEAM</li>
             <li>
-            <li><a href="{{ URL::to('manager/' . $manager->id . '/members') }}"><i class="fa fa-users"></i>Your Team Members</a></li>
+            <li><a href="{{ URL::to('manager/' . $managerview . '/members') }}"><i class="fa fa-users"></i>Your Team Members</a></li>
 
             <li>
-              <a href="{{ URL::to('leaves/' . $team->id . '/memberspending') }}">
+              <a href="{{ URL::to('leaves/' . $teamview . '/memberspending') }}">
                 <i class="fa fa-question-circle"></i> <span>For Your Approval</span>
               </a>
             </li>
