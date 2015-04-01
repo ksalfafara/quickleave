@@ -78,18 +78,24 @@
                     @if($leaves == ('approved' || 'rejected'))
                       <li class="item">
                         <div class="product-img">
-                          <img src="/theme/dist/img/avatar5.png" alt="Product Image"/>
+                          @if(Auth::user()->gender == 'M')
+                            <img src="/theme/dist/img/avatar5.png" alt="Product Image"/>
+                          @else
+                            <img src="/theme/dist/img/avatar2.png" alt="Product Image"/>
+                          @endif
                         </div>
                         <div class="product-info">
-                          <a href="javascript::;" class="product-title">{!!$leaves->user->username!!} 
+                          <a href="javascript::;" class="product-title">
+                            {!!$leaves->user->username!!}'s' on leave for <b style="color: green">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
+
                             @if($leaves->type == 'SL')
-                              <span class="label label-warning pull-right">{!!$leaves->type!!}</span> 
+                              <span class="label label-primary pull-right">SICK LEAVE</span> 
                             @else
-                              <span class="label label-success pull-right">{!!$leaves->type!!}</span> 
+                              <span class="label label-success pull-right">VACATION LEAVE</span> 
                             @endif
                           </a>
-                          <span class="product-description">
-                            {!!$leaves->note!!}
+                          <span class="product-description" style="color:#444">
+                            <b>Reason: </b>{!!$leaves->note!!}
                           </span>
                         </div>
                       </li><!-- /.item -->

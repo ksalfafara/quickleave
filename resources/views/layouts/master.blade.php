@@ -50,9 +50,9 @@
                   <!-- User image -->
                   <li class="user-header">
                     @if(Auth::user()->gender == 'M')
-                      <img src="/theme/dist/img/avatar5.png" class="user-image" alt="User Image"/>
+                      <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
                     @else
-                      <img src="/theme/dist/img/avatar2.png" class="user-image" alt="User Image"/>
+                      <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
                     @endif
                     <p>
                       {!! Auth::user()->firstname !!} {!! Auth::user()->lastname !!}
@@ -95,10 +95,10 @@
           <div class="user-panel">
             <div class="pull-left image">
               @if(Auth::user()->gender == 'M')
-                <img src="/theme/dist/img/avatar5.png" class="user-image" alt="User Image"/>
+                <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
               @else
-                <img src="/theme/dist/img/avatar2.png" class="user-image" alt="User Image"/>
-              @endif
+                <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
+              @endif 
             </div>
             <div class="pull-left info">
               <p>Hi, {!! Auth::user()->username !!}</p>

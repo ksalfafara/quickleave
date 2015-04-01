@@ -55,11 +55,11 @@
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
             <td>@if($value->status == 'approved')
-                    <button class="btn btn-block btn-success">Approved</button>
+                    <button class="btn btn-xs btn-block btn-success">Approved</button>
                 @elseif($value->status == 'pending')
-                    <button class="btn btn-block btn-warning">Pending</button>
+                    <button class="btn btn-xs btn-block btn-warning">Pending</button>
                 @else
-                    <button class="btn btn-block btn-danger">Rejected</button>
+                    <button class="btn btn-xs btn-block btn-danger">Rejected</button>
                 @endif</td>
             <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
         </tr>
