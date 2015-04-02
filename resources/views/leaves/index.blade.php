@@ -19,8 +19,9 @@
 
 @section('content')
 
-@foreach($leaves as $leave)
-@if($leave->status == 'pending')
+@foreach($leaves as $key => $value)
+@if(Auth::user()->id == $value->user->id)
+@if($value->status == 'pending')
 <div class="box box-warning">
     <div class="box-body table-responsive">
         @if (Session::has('message'))
@@ -42,8 +43,8 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($leaves as $key => $value)
-        @if(Auth::user()->id == $value->user->id)
+    
+        
         <tr>
             <td>{!! $value->type !!}</td>
             <td>{!! $value->from_dt !!}</td>
@@ -56,17 +57,20 @@
                 @endif</td>
             <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
         </tr>
-        @endif
-    @endforeach
+   
     </tbody>
 </table>
 
   </div><!-- /.box-body -->
 </div><!-- /.box -->
 @endif
+@endif
 
-@if($leave->status <> 'pending')
-<div class="box box-primary">
+
+@if(Auth::user()->id == $value->user->id)
+@if($value->status <> 'pending')
+
+<div class="box box-primary fixed-box">
     <div class="box-body table-responsive">
         @if (Session::has('message'))
         <div class="alert alert-info">{!! Session::get('message') !!}</div>
@@ -87,7 +91,6 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($leaves as $key => $value)
         @if(Auth::user()->id == $value->user->id)
         <tr>
             <td>{!! $value->type !!}</td>
@@ -96,20 +99,20 @@
             <td>{!! $value->duration !!}</td>
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
-            <td>@if($value->status <> 'approve')
-                    <span class="label label-primary">Approved</span>
-                @elseif($value->status <> 'rejected')
+            <td>@if($value->status == 'approved')
+                    <span class="label label-success">Approved</span>
+                @elseif($value->status == 'rejected')
                     <span class="label label-primary">Rejected</span>
                 @endif</td>
             <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>
         </tr>
         @endif
-    @endforeach
     </tbody>
 </table>
 
   </div><!-- /.box-body -->
 </div><!-- /.box -->
+@endif
 @endif
 @endforeach
 @stop

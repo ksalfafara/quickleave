@@ -19,6 +19,7 @@
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <link href="/landtheme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/theme/dist/css/skins/skin-black.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/theme/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
   </head>
   <body class="skin-black" onload="GetClock();">

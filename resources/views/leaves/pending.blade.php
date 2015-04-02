@@ -35,7 +35,7 @@
             </div>
         @endif
 
-<table id="table" class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead> 
         <tr>
             <th>Type of Leave</th>

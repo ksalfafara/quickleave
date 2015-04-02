@@ -70,21 +70,21 @@
 
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Leaves</h3>
+                  <h3 class="box-title">Who's on leave on your team</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  @foreach($team->leaves as $leaves)
+                  @if(($leaves->where('status','approved')->count()) > 0)
+                 
                   <ul class="products-list product-list-in-box">
-                    @foreach($team->leaves as $leaves)
-                      @if($leaves->approved == ('approved' || 'rejected'))
+                      @if($leaves->status <> 'pending')
                         <li class="item">
                           <div class="product-img">
-                            @if($leaves->type == 'SL')
                               @if(Auth::user()->gender == 'M')
                                 <img src="/theme/dist/img/avatar5.png" alt="Product Image"/>
                               @else
                                 <img src="/theme/dist/img/avatar2.png" alt="Product Image"/>
                               @endif
-                            @endif
                           </div>
                           <div class="product-info">
                             <a href="javascript::;" class="product-title">
@@ -101,9 +101,14 @@
                             </span>
                           </div>
                         </li><!-- /.item -->
-                      @endif
-                    @endforeach
+                        
+                      @endif 
                   </ul>
+                  @else
+                      <center><h2>Good news: No one will be on leave!
+                      </h2></center>
+                  @endif
+                @endforeach
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
               

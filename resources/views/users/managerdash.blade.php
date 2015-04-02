@@ -69,43 +69,48 @@
           <div class="row">
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
-
-              <div class="box box-primary">
+<div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Leaves</h3>
+                  <h3 class="box-title">Who's on leave on your team</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                  @foreach($team->leaves as $leaves)
+                  @if(($leaves->where('status','approved')->count()) > 0)
+                 
                   <ul class="products-list product-list-in-box">
-                    @foreach($team->leaves as $leaves)
-                    @if($leaves->status <> 'pending')
-                      <li class="item">
-                        <div class="product-img">
-                          @if($leaves->type == 'SL')
-                            <img src="/theme/dist/img/avatar5.png" alt="Product Image"/>
-                          @else
-                            <img src="/theme/dist/img/avatar2.png" alt="Product Image"/>
-                          @endif
-                        </div>
-                        <div class="product-info">
-                          <a href="javascript::;" class="product-title" style="size:20px">{!!$leaves->user->username!!} On Leave <b style="color:green">{!!$leaves->from_dt!!} - {!!$leaves->to_dt!!}</b>. Duration of <b style="color:green">{!!$leaves->duration!!} days </b>
-                            @if($leaves->type == 'SL')
-                              <span class="label label-primary pull-right">{!!$leaves->type!!}</span> 
-                            @else
-                              <span class="label label-success pull-right">{!!$leaves->type!!}</span> 
-                            @endif
-                          </a>
-                          <span class="product-description" style="color:#444">
-                            {!!$leaves->note!!}
-                          </span>
-                        </div>
-                      </li><!-- /.item -->
-                    @endif
-                    @endforeach
+                      @if($leaves->status <> 'pending')
+                        <li class="item">
+                          <div class="product-img">
+                              @if(Auth::user()->gender == 'M')
+                                <img src="/theme/dist/img/avatar5.png" alt="Product Image"/>
+                              @else
+                                <img src="/theme/dist/img/avatar2.png" alt="Product Image"/>
+                              @endif
+                          </div>
+                          <div class="product-info">
+                            <a href="javascript::;" class="product-title">
+                              {!!$leaves->user->username!!}'s' on leave for <b style="color: green">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
+
+                              @if($leaves->type == 'SL')
+                                <span class="label label-primary pull-right">SICK LEAVE</span> 
+                              @else
+                                <span class="label label-success pull-right">VACATION LEAVE</span> 
+                              @endif
+                            </a>
+                            <span class="product-description" style="color:#444">
+                              <b>Reason: </b>{!!$leaves->note!!}
+                            </span>
+                          </div>
+                        </li><!-- /.item -->
+                        
+                      @endif 
                   </ul>
+                  @else
+                      <center><h2>Good news: No one will be on leave!
+                      </h2></center>
+                  @endif
+                @endforeach
                 </div><!-- /.box-body -->
-                <div class="box-footer text-center">
-                  <a href="/leaves/history" class="uppercase">View All Leaves</a>
-                </div><!-- /.box-footer -->
               </div><!-- /.box -->
               
 
