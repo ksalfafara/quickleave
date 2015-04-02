@@ -1,7 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-    User - Edit a leave
+    @if((Auth::user()->role) == 'manager')
+    Manager - Edit Pending request
+    @else
+    User - Edit Pending request
+    @endif
 @stop
 
 @section('pagetitle')
@@ -9,11 +13,8 @@
 @stop
 
 @section('breadcrumbs')
-    @if((Auth::user()->role) == 'manager')
-    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
-    @elseif((Auth::user()->role) == 'member')
-    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
-    @endif
+    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+    <li><a href="/leaves/pending">{{$leave->id}}</a></li>
     <li class="active"><a href="">Edit Request</a></li>
 @stop
 

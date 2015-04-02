@@ -77,7 +77,7 @@
                 <div class="box-body">
                   <ul class="products-list product-list-in-box">
                     @foreach($team->leaves as $leaves)
-                    @if($leaves == ('approved' || 'rejected'))
+                    @if($leaves->status <> 'pending')
                       <li class="item">
                         <div class="product-img">
                           @if($leaves->type == 'SL')

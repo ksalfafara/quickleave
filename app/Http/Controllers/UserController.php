@@ -34,7 +34,8 @@ class UserController extends Controller {
         //working!
         View::share('managerview', Auth::id());
         View::share('teamview', Auth::user()->team->id);
-	}
+        View::share('adminteams', Team::all());
+     }
 	
 	public function indexAdmin()
 	{

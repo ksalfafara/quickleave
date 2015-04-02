@@ -9,13 +9,8 @@
 @stop
 
 @section('breadcrumbs')
-    @if((Auth::user()->role) == 'manager')
-    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
-    @elseif((Auth::user()->role) == 'member')
-    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
-    @endif
-    <li class="active"><a href="">{!! Auth::user()->team->team_name !!}</a></li>
-    <li class="active"><a href="">History</a></li>
+    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">History</li>
 @stop
 
 @section('content')
@@ -54,9 +49,9 @@
                 <td>{!! $leave->remark !!}</td>
                 <td>
                     @if(($leave->status) == 'approved')
-                        <button class="btn btn-success btn-xs">Approved</button>
+                        <span class="label label-primary">Approved</span>
                     @else
-                        <button class="btn btn-danger btn-xs">Rejected</button>
+                        <span class="label label-primary">Rejected</span>
                     @endif
 
                 </td>

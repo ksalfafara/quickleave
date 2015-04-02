@@ -1,7 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
+    @if((Auth::user()->role) == 'manager')
+    Manager - Request a leave
+    @else
     User - Request a leave
+    @endif
 @stop
 
 @section('pagetitle')
@@ -9,12 +13,8 @@
 @stop
 
 @section('breadcrumbs')
-    @if((Auth::user()->role) == 'manager')
-    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
-    @elseif((Auth::user()->role) == 'member')
-    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
-    @endif
-    <li class="active"><a href="">Edit Request</a></li>
+    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">Create Leave</li>
 @stop
 
 @section('content')
@@ -43,10 +43,10 @@
     <div class="form-group">
         {!! Form::label('type', 'LEAVE TYPE') !!}
         <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-chevron-down"></i>
+            </div>
         {!! Form::select('type', array('' => 'Select leave type ', 'SL' => 'Sick Leave', 'VL' => 'Vacation Leave'), Input::old('type'), array('class' => 'form-control', 'required' => 'required')) !!}
-        <div class="input-group-addon">
-                        <i class="fa fa-chevron-down"></i>
-                      </div>
         </div>
     
     </div>

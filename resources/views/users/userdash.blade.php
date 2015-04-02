@@ -10,8 +10,8 @@
 @stop
 
 @section('breadcrumbs')
-  <li><a href="/user"><i class="fa fa-home"></i> Home</a></li>
-  <li class="active"><a href="/user">User Dashboard</a></li>
+  <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+  <li class="active">User Dashboard</li>
 @stop
 
 @section('content')
@@ -75,7 +75,7 @@
                 <div class="box-body">
                   <ul class="products-list product-list-in-box">
                     @foreach($team->leaves as $leaves)
-                      @if($leaves == ('approved' || 'rejected'))
+                      @if($leaves->approved == ('approved' || 'rejected'))
                         <li class="item">
                           <div class="product-img">
                             @if($leaves->type == 'SL')

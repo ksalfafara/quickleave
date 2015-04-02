@@ -33,7 +33,7 @@ class LeaveController extends Controller {
 	public function index()
 	{
         $leaves = Leave::all();
-        return View::make('leaves.index')->with('leaves', $leaves);
+        return View::make('leaves.index')->with('leaves', $leaves)->with('leave',$leaves);
 	}
 
 	public function create()

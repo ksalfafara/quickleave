@@ -9,8 +9,8 @@
 @stop
 
 @section('breadcrumbs')
-  <li><a href="/admin"><i class="fa fa-home"></i> Admin Dashboard</a></li>
-  <li class="active"><a href="">All Requests</a></li>
+  <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+  <li class="active">All Requests</li>
 @stop
 
 
