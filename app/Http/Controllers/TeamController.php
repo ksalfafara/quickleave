@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Team;
 use App\User;
+use App\Leave;
 use View, Input, Session, Redirect, Validator;
 
 class TeamController extends Controller {
