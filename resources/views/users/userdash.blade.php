@@ -78,7 +78,7 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   @foreach($team->leaves as $leaves)
-                  @if($leaves->status == 'approved')
+                  @if($leaves->status == 'approved' && $leaves->from_dt >= date("Y-m-d"))
                   @if(($leaves->where('status','approved')->count()) > 0)
                   <!-- chat item -->
                   <div class="item">
