@@ -87,15 +87,14 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   @foreach($team->leaves as $leaves)
-                  @if($leaves->status == 'approved')
-                  @if(($leaves->where('status','approved')->count()) > 0)
-                  <!-- chat item -->
+                   <!-- chat item -->
                   <div class="item">
-                    @if($leaves->user->gender == 'M')
-                      <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
-                    @else
-                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
-                    @endif
+                    @if($leaves->status == 'approved' && $leaves->from_dt >= date("Y-m-d"))
+                          @if($leaves->user->gender == 'M')
+                            <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                          @else
+                            <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                          @endif
                     <p class="message">
                       <a href="" class="name">
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
@@ -111,12 +110,11 @@
                               <br>
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
+                    @elseif($leaves->where('status','approved')->count() == 0 && $leaves->from_dt < date("Y-m-d"))
+                        <center><h2>No filed leaves from your team as of the moment.
+                        </h2></center>
+                    @endif                    
                   </div><!-- /.item -->
-                  @else
-                      <center><h2>Good news: No one will be on leave!
-                      </h2></center>
-                  @endif
-                  @endif
                 @endforeach
                   <!-- chat item -->
                 </div><!-- /.chat -->
