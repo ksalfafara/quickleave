@@ -9,12 +9,8 @@
 @stop
 
 @section('breadcrumbs')
-    @if((Auth::user()->role) == 'manager')
-    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
-    @elseif((Auth::user()->role) == 'member')
-    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
-    @endif
-    <li class="active"><a href="">All Employees</a></li>
+    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">All Employees</li>
 @stop
 
 @section('content')
@@ -29,6 +25,7 @@
         <tr>
             <td>Team Name</td>
             <td>Employee Name</td>
+            <td>Username</td>
             <td>Date Hired</td>
             <td>SL Balance</td>
             <td>VL Balance</td>
@@ -41,6 +38,7 @@
         <tr>
             <td>{!! $employee->team->team_name !!}</td>
             <td>{!! $employee->firstname . ' ' . $employee->lastname !!}</td>
+            <td>{!! $employee->username !!}
             @if($employee->date_hired == null)
                 <td>No specified date hired</td>
             @else

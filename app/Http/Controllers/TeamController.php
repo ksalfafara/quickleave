@@ -13,6 +13,7 @@ class TeamController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth'); //change later to auth
+		View::share('adminteams', Team::all());
 	}
 	
 	public function index()

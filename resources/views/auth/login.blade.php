@@ -122,7 +122,7 @@
         </form>
 
         <!--<a href="/password/email">Forgot Your Password?</a><br>-->
-        <a href="/auth/register" class="text-center">Sign Up</a>
+        <a href="/auth/register" class="text-center">Want to be a member?</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

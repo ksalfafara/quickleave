@@ -5,8 +5,8 @@
 @stop
 
 @section('breadcrumbs')
-  <li><a href="/admin"><i class="fa fa-home"></i> Home</a></li>
-  <li class="active"><a href="/admin">Admin Dashboard</a></li>
+  <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+  <li class="active">Admin Dashboard</li>
 @stop
 
 @section('pagetitle')
@@ -42,22 +42,7 @@
                     document.write("<small><font color='ffffff'><b>"+montharray[month]+" "+daym+", "+year+"</b></font></small>")
                     </script>
                   </h3>
-                  <p>
-                    <script type="text/javascript">
-                    <!--
-                    var a_p = "";
-                    var d = new Date();
-                    var curr_hour = d.getHours();
-                    if (curr_hour < 12){a_p = "AM";}
-                    else{a_p = "PM";}
-                    if (curr_hour == 0){urr_hour = 12;}
-                    if (curr_hour > 12){curr_hour = curr_hour - 12;}
-                    var curr_min = d.getMinutes();
-                    document.write(curr_hour + " : " + curr_min + " " + a_p);
-
-                    //-->
-                    </script>
-                  </p>
+                  <p id="clockbox"></p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-clock-o"></i>

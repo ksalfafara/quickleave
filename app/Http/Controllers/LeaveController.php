@@ -32,8 +32,9 @@ class LeaveController extends Controller {
 
 	public function index()
 	{
+        $pending = Auth::user()->leave->where('status','pending');
         $leaves = Leave::all();
-        return View::make('leaves.index')->with('leaves', $leaves);
+        return View::make('leaves.index')->with('leaves', $leaves)->with('pending',$pending);
 	}
 
 	public function create()

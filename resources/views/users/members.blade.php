@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Manager - All members
+    Manager - {!! Auth::user()->team->team_name !!}'s Members
 @stop
 
 @section('pagetitle')
@@ -9,13 +9,8 @@
 @stop
 	
 @section('breadcrumbs')
-    @if((Auth::user()->role) == 'manager')
-    <li><a href="/manager"><i class="fa fa-home"></i> Manager Dashboard</a></li>
-    @elseif((Auth::user()->role) == 'member')
-    <li><a href="/user"><i class="fa fa-home"></i> User Dashboard</a></li>
-    @endif
-    <li><a href="">{!! Auth::user()->team->team_name !!}</a></li>
-    <li class="active"><a href="">All Members</a></li>
+    <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+    <li class="active">All Members</li>
 @stop
 
 @section('content')
@@ -32,6 +27,7 @@
                 <th>Name</th>
                 <th>Username</th>
                 <th>Role</th>
+                <th>Date Hired</th>
                 <th>Registration Date</th>
             </tr>
         </thead>
@@ -39,11 +35,18 @@
 
         @foreach($manager->members as $member)
             <tr>
-                <td>{!! $member->team->team_name!!}
+                <td>{!! $member->team->team_name!!}</td>
                 <td>{!! $member->firstname . ' ' . $member->lastname !!}</td>
                 <td>{!! $member->username !!}</td>
-                <td>{!! $member->role !!}</td>
-                <td>{!! date("M d, Y",strtotime($member->ceated_at)) !!}</td>
+                <td>
+                    @if($member->role == 'manager')
+                    <span class="label label-primary">Manager</span>
+                    @else
+                    <span class="label label-success">Member</span>
+                    @endif
+                </td>
+                <td>{!! date("M d, Y",strtotime($member->date_hired)) !!}</td>
+                <td>{!! date("M d, Y",strtotime($member->created_at)) !!}</td>
             </tr>
         @endforeach
         </tbody>

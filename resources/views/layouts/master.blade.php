@@ -19,9 +19,10 @@
     <link href="/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
     <link href="/landtheme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/theme/dist/css/skins/skin-black.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/theme/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
   </head>
-  <body class="skin-black">
+  <body class="skin-black" onload="GetClock();">
     <div class="wrapper">
       
       <header class="main-header">
@@ -127,8 +128,18 @@
                 <i class="fa fa-home"></i> <span>Admin Board</span>
               </a>
             </li>
-            <li><a href="/teams/create"><i class="fa fa-users"></i> Create team</a></li>
-            <li><a href="/teams"><i class="fa fa-sitemap"></i> Teams</a></li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i>
+                <span>Teams</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                <span class="label label-primary pull-right">{{$adminteams->count()}}</span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/teams/create"><i class="fa fa-circle-o"></i> Create Team</a></li>
+                <li><a href="/teams"><i class="fa fa-circle-o"></i> All Teams </a></li>
+              </ul>
+            </li>
             <li>
                     <a href="/admin/showemployees">
                     <i class="fa fa-pencil-square"></i>
@@ -300,6 +311,35 @@
       $(".sidebar-menu").find(".active").removeClass("active");
       $(this).parent().addClass("active");
       });
+    </script>
+
+    <script type="text/javascript">
+      function GetClock(){
+      var d=new Date();
+      var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+        if(nhour==0){ap=" AM";nhour=12;}
+        else if(nhour<12){ap=" AM";}
+        else if(nhour==12){ap=" PM";}
+        else if(nhour>12){ap=" PM";nhour-=12;}
+
+      if(nmin<=9) nmin="0"+nmin;
+      if(nsec<=9) nsec="0"+nsec;
+
+      document.getElementById('clockbox').innerHTML=""+nhour+":"+nmin+":"+nsec+ap+"";
+      }
+
+      window.onload=function(){
+      GetClock();
+      setInterval(GetClock,1000);
+      }
+    </script>
+
+    <script type="text/javascript">
+      // Sets active link in Bootstrap menu
+      // Add this code in a central place used\shared by all pages
+      // like your _Layout.cshtml in ASP.NET MVC for example
+      $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
     </script>
 
   </body>
