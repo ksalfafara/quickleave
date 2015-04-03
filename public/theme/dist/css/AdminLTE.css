@@ -1531,9 +1531,16 @@ a:focus {
 .chat {
   padding: 5px 20px 5px 10px;
 }
-.chat .item {
+.chat .item{
   margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
+
+.chat .item:last-child{
+  margin-bottom: 10px;
+  border-bottom: none;
+}
+
 .chat .item:before,
 .chat .item:after {
   content: " ";
@@ -1549,7 +1556,7 @@ a:focus {
   border-radius: 50% !important;
 }
 .chat .item > img.online {
-  border: 2px solid #00a65a;
+  border: 2px solid #fed136;
 }
 .chat .item > img.offline {
   border: 2px solid #dd4b39;

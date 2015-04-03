@@ -14,57 +14,49 @@
 @stop
 
 @section('content')
-<div class="box box-warning">
 
-    <div class="box-body table-responsive">
-        @if (Session::has('message'))
-        <div class="alert alert-info">{!! Session::get('message') !!}</div>
-        @endif
-        @if ($errors->has())
-            <div class="alert alert-danger">
-              <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
-                @foreach ($errors->all() as $error)
-                    {{ $error }}<br>        
-                @endforeach
-            </div>
-        @endif
+<div class="row">
+@foreach($team->leaves as $leaves)
+@if($leaves->status == 'pending' && $leaves->user->role <> 'manager')
 
-<table id="table" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Type of Leave</th>
-            <th>From Date</th>
-            <th>To Date</th>
-            <th>Duration</th>
-            <th>Note</th>
-            <th>Date Created</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($team->leaves as $leave)
-        @if($leave->status == 'pending' && $leave->user->role <> 'manager')
-        <tr>
-            <td>{!! $leave->user->firstname . ' ' . $leave->user->lastname!!}</td>
-            <td>{!! $leave->user->username!!}</td>
-            <td>{!! $leave->type !!}</td>
-            <td>{!! $leave->from_dt !!}</td>
-            <td>{!! $leave->to_dt !!}</td>
-            <td>{!! $leave->duration !!}</td>
-            <td>{!! $leave->note !!}</td>
-            <td>{!! $leave->created_at !!}</td>
-            <td>{!! $leave->status !!}</td>
-            <td>
-                <a class="btn btn-small btn-info" href="{!! URL::to('leaves/pending/' . $leave->id . '/edit') !!}">Change Status</a>
-            </td>
-        </tr>
-        @endif
-    @endforeach
-    </tbody>
-</table>
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
+
+    <div class="col-md-4 col-sm-5 col-xs-12">
+    <div class="box box-warning">
+                <div class="box-body chat" id="chat-box">
+                 
+                  <!-- chat item -->
+                  <div class="item">
+                    @if(Auth::user()->gender == 'M')
+                      <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                    @else
+                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                    @endif
+                    <p class="message">
+                      <a href="" class="name">
+                        <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
+                        {!!$leaves->user->firstname!!} {!!$leaves->user->lastname!!}
+                      </a>
+                      <b>On leave: </b><b style="color: green">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
+                      <br>
+                      <b>Leave Type: </b> @if($leaves->type == 'SL')
+                                <span class="label label-primary ">SICK LEAVE</span> 
+                              @else
+                                <span class="label label-success">VACATION LEAVE</span> 
+                              @endif
+                              <br>
+                      <b>Reason: </b>{!!$leaves->note!!}
+                    </p>
+                  </div><!-- /.item -->
+                  <!-- chat item -->
+                </div><!-- /.chat -->
+                <div class="box-footer">
+                   <center> <a class="btn btn-small btn-info" href="{!! URL::to('leaves/pending/' . $leaves->id . '/edit') !!}">Change Status</a></center>
+                </div>
+                
+              </div><!-- /.box (chat box) -->
+    </div><!-- /.col -->  
+       
+@endif
+@endforeach
+</div> <!--row-->
 @stop

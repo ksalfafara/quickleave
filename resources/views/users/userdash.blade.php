@@ -67,51 +67,52 @@
           <div class="row">
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
-
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Who's on leave on your team</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
+<!-- Chat box -->
+              <div class="box box-success">
+                <div class="box-header">
+                  <i class="fa fa-users"></i>
+                  <h3 class="box-title">Who's on leave?</h3>
+                  <div class="box-tools pull-right">
+                    <span class="label label-warning">{{ $team->leaves->where('status','approved')->count() }} </span>
+                  </div>
+                </div>
+                <div class="box-body chat" id="chat-box">
                   @foreach($team->leaves as $leaves)
+                  @if($leaves->status == 'approved')
                   @if(($leaves->where('status','approved')->count()) > 0)
-                 
-                  <ul class="products-list product-list-in-box">
-                      @if($leaves->status <> 'pending')
-                        <li class="item">
-                          <div class="product-img">
-                              @if(Auth::user()->gender == 'M')
-                                <img src="/theme/dist/img/avatar5.png" alt="Product Image"/>
+                  <!-- chat item -->
+                  <div class="item">
+                    @if(Auth::user()->gender == 'M')
+                      <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                    @else
+                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                    @endif
+                    <p class="message">
+                      <a href="" class="name">
+                        <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
+                        {!!$leaves->user->firstname!!} {!!$leaves->user->lastname!!}
+                      </a>
+                      <b>On leave: </b><b style="color: green">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
+                      <br>
+                      <b>Leave Type: </b> @if($leaves->type == 'SL')
+                                <span class="label label-primary ">SICK LEAVE</span> 
                               @else
-                                <img src="/theme/dist/img/avatar2.png" alt="Product Image"/>
+                                <span class="label label-success">VACATION LEAVE</span> 
                               @endif
-                          </div>
-                          <div class="product-info">
-                            <a href="javascript::;" class="product-title">
-                              {!!$leaves->user->username!!}'s' on leave for <b style="color: green">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
-
-                              @if($leaves->type == 'SL')
-                                <span class="label label-primary pull-right">SICK LEAVE</span> 
-                              @else
-                                <span class="label label-success pull-right">VACATION LEAVE</span> 
-                              @endif
-                            </a>
-                            <span class="product-description" style="color:#444">
-                              <b>Reason: </b>{!!$leaves->note!!}
-                            </span>
-                          </div>
-                        </li><!-- /.item -->
-                        
-                      @endif 
-                  </ul>
+                              <br>
+                      <b>Reason: </b>{!!$leaves->note!!}
+                    </p>
+                  </div><!-- /.item -->
                   @else
                       <center><h2>Good news: No one will be on leave!
                       </h2></center>
                   @endif
+                  @endif
                 @endforeach
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-              
+                  <!-- chat item -->
+                </div><!-- /.chat -->
+                
+              </div><!-- /.box (chat box) -->
 
             </section><!-- /.Left col -->
             
