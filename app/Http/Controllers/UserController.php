@@ -49,9 +49,12 @@ class UserController extends Controller {
 
 	public function indexManager()
 	{
+		$team_id = Auth::user()->team->id;
+		$teams = Team::find($team_id);
+		$members = User::where('team_id',$team_id);
 		$team = Team::find(Auth::user()->team->id);
 		$manager = Auth::user();
-		return view('users.managerdash')->with('manager',$manager)->with('team',$team);
+		return view('users.managerdash')->with('manager',$manager)->with('team',$team)->with('members',$members);
 	}
 
 	public function indexMember()
@@ -201,13 +204,19 @@ class UserController extends Controller {
 
 	public function destroy($id)
 	{
-		//
+		$employee = User::find($id);
+		$employee->delete();
+
+		// redirect
+		Session::flash('message','Successfully deleted User '.$employee->id.'!');
+		return Redirect::to('admin/showemployees');
 	}
 	
 	public function showEmployees()
 	{
+		$teams = Team::all();
 		$employees = User::all();
-		return View::make('users.showEmployees')->with('employees', $employees); 
+		return View::make('users.showEmployees')->with('employees', $employees)->with('teams',$teams); 
 	}
 
 

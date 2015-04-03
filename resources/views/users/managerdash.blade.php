@@ -126,23 +126,21 @@
                   <h3 class="box-title">Latest Members</h3>
                   <div class="box-tools pull-right">
                     <span class="label label-danger">8 New Members</span>
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
                   <ul class="users-list clearfix">
+                  @foreach($members as $member)
                     <li>
-                      <img src="/theme/dist/img/user1-128x128.jpg" alt="User Image"/>
-                      <a class="users-list-name" href="#">Alexander Pierce</a>
+                      @if($member->gender == 'M')
+                        <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                      @else
+                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                      @endif
+                      <a class="users-list-name" href="#">{{$member->username}}</a>
                       <span class="users-list-date">Today</span>
                     </li>
-                    <li>
-                      <img src="/theme/dist/img/user8-128x128.jpg" alt="User Image"/>
-                      <a class="users-list-name" href="#">Norman</a>
-                      <span class="users-list-date">Yesterday</span>
-                    </li>
-        
+                  @endforeach
                   </ul><!-- /.users-list -->
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">

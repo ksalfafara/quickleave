@@ -55,10 +55,12 @@
                 @if(($member->role) == 'manager')
                     <span class="label label-warning">Manager</span>
                 @elseif(($member->role) == 'member')
-                    <span class="label label-success">Mmeber</span>
+                    <span class="label label-success">Member</span>
                 @elseif(($member->role) == 'admin')
                     <span class="label label-danger">Admin</span>
-                @elseif(($member->role) == null)
+                @elseif(($member->role) == 'director')
+                    <span class="label label-danger">Director</span>
+                @else
                     <span class="label label-danger">No specified role</span>
                 @endif
             </td>
