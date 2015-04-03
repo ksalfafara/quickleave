@@ -29,6 +29,7 @@ class LeaveController extends Controller {
         View::share('managerview', Auth::id());
         View::share('teamview', Auth::user()->team->id);
         View::share('adminteams', Team::all());
+        View::share('emp', User::all());
 	}
 
 	public function index()

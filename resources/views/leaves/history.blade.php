@@ -25,10 +25,9 @@
     <thead>
         <tr>
             <th>Employee Name</th>
-            <th>Type of Leave</th>
-            <th>From Date</th>
-            <th>To Date</th>
+            <th>Leave Type</th>
             <th>Duration</th>
+            <th>Days</th>
             <th>Note</th>
             <th>Remarks</th>
             <th>Status</th>
@@ -42,8 +41,7 @@
             <tr>
                 <td>{!! $leave->user->firstname . ' ' . $leave->user->lastname !!}
                 <td>{!! $leave->type !!}</td>
-                <td>{!! $leave->from_dt !!}</td>
-                <td>{!! $leave->to_dt !!}</td>
+                <td>{!! date("m/d",strtotime($leave->from_dt)) . ' - ' . date("m/d",strtotime($leave->to_dt)) !!} </td>
                 <td>{!! $leave->duration !!}</td>
                 <td>{!! $leave->note !!}</td>
                 <td>{!! $leave->remark !!}</td>

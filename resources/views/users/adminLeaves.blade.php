@@ -25,10 +25,9 @@
     <thead>
         <tr>
             <th>Employee Name</th>
-            <th>Type of Leave</th>
-            <th>From Date</th>
-            <th>To Date</th>
+            <th>Leave Type</th>
             <th>Duration</th>
+            <th>Days</th>
             <th>Note</th>
             <th>Remarks</th>
             <th>Status</th>
@@ -37,20 +36,19 @@
     </thead>
     <tbody>
     @foreach($leaves as $key => $value)
-    @if(($value->status) <> 'Pending')
+    @if(($value->status) <> 'pending')
         <tr>
             <td>{!! $value->user->firstname . ' ' . $value->user->lastname!!}</td>
             <td>{!! $value->type !!}</td>
-            <td>{!! $value->from_dt !!}</td>
-            <td>{!! $value->to_dt !!}</td>
+            <td>{!! date("m/d",strtotime($value->from_dt)) . ' - ' . date("m/d",strtotime($value->to_dt)) !!} </td>
             <td>{!! $value->duration !!}</td>
             <td>{!! $value->note !!}</td>
             <td>{!! $value->remark !!}</td>
             <td>
-                @if(($value->status) === 'Approved')
-                    <button class="btn btn-success btn-xs">Approved</button>
-                @else
-                    <button class="btn btn-danger btn-xs">Rejected</button>
+                @if(($value->status) == 'approved')
+                    <span class="label label-success">Approved</span>
+                @elseif(($value->status) == 'rejected')
+                    <span class="label label-danger">Rejected</span>
                 @endif
             </td>
             <td>{!! date("M d, Y - H:i",strtotime($value->updated_at)) !!}</td>

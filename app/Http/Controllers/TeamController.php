@@ -14,6 +14,7 @@ class TeamController extends Controller {
 	{
 		$this->middleware('auth'); //change later to auth
 		View::share('adminteams', Team::all());
+		View::share('emp', User::all());
 	}
 	
 	public function index()

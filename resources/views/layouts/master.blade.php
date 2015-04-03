@@ -108,7 +108,7 @@
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           
-@if((Auth::user()->role) == 'admin') <!--admin-->
+          @if((Auth::user()->role) == 'admin') <!--admin-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
@@ -120,7 +120,6 @@
               <a href="#">
                 <i class="fa fa-users"></i>
                 <span>Teams</span>
-                <i class="fa fa-angle-left pull-right"></i>
                 <span class="label label-primary pull-right">{{$adminteams->count()}}</span>
               </a>
               <ul class="treeview-menu">
@@ -132,6 +131,7 @@
                     <a href="/admin/showemployees">
                     <i class="fa fa-pencil-square"></i>
                     <span>Employees</span>
+                    <span class="label label-warning pull-right">{{$emp->count()}}</span>
                     </a>
             </li>     
             <li><a href="/approved"><i class="fa fa-check-square"></i> All approved requests</a></li>     
