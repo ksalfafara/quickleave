@@ -41,6 +41,7 @@ Route::put('user/{id}/updatepassword', ['uses' => 'UserController@updatePass', '
 Route::get('admin/showemployees', 'UserController@showEmployees');
 Route::get('admin/{id}/editemployee', 'UserController@editEmployee');
 Route::put('admin/{id}/updateemployee', ['uses' => 'UserController@updateEmployee', 'as' => 'admin.updateEmployee']);
+Route::delete('admin/{id}/delete', 'UserController@destroy');
 
 //Team
 Route::get('teams', 'TeamController@index');
