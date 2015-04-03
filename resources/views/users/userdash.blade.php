@@ -101,12 +101,12 @@
                               <br>
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
-                      @else
+                      @endif
+                    @if ($leaves->where('status','approved')->count() = 0 && $leaves->from_dt < date("Y-m-d"))
                         <center><h2>No filed leaves from your team as of the moment.
                         </h2></center>
-                      @endif
+                    @endif
                   </div><!-- /.item -->
-                  
                 @endforeach
                   <!-- chat item -->
                 </div><!-- /.chat -->
