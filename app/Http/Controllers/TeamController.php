@@ -103,4 +103,10 @@ class TeamController extends Controller {
 		Session::flash('message','Successfully deleted '.$member->username.'!');
 		return Redirect::to('teams');
 	}
+
+	public function directorTeam()
+	{
+		$teams = Team::all();
+		return View::make('teams.directorTeams')->with('teams',$teams);
+	}
 }

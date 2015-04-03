@@ -68,7 +68,6 @@ class UserController extends Controller {
 		return view('users.directordash');
 	}
 
-
 	public function showMembers($manager_id)
 	{
 		

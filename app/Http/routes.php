@@ -25,7 +25,9 @@ Route::get('/', function(){
 Route::get('admin', 'UserController@indexAdmin');
 Route::get('manager', 'UserController@indexManager');
 Route::get('user', 'UserController@indexMember');
+Route::get('director', 'UserController@indexDirector');
 Route::get('manager/{manager_id}/members', 'UserController@showMembers');
+
 Route::get('approved', 'LeaveController@showApproved');
 
 //User Profile
@@ -51,6 +53,7 @@ Route::delete('teams/{id}/delete', 'TeamController@destroy');
 Route::get('teams/{id}/editrole', 'TeamController@editRole');
 Route::put('teams/{id}/updaterole', ['uses' => 'TeamController@updateRole', 'as' => 'teams.updateRole']);
 Route::delete('teams/{id}/deletemember', 'TeamController@destroyMember');
+Route::get('director/teams', 'TeamController@directorTeam');
 
 //Leave
 Route::get('leaves', 'LeaveController@index');

@@ -139,9 +139,30 @@
           </ul>
           @endif <!--admin-->
 
+          @if(Auth::user()->role == 'director') && (Auth::user()->role <> 'member')) <!--director-->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li><a href="/director/teams">
+                    <i class="fa fa-users"></i>
+                    <span>Teams</span>
+                    <span class="label label-warning pull-right">{{$adminteams->count()}}</span>
+                    </a>
+            </li> 
+            
+            <li><a href="/admin/showemployees">
+                    <i class="fa fa-pencil-square"></i>
+                    <span>Employees</span>
+                    <span class="label label-warning pull-right">{{$emp->count()}}</span>
+                    </a>
+            </li>     
+            <li><a href="/approved"><i class="fa fa-check-square"></i> All approved requests</a></li>     
+            
+          </ul>
+          @endif <!--director-->
 
 
-          @if((Auth::user()->role) <> 'admin') <!--member-->
+
+          @if(Auth::user()->role == ('member' || 'manager') && Auth::user()->role <> 'director') <!--member-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
@@ -155,8 +176,6 @@
               </a>
               @endif
             </li>
-
-
             <li>
               <a href="/leaves/create">
                 <i class="fa fa-pencil-square"></i> <span>Request a Leave</span>
