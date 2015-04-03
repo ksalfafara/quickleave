@@ -139,7 +139,7 @@
           </ul>
           @endif <!--admin-->
 
-          @if(Auth::user()->role == 'director' && Auth::user()->role <> 'a') <!--director-->
+          @if(Auth::user()->role == 'director') <!--director-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>

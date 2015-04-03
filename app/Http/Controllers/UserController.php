@@ -42,7 +42,7 @@ class UserController extends Controller {
 	{
 		$teams = Team::all();
 		$users = User::all();
-		$leaves = Leave::all()->where('status', 'pending');
+		$leaves = Leave::all()->where('status', 'approved');
 		return view('users.admin')->with('users', $users)->with('teams',$teams)->with('leaves',$leaves);
 	}
 
@@ -66,7 +66,9 @@ class UserController extends Controller {
 	public function indexDirector()
 	{	
 		$teams = Team::all();
-		return view('users.directordash')->with('teams',$teams);
+		$users = User::all();
+		$leaves = Leave::all()->where('status', 'pending');
+		return view('users.directordash')->with('teams',$teams)->with('users', $users)->with('leaves',$leaves);
 	}
 
 	public function showMembers($manager_id)

@@ -104,9 +104,4 @@ class TeamController extends Controller {
 		return Redirect::to('teams');
 	}
 
-	public function directorTeam()
-	{
-		$teams = Team::all();
-		return View::make('teams.directorTeams')->with('teams',$teams);
-	}
 }
