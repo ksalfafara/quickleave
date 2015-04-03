@@ -40,21 +40,36 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
                   @if(Auth::user()->gender == 'M')
-                     <img src="/theme/dist/img/avatar5.png" class="user-image" alt="User Image"/>
+                    @if(Auth::user()->role == 'admin')
+                      <img src="/theme/dist/img/avatar.png" class="user-image" alt="User Image"/>
+                    @elseif(Auth::user()->role == 'director')
+                      <img src="/theme/dist/img/avatar3.png" class="user-image" alt="User Image"/>
+                    @else
+                      <img src="/theme/dist/img/avatar5.png" class="user-image" alt="User Image"/>
+                    @endif
                   @else
                     <img src="/theme/dist/img/avatar2.png" class="user-image" alt="User Image"/>
                   @endif
+
                   <span class="hidden-xs">{!! Auth::user()->username !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    @if(Auth::user()->gender == 'M')
-                      <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
+                  @if(Auth::user()->gender == 'M')
+                    @if(Auth::user()->role == 'admin')
+                      <img src="/theme/dist/img/avatar.png" class="img-circle" alt="User Image"/>
+                    @elseif(Auth::user()->role == 'director')
+                      <img src="/theme/dist/img/avatar3.png" class="img-circle" alt="User Image"/>
                     @else
-                      <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
+                      <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
                     @endif
+                  @else
+                    <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
+                  @endif
+                    
                     <p>
                       {!! Auth::user()->firstname !!} {!! Auth::user()->lastname !!}
                       <small>{!! Auth::user()->role !!} of {!! Auth::user()->team->team_name!!}</small>
@@ -83,11 +98,17 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              @if(Auth::user()->gender == 'M')
-                <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
-              @else
-                <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
-              @endif 
+                  @if(Auth::user()->gender == 'M')
+                    @if(Auth::user()->role == 'admin')
+                      <img src="/theme/dist/img/avatar.png" class="img-circle" alt="User Image"/>
+                    @elseif(Auth::user()->role == 'director')
+                      <img src="/theme/dist/img/avatar3.png" class="img-circle" alt="User Image"/>
+                    @else
+                      <img src="/theme/dist/img/avatar5.png" class="img-circle" alt="User Image"/>
+                    @endif
+                  @else
+                    <img src="/theme/dist/img/avatar2.png" class="img-circle" alt="User Image"/>
+                  @endif
             </div>
             <div class="pull-left info">
               <p>Hi, {!! Auth::user()->username !!}</p>
@@ -139,9 +160,21 @@
           </ul>
           @endif <!--admin-->
 
+          @if(Auth::user()->role == 'director') <!--director-->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a href="/director">
+                <i class="fa fa-home"></i> <span>Director Board</span>
+                <span class="label label-warning pull-right">{{$dirleaves->count()}}</span>
+              </a>
+            </li>
+          </ul>
+          @endif <!--director-->
 
 
-          @if((Auth::user()->role) <> 'admin') <!--member-->
+
+          @if(Auth::user()->role <> 'admin' && Auth::user()->role <> 'director') <!--member-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
@@ -155,8 +188,6 @@
               </a>
               @endif
             </li>
-
-
             <li>
               <a href="/leaves/create">
                 <i class="fa fa-pencil-square"></i> <span>Request a Leave</span>

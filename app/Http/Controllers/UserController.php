@@ -36,21 +36,25 @@ class UserController extends Controller {
         View::share('teamview', Auth::user()->team->id);
         View::share('adminteams', Team::all());
         View::share('emp', User::all());
+        View::share('dirleaves', Leave::all()->where('status','pending'));
      }
 	
 	public function indexAdmin()
 	{
 		$teams = Team::all();
 		$users = User::all();
-		$leaves = Leave::all()->where('status', 'pending');
+		$leaves = Leave::all()->where('status', 'approved');
 		return view('users.admin')->with('users', $users)->with('teams',$teams)->with('leaves',$leaves);
 	}
 
 	public function indexManager()
 	{
+		$team_id = Auth::user()->team->id;
+		$teams = Team::find($team_id);
+		$members = User::where('team_id',$team_id);
 		$team = Team::find(Auth::user()->team->id);
 		$manager = Auth::user();
-		return view('users.managerdash')->with('manager',$manager)->with('team',$team);
+		return view('users.managerdash')->with('manager',$manager)->with('team',$team)->with('members',$members);
 	}
 
 	public function indexMember()
@@ -65,9 +69,11 @@ class UserController extends Controller {
 
 	public function indexDirector()
 	{	
-		return view('users.directordash');
+		$teams = Team::all();
+		$users = User::all();
+		$leaves = Leave::all()->where('status', 'pending');
+		return view('users.directordash')->with('teams',$teams)->with('users', $users)->with('leaves',$leaves);
 	}
-
 
 	public function showMembers($manager_id)
 	{
@@ -198,13 +204,19 @@ class UserController extends Controller {
 
 	public function destroy($id)
 	{
-		//
+		$employee = User::find($id);
+		$employee->delete();
+
+		// redirect
+		Session::flash('message','Successfully deleted User '.$employee->id.'!');
+		return Redirect::to('admin/showemployees');
 	}
 	
 	public function showEmployees()
 	{
+		$teams = Team::all();
 		$employees = User::all();
-		return View::make('users.showEmployees')->with('employees', $employees); 
+		return View::make('users.showEmployees')->with('employees', $employees)->with('teams',$teams); 
 	}
 
 

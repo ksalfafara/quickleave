@@ -23,7 +23,13 @@
               <div class="small-box bg-yellow">
                 <div class="inner">
                   <h3>{{ $manager->members->count() }}
-                  <sup style="font-size: 20px"> member(s) </sup>
+                  <sup style="font-size: 20px"> 
+                    @if($manager->members->count() <= 1)
+                      member
+                    @else
+                      members
+                    @endif
+                  </sup>
                   </h3>
                   <p>In your team</p>
                 </div>
@@ -81,15 +87,14 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   @foreach($team->leaves as $leaves)
-                  @if($leaves->status == 'approved')
-                  @if(($leaves->where('status','approved')->count()) > 0)
-                  <!-- chat item -->
+                   <!-- chat item -->
                   <div class="item">
-                    @if(Auth::user()->gender == 'M')
-                      <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
-                    @else
-                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
-                    @endif
+                    @if($leaves->status == 'approved' && $leaves->from_dt >= date("Y-m-d"))
+                          @if($leaves->user->gender == 'M')
+                            <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                          @else
+                            <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                          @endif
                     <p class="message">
                       <a href="" class="name">
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
@@ -105,12 +110,11 @@
                               <br>
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
+                    @elseif($leaves->where('status','approved')->count() == 0 && $leaves->from_dt < date("Y-m-d"))
+                        <center><h2>No filed leaves from your team as of the moment.
+                        </h2></center>
+                    @endif                    
                   </div><!-- /.item -->
-                  @else
-                      <center><h2>Good news: No one will be on leave!
-                      </h2></center>
-                  @endif
-                  @endif
                 @endforeach
                   <!-- chat item -->
                 </div><!-- /.chat -->
@@ -126,23 +130,21 @@
                   <h3 class="box-title">Latest Members</h3>
                   <div class="box-tools pull-right">
                     <span class="label label-danger">8 New Members</span>
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
                   <ul class="users-list clearfix">
+                  @foreach($members as $member)
                     <li>
-                      <img src="/theme/dist/img/user1-128x128.jpg" alt="User Image"/>
-                      <a class="users-list-name" href="#">Alexander Pierce</a>
+                      @if($member->gender == 'M')
+                        <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                      @else
+                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                      @endif
+                      <a class="users-list-name" href="#">{{$member->username}}</a>
                       <span class="users-list-date">Today</span>
                     </li>
-                    <li>
-                      <img src="/theme/dist/img/user8-128x128.jpg" alt="User Image"/>
-                      <a class="users-list-name" href="#">Norman</a>
-                      <span class="users-list-date">Yesterday</span>
-                    </li>
-        
+                  @endforeach
                   </ul><!-- /.users-list -->
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">

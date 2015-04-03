@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Team;
 use App\User;
+use App\Leave;
 use View, Input, Session, Redirect, Validator;
 
 class TeamController extends Controller {
@@ -15,6 +16,7 @@ class TeamController extends Controller {
 		$this->middleware('auth'); //change later to auth
 		View::share('adminteams', Team::all());
 		View::share('emp', User::all());
+		View::share('dirleaves', Leave::all()->where('status','pending'));
 	}
 	
 	public function index()
@@ -103,4 +105,5 @@ class TeamController extends Controller {
 		Session::flash('message','Successfully deleted '.$member->username.'!');
 		return Redirect::to('teams');
 	}
+
 }

@@ -14,44 +14,58 @@
 @stop
 
 @section('content')
-<div class="box box-warning">
-    <div class="box-body table-responsive">
-        @if (Session::has('message'))
-        <div class="alert alert-info">{!! Session::get('message') !!}</div>
-        @endif
-    
-<table id="table" class="table table-bordered table-hover">
-        <thead>
-            <tr>  
-                <th>Team</th>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Date Hired</th>
-                <th>Registration Date</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        @foreach($manager->members as $member)
-            <tr>
-                <td>{!! $member->team->team_name!!}</td>
-                <td>{!! $member->firstname . ' ' . $member->lastname !!}</td>
-                <td>{!! $member->username !!}</td>
-                <td>
-                    @if($member->role == 'manager')
-                    <span class="label label-primary">Manager</span>
+<div class="row">
+@foreach($manager->members as $member)
+    <div class="col-md-4 col-sm-5 col-xs-12">
+    <div class="box box-warning">
+                <div class="box-body chat" id="chat-box">
+                  <!-- chat item -->
+                  <div class="item" style="padding-top:5px">
+                    @if($member->gender == 'M')
+                    @if($member->role == 'admin')
+                      <img src="/theme/dist/img/avatar.png" class="online" alt="User Image"/>
+                    @elseif($member->role == 'director')
+                      <img src="/theme/dist/img/avatar3.png" class="online" alt="User Image"/>
                     @else
-                    <span class="label label-success">Member</span>
+                      <img src="/theme/dist/img/avatar5.png" class="online" alt="User Image"/>
                     @endif
-                </td>
-                <td>{!! date("M d, Y",strtotime($member->date_hired)) !!}</td>
-                <td>{!! date("M d, Y",strtotime($member->created_at)) !!}</td>
-            </tr>
-        @endforeach
-        </tbody>
-</table>
+                  @else
+                    <img src="/theme/dist/img/avatar2.png" class="online" alt="User Image"/>
+                  @endif
+                    <p class="message">
+                        <a href="" class="name">
+                        <b style="color: black">Team Name: </b>
+                        <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($member->created_at)) !!}</small>
+                            {!! $member->team->team_name !!}
+                        </a>
+                      <b>Name: </b>{!! $member->firstname . ' ' . $member->lastname  !!}  
+                      <br>
+                      <b>Role: </b>
+                        @if(($member->role) == 'manager')
+                            <span class="label label-warning">Manager</span>
+                        @elseif(($member->role) == 'member')
+                            <span class="label label-success">Member</span>
+                        @elseif(($member->role) == 'admin')
+                            <span class="label label-danger">Admin</span>
+                        @elseif(($member->role) == 'director')
+                            <span class="label label-danger">Director</span>
+                        @else
+                            <span class="label label-danger">No specified role</span>
+                        @endif
+                        <br>
+                        <b>Date Hired: </b>{!! date("M d, Y",strtotime($member->date_hired)) !!}
+                        <br>
+                        <b>Leave Balances: </b>{{ $member->sl_bal }} SL / {{ $member->vl_bal }} VL
 
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
+                    </p>
+                  </div><!-- /.item -->
+                  <!-- chat item -->
+                </div><!-- /.chat -->
+                
+                
+              </div><!-- /.box (chat box) -->
+    </div><!-- /.col -->  
+@endforeach
+</div><!--row -->
+
 @stop

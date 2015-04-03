@@ -20,4 +20,8 @@ class Team extends Model {
 		return $this->hasManyThrough('App\Leave','App\User','team_id','user_id');
 	}
 
+	public function members() {
+		return $this->hasMany('App\Team','App\User','team_id','manager_id');
+	}
+
 }

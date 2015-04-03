@@ -26,7 +26,7 @@
                  
                   <!-- chat item -->
                   <div class="item">
-                    @if(Auth::user()->gender == 'M')
+                    @if($leaves->user->gender == 'M')
                       <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
                     @else
                         <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
@@ -49,8 +49,8 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                 </div><!-- /.chat -->
-                <div class="box-footer">
-                   <center> <a class="btn btn-small btn-info" href="{!! URL::to('leaves/pending/' . $leaves->id . '/edit') !!}">Change Status</a></center>
+                <div class="box-footer bg-navy">
+                   <center> <a class="btn btn-sm btn-primary" href="{!! URL::to('leaves/pending/' . $leaves->id . '/edit') !!}">Change Status</a></center>
                 </div>
                 
               </div><!-- /.box (chat box) -->
