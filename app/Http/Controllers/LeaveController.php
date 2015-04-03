@@ -92,9 +92,11 @@ class LeaveController extends Controller {
         $to_dt = Input::get('to_dt');
         $leave->to_dt = $to_dt;
 
-        $overlap_query = DB::select("SELECT EXISTS (SELECT 1 FROM leaves WHERE '" . $from_dt . "' 
+        $user_id = $user->id;
+
+        $overlap_query = DB::select("SELECT EXISTS (SELECT 1 FROM leaves WHERE user_id = " . $user_id . " AND ('" . $from_dt . "' 
         BETWEEN from_dt AND to_dt OR '" . $to_dt . "' BETWEEN from_dt AND to_dt OR from_dt 
-        BETWEEN '" . $from_dt . "' AND '" .$to_dt. "') as overlap_dt");
+        BETWEEN '" . $from_dt . "' AND '" .$to_dt. "') ) as overlap_dt");
 
         $overlap_dt = $overlap_query[0]->overlap_dt;
         
