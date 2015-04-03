@@ -134,7 +134,7 @@ class UserController extends Controller {
                 ->withErrors($validator);
         } else {
         $user = User::find($id);
-        $user->username = Input::get('username');
+     // $user->username = Input::get('username');
         $user->firstname = Input::get('firstname');
         $user->lastname = Input::get('lastname');
         $user->email = Input::get('email');

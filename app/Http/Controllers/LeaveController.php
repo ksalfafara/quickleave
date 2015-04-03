@@ -89,6 +89,17 @@ class LeaveController extends Controller {
         $to_dt = Input::get('to_dt');
         $leave->to_dt = $to_dt;
 
+        $overlap_query = DB::select("SELECT EXISTS (SELECT 1 FROM leaves WHERE '" . $from_dt . "' 
+        BETWEEN from_dt AND to_dt OR '" . $to_dt . "' BETWEEN from_dt AND to_dt OR from_dt 
+        BETWEEN '" . $from_dt . "' AND '" .$to_dt. "') as overlap_dt");
+
+        $overlap_dt = $overlap_query[0]->overlap_dt;
+        
+        if ($overlap_dt == 1) {
+            Session::flash('message', "Filed leave request is overlapping with another leave request. Please change dates.");
+            return Redirect::to('leaves/create');
+        }
+
        $duration_query = DB::select("SELECT ((DATEDIFF('" . $to_dt . "', '" . $from_dt . "') + 1) -
         ((WEEK('" . $to_dt . "') - WEEK('" .$from_dt . "')) * 2) -
         (case when weekday('" . $to_dt . "') = 6 then 1 else 0 end) -
@@ -96,19 +107,19 @@ class LeaveController extends Controller {
 
        $duration = $duration_query[0]->duration;
 
-        $leave->user()->associate($user);
+       $leave->user()->associate($user);
 
-        $type = $leave->type;
-         if ($type == 'SL') {
-            $type = 'sl_bal';
-         }
-         elseif ($type == 'VL') {
-            $type = 'vl_bal';
-         }
+       $type = $leave->type;
+        if ($type == 'SL') {
+           $type = 'sl_bal';
+        }
+        elseif ($type == 'VL') {
+           $type = 'vl_bal';
+        }
 
         $leave->duration = $duration;
         $balance = $user->$type;
-      if ($balance < $duration) {
+        if ($balance < $duration) {
             Session::flash('message', "Insufficient leave balance! You only have " .$balance." remaining " .$leave->type. " balance.");
             return Redirect::to('leaves/create');
         }
