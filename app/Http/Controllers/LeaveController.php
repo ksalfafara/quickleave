@@ -174,6 +174,19 @@ class LeaveController extends Controller {
         $to_dt = Input::get('to_dt');
         $leave->to_dt = $to_dt;
 
+        $user_id = Auth::user()->id;
+
+        $overlap_query = DB::select("SELECT EXISTS (SELECT 1 FROM leaves WHERE user_id = " . $user_id . " AND ('" . $from_dt . "' 
+        BETWEEN from_dt AND to_dt OR '" . $to_dt . "' BETWEEN from_dt AND to_dt OR from_dt 
+        BETWEEN '" . $from_dt . "' AND '" .$to_dt. "') ) as overlap_dt");
+
+        $overlap_dt = $overlap_query[0]->overlap_dt;
+        
+        if ($overlap_dt == 1) {
+            Session::flash('message', "Filed leave request is overlapping with another leave request. Please change dates.");
+            return Redirect::to('leaves/create');
+        }
+
         $duration_query = DB::select("SELECT ((DATEDIFF('" . $to_dt . "', '" . $from_dt . "') + 1) -
         ((WEEK('" . $to_dt . "') - WEEK('" .$from_dt . "')) * 2) -
         (case when weekday('" . $to_dt . "') = 6 then 1 else 0 end) -
