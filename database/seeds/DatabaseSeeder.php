@@ -22,7 +22,7 @@ class QuickLeaveSeeder extends Seeder {
 		DB::table('users')->delete();
 		DB::table('teams')->delete();
 
-		$team = Team::create(array(
+		$team_admin = Team::create(array(
 			'team_name' => 'admin',
 			'team_code' => 'admin' 
 			));
@@ -38,7 +38,26 @@ class QuickLeaveSeeder extends Seeder {
 			'role' => 'admin',
 			'date_hired' => '2015-03-15',
 			'gender' => 'M',
-			'team_id' => $team->id
+			'team_id' => $team_admin->id
+		));
+
+		$team_director = Team::create(array(
+			'team_name' => 'director',
+			'team_code' => 'director' 
+			));
+
+		$director = User::create(array(
+			'firstname' => 'director',
+			'lastname' => 'directorlastname',
+			'username' => 'director',
+			'email' => 'director@gmail.com',
+			'password' => Hash::make('director'),
+			'sl_bal' => null,
+			'vl_bal' => null,
+			'role' => 'director',
+			'date_hired' => '2015-03-15',
+			'gender' => 'M',
+			'team_id' => $team_director->id
 		));
 
 		for($i = 0; $i < 5; $i++) {
@@ -59,7 +78,7 @@ class QuickLeaveSeeder extends Seeder {
 				'date_hired' => '2015-03-15',
 				'gender' => 'M',
 				'team_id' => $team->id,
-				'manager_id' => null
+				'manager_id' => null,
 				));
 
 			$member = User::create(array(
