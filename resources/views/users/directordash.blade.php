@@ -15,5 +15,5 @@
 @stop
 
 @section('content')
-LDKLNSKLCN scjdlc
+PENDING REQUESTS
 @stop

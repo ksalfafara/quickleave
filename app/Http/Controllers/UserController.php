@@ -65,7 +65,8 @@ class UserController extends Controller {
 
 	public function indexDirector()
 	{	
-		return view('users.directordash');
+		$teams = Team::all();
+		return view('users.directordash')->with('teams',$teams);
 	}
 
 	public function showMembers($manager_id)

@@ -53,7 +53,6 @@ Route::delete('teams/{id}/delete', 'TeamController@destroy');
 Route::get('teams/{id}/editrole', 'TeamController@editRole');
 Route::put('teams/{id}/updaterole', ['uses' => 'TeamController@updateRole', 'as' => 'teams.updateRole']);
 Route::delete('teams/{id}/deletemember', 'TeamController@destroyMember');
-Route::get('director/teams', 'TeamController@directorTeam');
 
 //Leave
 Route::get('leaves', 'LeaveController@index');

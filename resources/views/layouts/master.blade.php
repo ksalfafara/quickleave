@@ -139,9 +139,14 @@
           </ul>
           @endif <!--admin-->
 
-          @if(Auth::user()->role == 'director') && (Auth::user()->role <> 'member')) <!--director-->
+          @if(Auth::user()->role == 'director' && Auth::user()->role <> 'a') <!--director-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a href="/Director">
+                <i class="fa fa-home"></i> <span>Director Board</span>
+              </a>
+            </li>
             <li><a href="/director/teams">
                     <i class="fa fa-users"></i>
                     <span>Teams</span>
@@ -162,7 +167,7 @@
 
 
 
-          @if(Auth::user()->role == ('member' || 'manager') && Auth::user()->role <> 'director') <!--member-->
+          @if(Auth::user()->role <> 'admin' && Auth::user()->role <> 'director') <!--member-->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
