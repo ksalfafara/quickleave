@@ -22,7 +22,13 @@
               <div class="small-box bg-yellow">
                 <div class="inner">
                   <h3>{{ $members->count() }}
-                  <sup style="font-size: 20px"> member(s) </sup>
+                  <sup style="font-size: 20px"> 
+                    @if($members->count() <= 1)
+                      member
+                    @else
+                      members
+                    @endif
+                  </sup>
                   </h3>
                   <p>In your team</p>
                 </div>
@@ -102,10 +108,7 @@
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
                       @endif
-                    @if ($leaves->where('status','approved')->count() = 0 && $leaves->from_dt < date("Y-m-d"))
-                        <center><h2>No filed leaves from your team as of the moment.
-                        </h2></center>
-                    @endif
+                    
                   </div><!-- /.item -->
                 @endforeach
                   <!-- chat item -->

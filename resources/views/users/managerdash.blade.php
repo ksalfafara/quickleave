@@ -23,7 +23,13 @@
               <div class="small-box bg-yellow">
                 <div class="inner">
                   <h3>{{ $manager->members->count() }}
-                  <sup style="font-size: 20px"> member(s) </sup>
+                  <sup style="font-size: 20px"> 
+                    @if($manager->members->count() <= 1)
+                      member
+                    @else
+                      members
+                    @endif
+                  </sup>
                   </h3>
                   <p>In your team</p>
                 </div>
