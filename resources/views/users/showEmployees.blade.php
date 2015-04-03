@@ -48,13 +48,13 @@
             <td>{!! $employee->vl_bal !!}</td>
             <td>
                 @if(($employee->role) == 'manager')
-                    <button class="btn btn-warning btn-xs">Manager</button>
+                    <span class="label label-warning">Manager</span>
                 @elseif(($employee->role) == 'member')
-                    <button class="btn btn-success btn-xs">Member</button>
+                    <span class="label label-success">Mmeber</span>
                 @elseif(($employee->role) == 'admin')
-                    <button class="btn btn-danger btn-xs">Admin</button>
+                    <span class="label label-danger">Admin</span>
                 @elseif(($employee->role) == null)
-                    <button class="btn btn-danger btn-xs">No specified role</button>
+                    <span class="label label-danger">No specified role</span>
                 @endif
             </td>
             <!--edit and delete buttons -->

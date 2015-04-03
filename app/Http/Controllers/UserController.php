@@ -35,6 +35,7 @@ class UserController extends Controller {
         View::share('managerview', Auth::id());
         View::share('teamview', Auth::user()->team->id);
         View::share('adminteams', Team::all());
+        View::share('emp', User::all());
      }
 	
 	public function indexAdmin()
@@ -61,6 +62,12 @@ class UserController extends Controller {
 	
 		return view('users.userdash')->with('members',$members)->with('pending', $pending)->with('team', $team);
 	}
+
+	public function indexDirector()
+	{	
+		return view('users.directordash');
+	}
+
 
 	public function showMembers($manager_id)
 	{
