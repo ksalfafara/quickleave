@@ -49,8 +49,8 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                 </div><!-- /.chat -->
-                <div class="box-footer">
-                   <center> <a class="btn btn-small btn-info" href="{!! URL::to('leaves/pending/' . $leaves->id . '/edit') !!}">Change Status</a></center>
+                <div class="box-footer bg-navy">
+                   <center> <a class="btn btn-sm btn-primary" href="{!! URL::to('leaves/pending/' . $leaves->id . '/edit') !!}">Change Status</a></center>
                 </div>
                 
               </div><!-- /.box (chat box) -->

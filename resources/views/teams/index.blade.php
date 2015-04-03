@@ -34,7 +34,7 @@
                   <div class="item" style="padding-top:5px">
                     <img src="/theme/dist/img/photo1.png" alt="user image" class="online"//>
                     <p class="message">
-                        <a href="" class="name">
+                        <a href="" class="name" style="color:white">
                         <b style="color: black">Team Code: </b>
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($team->created_at)) !!}</small>
                             {!! $team->team_name !!}
@@ -44,7 +44,7 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                 </div><!-- /.chat -->
-                <div class="box-footer">
+                <div class="box-footer bg-navy">
                    <center> 
                     <a class="btn btn-sm btn-success" href="{{ URL::to('teams/' . $team->id . '/showmembers') }}" alt="Show Members"><i class="fa fa-users"></i></a>
 

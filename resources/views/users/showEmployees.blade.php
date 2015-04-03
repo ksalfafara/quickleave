@@ -72,7 +72,7 @@
                   </div><!-- /.item -->
                   <!-- chat item -->
                 </div><!-- /.chat -->
-                <div class="box-footer">
+                <div class="box-footer bg-navy">
                    <center> 
                         <a class="btn btn-sm btn-info" href="{{ URL::to('admin/' . $employee->id . '/editemployee') }}"><i class="fa fa-pencil"></i></a>
                          {!! Form::open(array('url' => 'admin/' . $employee->id . '/delete', 'class' => 'btn', 'method' => 'DELETE')) !!}
