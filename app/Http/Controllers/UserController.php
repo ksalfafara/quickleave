@@ -36,6 +36,7 @@ class UserController extends Controller {
         View::share('teamview', Auth::user()->team->id);
         View::share('adminteams', Team::all());
         View::share('emp', User::all());
+        View::share('dirleaves', Leave::all()->where('status','pending'));
      }
 	
 	public function indexAdmin()

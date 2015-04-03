@@ -81,5 +81,58 @@
             </div><!-- /.col -->
 
           </div><!-- /.row -->
+
+
+<div class="row">
+@foreach($leaves as $leaves)
+@if($leaves->status == 'pending')
+
+
+    <div class="col-md-4 col-sm-5 col-xs-12">
+    <div class="box box-warning">
+                <div class="box-body chat" id="chat-box">
+                 
+                  <!-- chat item -->
+                  <div class="item">
+                    @if($leaves->user->gender == 'M')
+                      <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                    @else
+                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                    @endif
+                    <p class="message">
+                      <a href="" class="name">
+                        <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
+                          {!!$leaves->user->firstname!!} {!!$leaves->user->lastname!!}
+                      </a>
+                      <b>Role: </b> @if($leaves->user->role == 'manager')
+                                <span class="label label-primary ">MANAGER</span> 
+                              @else
+                                <span class="label label-success">MEMBER</span> 
+                              @endif
+                              of {!!$leaves->user->team->team_name!!}
+                              <br>
+                      <b>On leave: </b><b style="color: blue">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("M d",strtotime($leaves->to_dt)) !!}
+                      <br>
+                      <b>Leave Type: </b> @if($leaves->type == 'SL')
+                                Sick Leave
+                              @else
+                                Vacation Leave
+                              @endif
+                              <br>
+                      <b>Reason: </b>{!!$leaves->note!!}
+                    </p>
+                  </div><!-- /.item -->
+                  <!-- chat item -->
+                </div><!-- /.chat -->
+                <div class="box-footer box-solid bg-navy">
+                   <center> <a class="btn btn-xs btn-primary" href="{!! URL::to('leaves/pending/' . $leaves->id . '/edit') !!}">Change Status</a></center>
+                </div>
+                
+              </div><!-- /.box (chat box) -->
+    </div><!-- /.col -->  
+       
+@endif
+@endforeach
+</div> <!--row-->
   
 @stop
