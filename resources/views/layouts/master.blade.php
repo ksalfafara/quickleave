@@ -143,25 +143,11 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="/Director">
+              <a href="/director">
                 <i class="fa fa-home"></i> <span>Director Board</span>
+                <span class="label label-warning pull-right">{{$dirleaves->count()}}</span>
               </a>
             </li>
-            <li><a href="/director/teams">
-                    <i class="fa fa-users"></i>
-                    <span>Teams</span>
-                    <span class="label label-warning pull-right">{{$adminteams->count()}}</span>
-                    </a>
-            </li> 
-            
-            <li><a href="/admin/showemployees">
-                    <i class="fa fa-pencil-square"></i>
-                    <span>Employees</span>
-                    <span class="label label-warning pull-right">{{$emp->count()}}</span>
-                    </a>
-            </li>     
-            <li><a href="/approved"><i class="fa fa-check-square"></i> All approved requests</a></li>     
-            
           </ul>
           @endif <!--director-->
 

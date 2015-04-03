@@ -100,7 +100,7 @@
                   @if(($leaves->where('status','approved')->count()) > 0)
                   <!-- chat item -->
                   <div class="item">
-                    @if(Auth::user()->gender == 'M')
+                    @if($leaves->user->gender == 'M')
                       <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
                     @else
                         <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>

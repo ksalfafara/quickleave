@@ -77,12 +77,11 @@
                   </div>
                 </div>
                 <div class="box-body chat" id="chat-box">
-                  @foreach($team->leaves as $leaves)
-                  @if($leaves->status == 'approved')
-                  @if(($leaves->where('status','approved')->count()) > 0)
+                  @foreach($team->leaves->where('status','approved') as $leaves)
                   <!-- chat item -->
                   <div class="item">
-                    @if(Auth::user()->gender == 'M')
+                    @if($leaves->where('status','approved')->count() > 0)
+                    @if($leaves->user->gender == 'M')
                       <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
                     @else
                         <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
@@ -102,12 +101,12 @@
                               <br>
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
-                  </div><!-- /.item -->
-                  @else
+                    @else
                       <center><h2>Good news: No one will be on leave!
                       </h2></center>
                   @endif
-                  @endif
+                  </div><!-- /.item -->
+                  
                 @endforeach
                   <!-- chat item -->
                 </div><!-- /.chat -->
