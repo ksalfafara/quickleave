@@ -45,7 +45,7 @@ class UserController extends Controller {
 	public function indexAdmin()
 	{
 		$teams = Team::all();
-		$users = User::all();
+		$users = User::skip(1)->take(8)->get();;
 		$leaves = Leave::all()->where('status', 'approved');
 		return view('users.admin')->with('users', $users)->with('teams',$teams)->with('leaves',$leaves);
 	}

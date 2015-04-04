@@ -85,7 +85,8 @@
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
-            <section class="col-lg-7 connectedSortable">
+                       <section class="col-lg-7 connectedSortable">
+<!-- Chat box -->
               <div class="box box-success">
                 <div class="box-header">
                   <i class="fa fa-users"></i>
@@ -123,7 +124,7 @@
                     @elseif($leaves->where('status','approved')->count() == 0)
                         <center><h2>No filed leaves from your team as of the moment.
                         </h2></center>
-                    @endif                    
+                    @endif
                   </div><!-- /.item -->
                 @endforeach
                   <!-- chat item -->
@@ -148,18 +149,24 @@
                   <ul class="users-list clearfix">
                     @foreach($users as $user)
                         <li>
-                          @if(Auth::user()->gender == 'M')
-                            <img src="/theme/dist/img/avatar5.png" alt="User Image">
-                          @else
-                            <img src="/theme/dist/img/avatar2.png" alt="User Image">
-                          @endif
+                         @if($user->gender == 'M')
+                        @if($user->role == 'admin')
+                          <img src="/theme/dist/img/avatar.png" class="online" alt="User Image"/>
+                        @elseif($user->role == 'director')
+                          <img src="/theme/dist/img/avatar3.png" class="online" alt="User Image"/>
+                        @else
+                          <img src="/theme/dist/img/avatar5.png" class="online" alt="User Image"/>
+                        @endif
+                      @else
+                        <img src="/theme/dist/img/avatar2.png" class="online" alt="User Image"/>
+                      @endif
                           <a class="users-list-name" href="#">{{$user->firstname}}</a>
                           <!--<span class="users-list-date">Today</span>-->                    
                         </li>
                     @endforeach
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="javascript::;" class="uppercase">View All Employees</a>
+                  <a href="/admin/showemployees" class="uppercase">View All Employees</a>
                 </div><!-- /.box-footer -->
               </div><!--/.box -->
             </section><!-- right col -->
