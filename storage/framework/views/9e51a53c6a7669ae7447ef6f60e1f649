@@ -12,52 +12,58 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-<div class="box box-warning">
-
-    <div class="box-body table-responsive">
         <?php if(Session::has('message')): ?>
-        <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
+                <div class="alert alert-info"><?php echo Session::get('message'); ?></div>
+                <?php endif; ?>
+                <?php if($errors->has()): ?>
+                    <div class="alert alert-danger">
+                      <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
+                        <?php foreach($errors->all() as $error): ?>
+                            <?php echo e($error); ?><br>        
+                        <?php endforeach; ?>
+                    </div>
         <?php endif; ?>
-     
+<div class="row">
+<?php foreach($teams as $team): ?>
+    <div class="col-md-4 col-sm-5 col-xs-12">
+    <div class="box box-solid">
+                <div class="box-body chat" id="chat-box">
+                  <!-- chat item -->
+                  <div class="item" style="padding-top:5px">
+                    <img src="/theme/dist/img/photo1.png" alt="user image" class="online"//>
+                    <p class="message">
+                        <a href="" class="name" style="color:white">
+                        <b style="color: black">Team Code: </b>
+                        <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> <?php echo date("M d, Y",strtotime($team->created_at)); ?></small>
+                            <?php echo $team->team_name; ?>
 
-<table id="table" class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Team Name</th>
-            <th>Team Code</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php foreach($teams as $team): ?>
-        <tr>
-            <td><?php echo $team->team_name; ?></td>
-            <td><?php echo $team->team_code; ?></td>
-
-            <!-- show, edit, and delete buttons -->
-            <td>
-                 <!-- show the team members (uses the show method found at GET /teams/{id} -->
-                <a class="btn btn-small btn-success" href="<?php echo e(URL::to('teams/' . $team->id . '/showmembers')); ?>">Show Members</a>
+                        </a>
+                      <b>Team Code: </b><?php echo $team->team_code; ?>                      
+                    </p>
+                  </div><!-- /.item -->
+                  <!-- chat item -->
+                </div><!-- /.chat -->
+                <div class="box-footer bg-navy">
+                   <center> 
+                    <a class="btn btn-sm btn-success" href="<?php echo e(URL::to('teams/' . $team->id . '/showmembers')); ?>" alt="Show Members"><i class="fa fa-users"></i></a>
 
                 <!-- edit this team (uses the edit method found at GET /teams/{id}/edit -->
-                <a class="btn btn-small btn-info" href="<?php echo e(URL::to('teams/' . $team->id . '/edit')); ?>">Edit this Team</a>
+                <a class="btn btn-sm btn-info" href="<?php echo e(URL::to('teams/' . $team->id . '/edit')); ?>" alt="Edit this team"><i class="fa fa-pencil"></i></a>
 
-                <?php echo Form::open(array('url' => 'teams/' . $team->id . '/delete', 'class' => 'btn')); ?>
+                <?php echo Form::open(array('url' => 'teams/' . $team->id . '/delete', 'class' => 'btn', 'method' => 'DELETE')); ?>
 
-                    <?php echo Form::hidden('_method', 'DELETE'); ?>
-
-                    <?php echo Form::submit('Delete this Team', array('class' => 'btn btn-warning')); ?>
+                    <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
 
                 <?php echo Form::close(); ?>
 
+                   </center>
+                </div>
+                
+              </div><!-- /.box (chat box) -->
+    </div><!-- /.col -->  
+<?php endforeach; ?>
+</div><!--row -->
 
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
-  </div><!-- /.box-body -->
-</div><!-- /.box -->
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

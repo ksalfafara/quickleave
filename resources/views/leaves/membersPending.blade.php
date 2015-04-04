@@ -18,12 +18,10 @@
 <div class="row">
 @foreach($team->leaves as $leaves)
 @if($leaves->status == 'pending' && $leaves->user->role <> 'manager')
-
-
     <div class="col-md-4 col-sm-5 col-xs-12">
     <div class="box box-warning">
                 <div class="box-body chat" id="chat-box">
-                 
+                  
                   <!-- chat item -->
                   <div class="item">
                     @if($leaves->user->gender == 'M')

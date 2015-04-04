@@ -296,10 +296,15 @@ class LeaveController extends Controller {
                 $leave->save();
             }
 
-            $team = Team::find(Auth::user()->team->id);
-
-            Session::flash('message', 'Successfully ' .$stat. ' leave request '.$leave->id.'!');
-            return Redirect::to('leaves/ '. $team->id .'/memberspending');
+            if (Auth::user()->role == 'manager') {
+                $team = Team::find(Auth::user()->team->id);
+                Session::flash('message', 'Successfully ' .$stat. ' leave request '.$leave->id.'!');
+                return Redirect::to('leaves/ '. $team->id .'/memberspending');
+            }
+            elseif (Auth::user()->role == 'director') {
+                Session::flash('message', 'Successfully ' .$stat. ' leave request '.$leave->id.'!');
+                return Redirect::to('/director');
+            }
         }
     }
 
