@@ -95,7 +95,7 @@
                           @else
                             <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
                           @endif
-                    <p class="message">
+                      <p class="message">
                       <a href="" class="name">
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
                         {!!$leaves->user->firstname!!} {!!$leaves->user->lastname!!}
@@ -111,7 +111,7 @@
                               <br>
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
-                    @elseif($leaves->where('status','approved')->count() == 0)
+                    @elseif($leaves->where('status','approved')->count() == 0 && $leaves->from_dt >= date("Y-m-d"))
                         <center><h2>No filed leaves from your team as of the moment.
                         </h2></center>
                     @endif                    
@@ -131,7 +131,7 @@
                   <h3 class="box-title">Team Members</h3>
                   <div class="box-tools pull-right">
 
-                    <span class="label label-danger">8 New Members</span>
+                    <span class="label label-danger">{{$team->members->count()}} members</span>
                     
                   </div>
                 </div><!-- /.box-header -->
