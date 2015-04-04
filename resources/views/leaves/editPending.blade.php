@@ -42,7 +42,8 @@
                 <span class="label label-success">MEMBER</span> 
               @endif
               of {!!$leave->user->team->team_name!!} <br>
-              <b>On leave: </b><b style="color: blue">{!!$leave->duration!!} days</b> from {!! date("M d",strtotime($leave->from_dt)) !!} - {!! date("M d",strtotime($leave->to_dt)) !!} <br>
+              <b>On leave: </b><b style="color: blue">{!!$leave->duration!!} 
+              {{$leave->duration == 1 ? 'day' : 'days'}} </b> from {!! date("M d",strtotime($leave->from_dt)) !!} - {!! date("M d",strtotime($leave->to_dt)) !!} <br>
               <b>Leave Type: </b> 
                 @if($leave->type == 'SL') Sick Leave
                 @else Vacation Leave

@@ -111,7 +111,8 @@
                               @endif
                               of {!!$leaves->user->team->team_name!!}
                               <br>
-                      <b>On leave: </b><b style="color: blue">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("M d",strtotime($leaves->to_dt)) !!}
+                      <b>On leave: </b><b style="color: blue">{!!$leaves->duration!!}
+                        {{$leaves->duration == 1 ? 'day' : 'days'}}</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("M d",strtotime($leaves->to_dt)) !!}
                       <br>
                       <b>Leave Type: </b> @if($leaves->type == 'SL')
                                 Sick Leave
