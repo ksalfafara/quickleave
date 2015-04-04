@@ -28,8 +28,8 @@ class QuickLeaveSeeder extends Seeder {
 			));
 
 		User::create(array(
-			'firstname' => 'admin',
-			'lastname' => 'adminlastname',
+			'firstname' => 'Admin',
+			'lastname' => 'Adminlast',
 			'username' => 'admin',
 			'email' => 'admin@gmail.com',
 			'password' => Hash::make('admin'),
@@ -47,8 +47,8 @@ class QuickLeaveSeeder extends Seeder {
 			));
 
 		$director = User::create(array(
-			'firstname' => 'director',
-			'lastname' => 'directorlastname',
+			'firstname' => 'Director',
+			'lastname' => 'Directorlast',
 			'username' => 'director',
 			'email' => 'director@gmail.com',
 			'password' => Hash::make('director'),
@@ -67,11 +67,11 @@ class QuickLeaveSeeder extends Seeder {
 				));
 
 			$manager = User::create(array(
-				'firstname' => 'manager'.$i,
-				'lastname' => 'managerlast'.$i,
+				'firstname' => 'Manager'.$i,
+				'lastname' => 'Managerlast'.$i,
 				'username' => 'manager'.$i,
 				'email' => 'manager'.$i.'@gmail.com',
-				'password' => Hash::make('password'.$i),
+				'password' => Hash::make('password'),
 				'sl_bal' => 5,
 				'vl_bal' => 7,
 				'role' => 'manager',
@@ -82,11 +82,11 @@ class QuickLeaveSeeder extends Seeder {
 				));
 
 			$member = User::create(array(
-				'firstname' => 'firstname'.$i,
-				'lastname' => 'lastname'.$i,
-				'username' => 'username'.$i,
+				'firstname' => 'Member'.$i,
+				'lastname' => 'Memberlast'.$i,
+				'username' => 'member'.$i,
 				'email' => 'email'.$i.'@gmail.com',
-				'password' => Hash::make('password'.$i),
+				'password' => Hash::make('password'),
 				'sl_bal' => 5,
 				'vl_bal' => 7,
 				'role' => 'member',	

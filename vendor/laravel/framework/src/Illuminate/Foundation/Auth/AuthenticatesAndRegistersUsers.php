@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
-use Auth;
+use Auth, Session, Redirect;
 
 trait AuthenticatesAndRegistersUsers {
 
@@ -136,8 +136,12 @@ trait AuthenticatesAndRegistersUsers {
 			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'manager';
 		elseif((Auth::user()->role) == 'member')
 			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'user';
-		else
+		elseif((Auth::user()->role) == 'director')
 			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'director';
+		elseif((Auth::user()->role) == null) {
+			Session::flash('message', 'Successfully registered!');
+			return property_exists($this, 'redirectTo') ? $this->redirectTo : 'auth/register';
+		}
 	}
 
 	/**

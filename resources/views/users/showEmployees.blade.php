@@ -64,7 +64,7 @@
                             <span class="label label-danger">No specified role</span>
                         @endif
                         <br>
-                        <b>Date Hired: </b>{!! date("M d, Y",strtotime($employee->date_hired)) !!}
+                        <b>Date Hired: </b>{{$employee->date_hired == null ? 'No specified date hired' : date("M d, Y",strtotime($employee->date_hired))}}
                         <br>
                         <b>Leave Balances: </b>{{ $employee->sl_bal }} SL / {{ $employee->vl_bal }} VL
 
