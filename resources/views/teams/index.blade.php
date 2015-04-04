@@ -35,9 +35,9 @@
                     <img src="/theme/dist/img/photo1.png" alt="user image" class="online"//>
                     <p class="message">
                         <a href="" class="name" style="color:white">
-                        <b style="color: black">Team Code: </b>
+                        <b style="color: black">Team Name: {!! $team->team_name !!}</b>
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($team->created_at)) !!}</small>
-                            {!! $team->team_name !!}
+                            
                         </a>
                       <b>Team Code: </b>{!! $team->team_code !!}                      
                     </p>
