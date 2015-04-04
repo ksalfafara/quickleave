@@ -109,7 +109,8 @@
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($leaves->created_at)) !!}</small>
                         {!!$leaves->user->firstname!!} {!!$leaves->user->lastname!!}
                       </a>
-                      <b>On leave: </b><b style="color: green">{!!$leaves->duration!!} days</b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
+                      <b>On leave: </b><b style="color: green">{!!$leaves->duration!!} 
+                      {{$leaves->duration == 1 ? 'day' : 'days'}} </b> from {!! date("M d",strtotime($leaves->from_dt)) !!} - {!! date("mM d",strtotime($leaves->to_dt)) !!}
                       <br>
                       <b>Leave Type: </b> @if($leaves->type == 'SL')
                                 <span class="label label-primary ">SICK LEAVE</span> 
