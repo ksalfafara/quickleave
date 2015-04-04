@@ -108,7 +108,7 @@
                               <br>
                       <b>Reason: </b>{!!$leaves->note!!}
                     </p>
-                    @elseif($leaves->where('status','approved')->count() == 0 && $leaves->from_dt < date("Y-m-d"))
+                    @elseif($leaves->where('status','approved')->count() == 0)
                         <center><h2>No filed leaves from your team as of the moment.
                         </h2></center>
                     @endif
