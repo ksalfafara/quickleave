@@ -21,7 +21,7 @@ class Team extends Model {
 	}
 
 	public function members() {
-		return $this->hasMany('App\Team','App\User','team_id','manager_id');
+		return $this->hasMany('App\User','team_id');
 	}
 
 }

@@ -62,8 +62,8 @@ class QuickLeaveSeeder extends Seeder {
 
 		for($i = 0; $i < 5; $i++) {
 			$team = Team::create(array(
-				'team_name' => 'team_name'.$i,
-				'team_code' => 'team_code'.$i
+				'team_name' => 'teamname'.$i,
+				'team_code' => 'teamcode'.$i
 				));
 
 			$manager = User::create(array(
