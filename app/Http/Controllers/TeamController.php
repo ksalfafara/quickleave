@@ -13,7 +13,9 @@ class TeamController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth'); //change later to auth
+		$this->middleware('auth');
+		$this->middleware('admin');
+		
 		View::share('adminteams', Team::all());
 		View::share('emp', User::all());
 		View::share('dirleaves', Leave::all()->where('status','pending'));

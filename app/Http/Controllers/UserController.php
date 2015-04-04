@@ -18,7 +18,10 @@ class UserController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
-
+		$this->middleware('admin',['only' => array('indexAdmin','showEmployees','editEmployee','updateEmployee','destroy')]);
+		$this->middleware('director',['only' => array('indexDirector')]);
+		$this->middleware('manager',['only' => array('indexManager','showMembers')]);
+		$this->middleware('member',['only' => array('indexMember')]);
 		/*
 		$this->manager = User::find(Auth::id());
 		View::share('manager', $this->manager);
@@ -82,41 +85,6 @@ class UserController extends Controller {
         return View::make('users.members')->with('manager', $manager);
 		//$users = User::all();
         //return View::make('users.members')->with('users', $users);
-	}
-	
-	public function create()
-	{
-		return View::make('users.create');
-	}
-
-	public function store()
-	{
-	//	return 'Form Posted!';
-		$rules = array(
-			'firstname'	 	=> 'required',
-			'lastname'	 	=> 'required',
-			'email' 	 	=> 'required|email|unique:users',
-			'username' 	 	=> 'required|unique:user|alpha_dash',
-			'password' 		=> 'required|min:6',
-			'conf_password'	=> 'required|same:password'
-			);
-
-		$validator = Validator::make(Input::all(), $rules);
-
-		if ($validator->fails()) 
-			return Redirect::to('users/create')
-			->withInput()
-			->withErrors($validator->messages());
-
-		User::create(array(
-			'firstname'		=> Input::get('firstname'),
-			'lastname'		=> Input::get('lastname'),
-			'email'			=> Input::get('email'),
-			'username'		=> Input::get('username'),
-			'password'		=> Hash::make(Input::get('password')),
-			));
-
-		return Redirect::to('users');
 	}
 
 	public function show($username)

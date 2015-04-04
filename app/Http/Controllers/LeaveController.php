@@ -15,7 +15,9 @@ class LeaveController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth'); 
+		$this->middleware('auth');
+        $this->middleware('admin',['only' => 'showApproved']);
+        $this->middleware('manager',['only' => array('memberspending','showHistory')]);
         
         /*
         $this->manager = User::find(Auth::id());
