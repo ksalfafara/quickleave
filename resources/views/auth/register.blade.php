@@ -78,7 +78,10 @@
 <br><br>
     <div class="register-box">
       <div class="register-box-body">
-     
+    @if (Session::has('message'))
+      <div class="alert alert-info">{!! Session::get('message') !!}</div>
+    @endif
+
     @if ($errors->has())
         <div class="alert alert-danger">
           <i><strong>Whoops!</strong> There were some problems with your input.</i><br><br>
