@@ -128,28 +128,29 @@
             <section class="col-lg-5 connectedSortable">
               <div class="box box-danger">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Latest Members</h3>
+                  <h3 class="box-title">Team Members</h3>
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">8 New Members</span>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body no-padding">
                   <ul class="users-list clearfix">
-                  @foreach($members as $member)
-                    <li>
-                      @if($member->gender == 'M')
-                        <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
-                      @else
-                        <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
-                      @endif
-                      <a class="users-list-name" href="#">{{$member->username}}</a>
-                      <span class="users-list-date">Today</span>
-                    </li>
+                  @foreach($team->members as $member)
+                    @if($member->username <> Auth::user()->username)
+                      <li>
+                        @if($member->gender == 'M')
+                          <img src="/theme/dist/img/avatar5.png" alt="user image" class="online"//>
+                        @else
+                          <img src="/theme/dist/img/avatar2.png" alt="user image" class="online"//>
+                        @endif
+                        <a class="users-list-name" href="#">{{$member->firstname}}</a>
+                        <!--<span class="users-list-date">Today</span>-->
+                      </li>
+                    @endif
                   @endforeach
                   </ul><!-- /.users-list -->
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="javascript::;" class="uppercase">View All Users</a>
+                  <a href="{{ URL::to('manager/' . $managerview . '/members') }}" class="uppercase">View All Members</a>
                 </div><!-- /.box-footer -->
               </div><!--/.box -->
             </section><!-- right col -->
