@@ -44,7 +44,7 @@
                     <img src="/theme/dist/img/avatar2.png" class="online" alt="User Image"/>
                   @endif
                     <p class="message">
-                        <a href="" class="name">
+                        <a href="{{ URL::to('teams/' . $employee->team->id . '/showmembers') }}" class="name">
                         <b style="color: black">Team Name: </b>
                         <small class="text-muted pull-right" style="color:#c5c5c5"><i class="fa fa-clock-o"></i> {!! date("M d, Y",strtotime($employee->created_at)) !!}</small>
                             {!! $employee->team->team_name !!}
