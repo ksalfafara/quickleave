@@ -206,9 +206,10 @@ class UserController extends Controller {
 	{
 		$employee = User::find($id);
 		$employee->delete();
+		$fullname = $employee->firstname . ' ' . $employee->lastname;
 
 		// redirect
-		Session::flash('message','Successfully deleted User '.$employee->id.'!');
+		Session::flash('message','Successfully deleted ' . $fullname . '!');
 		return Redirect::to('admin/showemployees');
 	}
 	
