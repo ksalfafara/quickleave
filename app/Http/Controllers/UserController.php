@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Auth, View, Input, Session, Redirect, Validator;
+use DB, Auth, View, Input, Session, Redirect, Validator;
 use App\User;
 use App\Leave;
 use App\Team;
@@ -104,7 +104,7 @@ class UserController extends Controller {
 	public function update($id)
 	{
 		$rules = array(
-            'username' => 'max:255|unique:users',
+            'username' => 'max:255',
             'email' => 'email|max:255',
         );
 
@@ -115,10 +115,24 @@ class UserController extends Controller {
                 ->withErrors($validator);
         } else {
         $user = User::find($id);
-     // $user->username = Input::get('username');
+        $prev_uname = $user->username;
+
+        $username = Input::get('username');
+        $user->username = $username;
         $user->firstname = Input::get('firstname');
         $user->lastname = Input::get('lastname');
         $user->email = Input::get('email');
+        
+        if ($prev_uname != $username) {
+
+        $existing_query = DB::select("SELECT EXISTS (SELECT 1 FROM users WHERE username = '" .$username. "') AS existing");
+        $existing_uname = $existing_query[0]->existing;
+        
+        if ($existing_uname == 1) {
+            Session::flash('message', "Username has been already taken. Please choose another one.");
+            return Redirect::to('user/' . $id . '/edit');
+            }
+        }
         $user->save();
 
         Session::flash('message', 'Successfully updated your profile!');

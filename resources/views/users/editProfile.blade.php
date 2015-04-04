@@ -53,6 +53,10 @@
         <div class="box box-warning ">
             <div class="box-body ">
                 <br>
+            {!! Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) !!}
+                    {!! Form::label('username', 'Username:') !!}
+                    {!! Form::text('username', Input::old('username'), array('class' => 'form-control',
+        'placeholder' => 'Username')) !!} <br>
                 {!! Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) !!}
                     {!! Form::label('email', 'Email Address:') !!}
                     {!! Form::text('email', Input::old('email'), array('class' => 'form-control',
