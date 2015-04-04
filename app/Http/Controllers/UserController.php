@@ -198,7 +198,7 @@ class UserController extends Controller {
 	public function showEmployees()
 	{
 		$teams = Team::all();
-		$employees = User::all();
+		$employees = User::orderBy('created_at','desc')->get();
 		return View::make('users.showEmployees')->with('employees', $employees)->with('teams',$teams); 
 	}
 
